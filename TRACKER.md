@@ -17,7 +17,6 @@
 ## In progress — claim a task here BEFORE you start it
 | Started | AI | Task | Branch / PR |
 |---|---|---|---|
-| — | — | nothing claimed | — |
 
 ## Do not change
 - nothing recorded yet
@@ -27,6 +26,7 @@
 - Testing: not tested
 
 ## Done — newest first
+- 2026-11-04 — Codex — Completed scoped public preview metadata correction. Completed canonical and matching X preview details while retaining the original app-specific 1200 by 630 artwork and all page body bytes. Source whitespace checks pass; host gates and exact hosted evidence follow on this revision’s PR.
 - 2026-11-01 — claude — Count visits on the Ops Room (Fiji Analytics tag, no cookies) — 1 file(s) on main: index.html
 - 2026-11-01 — claude — Proper 1200x630 link-preview picture (was the 160px logo, blurry when shared) — 2 file(s) on main: og-dimau-ventures.jpg, index.html
 - 2026-11-01 — claude — Load the shared Dimau consistency standard (44px header controls, title cap, Dimau Group footer)  Co-Authored-By: Claude Opus 5.5 <noreply@anthropic.com> Claude-Session: https://claude.ai/code/session
