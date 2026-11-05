@@ -18,6 +18,7 @@
 ## In progress — claim a task here BEFORE you start it
 | Started | AI | Task | Branch / PR |
 |---|---|---|---|
+| 2026-11-05 | Codex | Add the Dimau Group endorsement inside link-preview phone footers | `codex/phone-preview-dimau-branding-20261105` |
 
 ## Do not change
 - nothing recorded yet
