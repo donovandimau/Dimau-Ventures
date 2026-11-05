@@ -10,6 +10,7 @@
 - Live: https://dimauventures.com/
 
 ## Current state
+- 2026-11-05 phone-footer branding: branded JPEG artwork is prepared and locally verified; normal checked publication evidence belongs to its scoped PR.
 - 2026-11-05 photo revision: phone-preview photographs are prepared and locally verified; exact publication evidence belongs to the scoped PR.
 - Status: Live — Live — company site serving as Stripe business website (80% complete)
 - Next action: Add Companies House number to the site footer and Stripe once incorporation confirms; set up hello@dimauventures.com forwarding; swap Stripe payouts to Starling when the business account opens.
@@ -18,7 +19,6 @@
 ## In progress — claim a task here BEFORE you start it
 | Started | AI | Task | Branch / PR |
 |---|---|---|---|
-| 2026-11-05 | Codex | Add the Dimau Group endorsement inside link-preview phone footers | `codex/phone-preview-dimau-branding-20261105` |
 
 ## Do not change
 - nothing recorded yet
@@ -28,6 +28,7 @@
 - Testing: not tested
 
 ## Done — newest first
+- 2026-11-05 — Codex — Added the genuine Dimau D logo and “Dimau Group” inside each phone-screen white footer in the existing photorealistic link preview. Retained photographs, UI labels/values, demo qualifiers, exterior copy and public image URLs. All replacement JPEGs decode at 1200 × 630 and pass individual visual review; exact prompts and hashes are in `docs/phone-preview-branding-20261105.md`.
 - 2026-11-05 — Codex — Replaced the existing phone-preview artwork with app-specific photorealistic imagery. Preserved exterior brand/copy, meaningful screen figures, sample/demo labels, existing asset URLs and all application code. JPEG decoding and 1200 × 630 dimensions pass; exact generation prompts and image hashes are in `docs/phone-preview-photography-20261105.md`. This records completed image preparation, not a production receipt.
 - 2026-11-04 — Codex — Completed scoped public preview metadata correction. Completed canonical and matching X preview details while retaining the original app-specific 1200 by 630 artwork and all page body bytes. Source whitespace checks pass; host gates and exact hosted evidence follow on this revision’s PR.
 - 2026-11-01 — claude — Count visits on the Ops Room (Fiji Analytics tag, no cookies) — 1 file(s) on main: index.html
