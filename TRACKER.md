@@ -19,6 +19,7 @@
 ## In progress — claim a task here BEFORE you start it
 | Started | AI | Task | Branch / PR |
 |---|---|---|---|
+| 2026-11-06 | Codex | Add safe response headers | fix/security-response-headers-20261106 |
 
 ## Do not change
 - nothing recorded yet
