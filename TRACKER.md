@@ -19,6 +19,7 @@
 ## In progress — claim a task here BEFORE you start it
 | Started | AI | Task | Branch / PR |
 |---|---|---|---|
+| 2026-11-06 | Codex | Repair verified robots/sitemap discovery and canonical identity | codex/seo-discovery-20261106 |
 
 ## Do not change
 - nothing recorded yet
