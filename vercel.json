@@ -1,28 +1,31 @@
 {
-    "headers": [
+  "headers": [
+    {
+      "source": "/(.*)",
+      "headers": [
         {
-            "source": "/(.*)",
-            "headers": [
-                {
-                    "key": "X-Content-Type-Options",
-                    "value": "nosniff"
-                }
-            ]
-        }
-    ],
-    "cleanUrls": true,
-    "redirects": [
+          "key": "X-Content-Type-Options",
+          "value": "nosniff"
+        },
         {
-            "has": [
-                {
-                    "type": "host",
-                    "value": "dimau-ventures.vercel.app"
-                }
-            ],
-            "source": "/(.*)",
-            "statusCode": 308,
-            "destination": "https://dimauventures.com/$1"
+          "key": "Referrer-Policy",
+          "value": "strict-origin-when-cross-origin"
         }
-    ]
+      ]
+    }
+  ],
+  "cleanUrls": true,
+  "redirects": [
+    {
+      "has": [
+        {
+          "type": "host",
+          "value": "dimau-ventures.vercel.app"
+        }
+      ],
+      "source": "/(.*)",
+      "statusCode": 308,
+      "destination": "https://dimauventures.com/$1"
+    }
+  ]
 }
-
