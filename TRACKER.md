@@ -28,6 +28,7 @@
 - Testing: not tested
 
 ## Done — newest first
+- 2026-11-06 — Codex — Added valid UTF-8 XML sitemap and robots discovery for the verified public canonical pages; excludes account/API paths and keeps private data out of the URL list. XML parsing and source diff checks pass; hosted gates and production verification are recorded in the scoped PR.
 - 2026-11-05 — Codex — Verified the [Companies House record](https://find-and-update.company-information.service.gov.uk/company/17555886) and added company number 17555886 to the website footer and company section. Updated the service worker revision so returning visitors receive the revised page. Publication is verified separately through the deployment.
 - 2026-11-05 — Codex — Added the genuine Dimau D logo and “Dimau Group” inside each phone-screen white footer in the existing photorealistic link preview. Retained photographs, UI labels/values, demo qualifiers, exterior copy and public image URLs. All replacement JPEGs decode at 1200 × 630 and pass individual visual review; exact prompts and hashes are in `docs/phone-preview-branding-20261105.md`.
 - 2026-11-05 — Codex — Replaced the existing phone-preview artwork with app-specific photorealistic imagery. Preserved exterior brand/copy, meaningful screen figures, sample/demo labels, existing asset URLs and all application code. JPEG decoding and 1200 × 630 dimensions pass; exact generation prompts and image hashes are in `docs/phone-preview-photography-20261105.md`. This records completed image preparation, not a production receipt.
