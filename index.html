@@ -254,17 +254,23 @@ const TH=small?34:52;for(let i=0;i<TH;i++){const end=nodes[Math.floor(rnd()*NN)]
  const g=new THREE.BufferGeometry().setFromPoints(pts),k=new Float32Array(61),o=new Float32Array(61).fill(rnd()),col=new Float32Array(61*3),c=PAL[Math.floor(rnd()*PAL.length)];for(let j=0;j<61;j++){k[j]=j/60;col.set([c.r,c.g,c.b],j*3)}
  g.setAttribute('k',new THREE.BufferAttribute(k,1));g.setAttribute('off',new THREE.BufferAttribute(o,1));g.setAttribute('color',new THREE.BufferAttribute(col,3));G.add(new THREE.Line(g,thMat))}
 const hc=document.createElement('canvas');hc.width=hc.height=128;const hx=hc.getContext('2d'),hg=hx.createRadialGradient(64,64,0,64,64,64);hg.addColorStop(0,'rgba(255,255,255,1)');hg.addColorStop(.2,'rgba(135,206,235,.6)');hg.addColorStop(1,'rgba(0,0,0,0)');hx.fillStyle=hg;hx.fillRect(0,0,128,128);
-const hs=new THREE.Sprite(new THREE.SpriteMaterial({map:new THREE.CanvasTexture(hc),blending:THREE.AdditiveBlending,depthWrite:false,transparent:true}));hs.position.copy(hub);hs.scale.set(.7,.7,1);G.add(hs);
+const hs=new THREE.Sprite(new THREE.SpriteMaterial({map:new THREE.CanvasTexture(hc),blending:THREE.AdditiveBlending,depthWrite:false,transparent:true}));hs.position.copy(hub);hs.scale.set(.42,.42,1);G.add(hs);
+// deep space: stars + faint galaxy bands
+const SN=small?2200:4200,sp=new Float32Array(SN*3),sc=new Float32Array(SN*3);for(let i=0;i<SN;i++){const v=sph().multiplyScalar(14+rnd()*40);if(i%3==0){v.y*=.18}sp.set([v.x,v.y,v.z],i*3);const c=PAL[Math.floor(rnd()*PAL.length)].clone().lerp(new THREE.Color(0xffffff),.55+rnd()*.45);sc.set([c.r,c.g,c.b],i*3)}
+const sg=new THREE.BufferGeometry();sg.setAttribute('position',new THREE.BufferAttribute(sp,3));sg.setAttribute('color',new THREE.BufferAttribute(sc,3));
+const stars=new THREE.Points(sg,new THREE.PointsMaterial({size:.06,vertexColors:true,transparent:true,opacity:.75,depthWrite:false,sizeAttenuation:true}));S.add(stars);
+const nc=document.createElement('canvas');nc.width=nc.height=256;const nx=nc.getContext('2d');['rgba(47,123,255,.35)','rgba(168,85,247,.22)','rgba(34,211,238,.25)'].forEach((c,i)=>{const g=nx.createRadialGradient(128,128,0,128,128,128);g.addColorStop(0,c);g.addColorStop(1,'rgba(0,0,0,0)');nx.fillStyle=g;nx.fillRect(0,0,256,256)});
+const ntex=new THREE.CanvasTexture(nc);[[-14,6,-22,26],[16,-7,-26,30],[4,12,-34,34],[-18,-10,-30,24]].forEach(([x,y,z,k])=>{const n=new THREE.Sprite(new THREE.SpriteMaterial({map:ntex,transparent:true,opacity:.5,depthWrite:false,blending:THREE.AdditiveBlending}));n.position.set(x,y,z);n.scale.set(k,k*.55,1);S.add(n)});
 // labels
 const WORDS=['MONEY','HOME','HEALTH','LEARNING','TRAVEL','WORK','FAMILY','TECHNOLOGY','CULTURE','COMMUNITY','ECONOMICS','SCIENCE','FUTURE','PLANNING'];
 const L=WORDS.map((w,i)=>{const el=document.createElement('span');el.textContent=w;lab.appendChild(el);return {el,v:nodes[(i*11)%NN]}});
-const FX=new EffectComposer(R);FX.addPass(new RenderPass(S,C));FX.addPass(new UnrealBloomPass(new THREE.Vector2(1,1),.7,.5,.15));FX.addPass(new OutputPass());
+const FX=new EffectComposer(R);FX.addPass(new RenderPass(S,C));FX.addPass(new UnrealBloomPass(new THREE.Vector2(1,1),.6,.45,.22));FX.addPass(new OutputPass());
 const ctl=new OrbitControls(C,cv);ctl.enableZoom=false;ctl.enablePan=false;ctl.enableDamping=true;ctl.autoRotate=!still;ctl.autoRotateSpeed=.55;ctl.rotateSpeed=.6;
-function size(){const w=box.clientWidth,h=box.clientHeight;R.setSize(w,h,false);FX.setSize(w,h);C.aspect=w/h;C.position.setLength(w/h<.8?10.2:7.6);C.updateProjectionMatrix()}
+function size(){const w=box.clientWidth,h=box.clientHeight;R.setSize(w,h,false);FX.setSize(w,h);C.aspect=w/h;C.position.setLength(w/h<.8?12.2:8);C.updateProjectionMatrix()}
 size();addEventListener('resize',size);
 let vis=true;new IntersectionObserver(e=>{vis=e[0].isIntersecting;if(vis)loop()}).observe(box);
 const t0=performance.now(),v3=new THREE.Vector3(),cam=new THREE.Vector3();let raf=0;
-function draw(){U.t.value=(performance.now()-t0)/1000;ctl.update();const w=box.clientWidth,h=box.clientHeight;C.getWorldPosition(cam);
+function draw(){U.t.value=(performance.now()-t0)/1000;stars.rotation.y=U.t.value*.004;ctl.update();const w=box.clientWidth,h=box.clientHeight;C.getWorldPosition(cam);
  L.forEach(l=>{v3.copy(l.v).applyMatrix4(G.matrixWorld);const facing=v3.clone().normalize().dot(cam.clone().normalize());v3.project(C);
   l.el.style.transform=`translate(${(v3.x+1)/2*w}px,${(1-v3.y)/2*h}px) translate(-50%,-140%)`;l.el.style.opacity=Math.max(0,Math.min(1,(facing-.05)*3))});FX.render()}
 function loop(){cancelAnimationFrame(raf);if(!vis)return;draw();if(!still)raf=requestAnimationFrame(loop)}
