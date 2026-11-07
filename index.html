@@ -94,9 +94,11 @@ a{color:var(--btn2)}
 .chip small{color:var(--ink3)}
 .chip .dot{width:34px;height:34px;border-radius:11px;display:grid;place-items:center;background:#DDF1FB;color:var(--btn2)}
 .chip .dot svg{width:18px;height:18px}
-.chip.c1{top:70px;left:-6px;animation-delay:-2s}
-.chip.c2{bottom:90px;right:-8px;animation-delay:-4s}
-.chip.c3{bottom:18px;left:20px;animation-delay:-1s}
+.chip.c1{top:96px;left:-48px;animation-delay:-2s}
+.chip.c2{top:300px;right:-60px;animation-delay:-4s}
+.chip.c3{bottom:34px;left:-40px;animation-delay:-1s}
+@media(max-width:1180px){.chip.c1{left:-10px}.chip.c2{right:-20px}.chip.c3{left:-6px}}
+@media(max-width:560px){.chip{display:none}}
 @keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-10px)}}
 /* stats */
 .stats{display:grid;grid-template-columns:repeat(4,1fr);margin:30px 0 10px;padding:8px}
