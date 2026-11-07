@@ -17,6 +17,11 @@
   "cleanUrls": true,
   "redirects": [
     {
+      "source": "/detox",
+      "destination": "https://mydebtcalculator.app/bills",
+      "permanent": true
+    },
+    {
       "has": [
         {
           "type": "host",
