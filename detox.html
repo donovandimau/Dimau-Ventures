@@ -227,6 +227,9 @@ a{color:inherit}
 .bar button{font:600 .92rem Lexend,sans-serif;border:0;border-radius:999px;padding:12px 20px;cursor:pointer;background:#fff;color:#0A2440}
 .bar button.g{background:transparent;color:#cfe9f6;box-shadow:inset 0 0 0 1px rgba(135,206,235,.4)}
 .note{font-size:.78rem;color:#6f93a8;text-align:center;max-width:620px;margin:18px auto 0}
+.lk{filter:blur(6px);pointer-events:none;user-select:none}
+#buy{margin:18px 0 6px}#buy .dmp-card{background:#0b223d;color:#e9f6fc;border-color:rgba(135,206,235,.3)}#buy .dmp-card h3{color:#fff}
+.lkm{text-align:center;color:#cfe9f6;font:700 1.05rem Manrope,sans-serif;margin:18px 0 0}
 .empty{text-align:center;color:#a9c7d8;padding:40px 0}
 dialog{border:0;border-radius:18px;max-width:560px;width:92%;padding:24px;background:#0b223d;color:#e9f6fc}
 dialog textarea{width:100%;height:230px;background:#061528;color:#e9f6fc;border:1px solid rgba(135,206,235,.3);border-radius:10px;padding:12px;font:400 .88rem/1.5 Lexend,sans-serif}
@@ -256,6 +259,7 @@ dialog .bar{margin:14px 0 0;justify-content:flex-end}
 <section class="res" id="res"><div class="w">
  <div class="big"><div class="n" id="tot">£0</div><div class="l">a year on repeating payments</div><div class="s"><div><b id="cnt">0</b><small>repeating payments</small></div><div><b id="mon">£0</b><small>a month</small></div><div><b id="ris">0</b><small>price rises spotted</small></div></div></div>
  <div class="list" id="list"></div>
+ <div id="lockwrap" style="display:none"><p class="lkm" id="lkm"></p><div id="buy" data-dimau-buy="subs-detox" data-kind="digital" data-label="Unlock everything for £5.99" data-blurb="Every repeating payment, cancel links, ready-made cancellation letters and a PDF to keep. Pay once. Re-check as often as you like on this device."></div></div>
  <div class="bar"><button id="pdf">Save as PDF</button><button class="g" id="again">Check another statement</button></div>
  <p class="note">This is a guide to what your statement shows, not financial advice. Check each payment before cancelling. Cancel links go to each company's own website.</p>
 </div></section>
@@ -318,11 +322,12 @@ function detect(tx){const g={};for(const t of tx){const k=key(t.n);if(!k)continu
   const kk=known?K[k.slice(2)]:null;res.push({k,name:kk?kk[1]:k.replace(/\b\w/g,c=>c).toLowerCase().replace(/\b\w/g,c=>c.toUpperCase()),url:kk?kk[2]:null,lab,per,am:last,yr:last*per,n:L.length,rise,first,raw:L.slice(-3).map(x=>x.d.toLocaleDateString('en-GB')+'  £'+x.a.toFixed(2)+'  '+x.n).join('\n'),known})}
  return res.sort((a,b)=>b.yr-a.yr)}
 function letter(name){return `Subject: Please cancel my ${name} subscription\n\nHello,\n\nPlease cancel my ${name} subscription/membership with immediate effect, or at the end of the current billing period if that is required by my terms.\n\nPlease confirm the cancellation in writing and confirm that no further payments will be taken.\n\nName: \nEmail / account number: \n\nThank you.`}
-function show(r){$('res').style.display='block';const tot=r.reduce((s,x)=>s+x.yr,0);$('tot').textContent=fmt(tot);$('cnt').textContent=r.length;$('mon').textContent=fmt(tot/12);$('ris').textContent=r.filter(x=>x.rise).length;
+function show(r){try{sessionStorage.setItem('detox-last',JSON.stringify(r))}catch(e){}const paid=(()=>{try{return localStorage.getItem('detox-paid')}catch(e){return null}})();const FREE=2;$('res').style.display='block';const tot=r.reduce((s,x)=>s+x.yr,0);$('tot').textContent=fmt(tot);$('cnt').textContent=r.length;$('mon').textContent=fmt(tot/12);$('ris').textContent=r.filter(x=>x.rise).length;
  const L=$('list');L.innerHTML='';if(!r.length){L.innerHTML='<div class="empty">No repeating payments found. Try a longer statement (3–12 months).</div>'}
- r.forEach(x=>{const e=document.createElement('div');e.className='it';e.innerHTML=`<div><span class="m"></span>${x.rise?'<span class="tg">price went up</span>':''}${x.known?'<span class="tg k">subscription</span>':''}<div class="d">£${x.am.toFixed(2)} · ${x.lab} · seen ${x.n}×</div></div><div class="y">${fmt(x.yr)}<div class="d">a year</div></div><div class="ac">${x.url?`<a href="${x.url}" target="_blank" rel="noopener">Cancel or manage →</a>`:''}<button data-l>Cancellation letter</button><button data-r>Show payments</button></div><div class="raw"></div>`;
+ r.forEach((x,ix)=>{const lock=!paid&&ix>=FREE;const e=document.createElement('div');e.className='it'+(lock?' lk':'');e.innerHTML=`<div><span class="m"></span>${x.rise?'<span class="tg">price went up</span>':''}${x.known?'<span class="tg k">subscription</span>':''}<div class="d">£${x.am.toFixed(2)} · ${x.lab} · seen ${x.n}×</div></div><div class="y">${fmt(x.yr)}<div class="d">a year</div></div><div class="ac">${x.url?`<a href="${x.url}" target="_blank" rel="noopener">Cancel or manage →</a>`:''}<button data-l>Cancellation letter</button><button data-r>Show payments</button></div><div class="raw"></div>`;
   e.querySelector('.m').textContent=x.name;e.querySelector('.raw').textContent=x.raw;e.querySelector('[data-r]').onclick=()=>e.classList.toggle('open');
   e.querySelector('[data-l]').onclick=()=>{$('dt').textContent='Cancel '+x.name;$('dtx').value=letter(x.name);$('dlg').showModal()};L.appendChild(e)});
+ const hid=paid?0:Math.max(0,r.length-FREE);$('lockwrap').style.display=hid?'block':'none';if(hid){$('lkm').textContent=hid+' more repeating payment'+(hid>1?'s':'')+' hidden, worth '+fmt(r.slice(FREE).reduce((t,x)=>t+x.yr,0))+' a year';L.appendChild($('lockwrap'))}
  $('res').scrollIntoView({behavior:'smooth'})}
 async function go(files){let tx=[];for(const f of files){tx=tx.concat(parse(await f.text()))}if(!tx.length){alert("That file doesn't look like a bank statement CSV. Try exporting it again as CSV.");return}show(detect(tx))}
 const dr=$('drop');$('f').onchange=e=>go([...e.target.files]);
@@ -330,6 +335,9 @@ const dr=$('drop');$('f').onchange=e=>go([...e.target.files]);
 dr.addEventListener('drop',e=>go([...e.dataTransfer.files]));$('pdf').onclick=()=>print();$('again').onclick=()=>{$('f').value='';scrollTo({top:0,behavior:'smooth'})};
 $('cp').onclick=()=>{navigator.clipboard.writeText($('dtx').value);$('cp').textContent='Copied'};
 window.__detox={parse,detect};
+const sid=(/[?&](?:sid|session_id)=(cs_[A-Za-z0-9_]+)/.exec(location.search)||[])[1];
+const restore=()=>{try{const r=JSON.parse(sessionStorage.getItem('detox-last')||'null');if(r)show(r)}catch(e){}};
+if(sid){fetch('https://xnxmumbvgtmlpenutlii.supabase.co/functions/v1/pay?claim='+encodeURIComponent(sid)).then(r=>r.json()).then(j=>{if(j&&j.ok){try{localStorage.setItem('detox-paid',sid)}catch(e){}}restore()}).catch(restore)}
 })();
 </script>
 <footer class="ft"><div class="w">
@@ -340,6 +348,7 @@ window.__detox={parse,detect};
  <p class="co2">© <span id="y">2026</span> Dimau Ventures Ltd, part of Dimau Group. Private limited company registered in England &amp; Wales, company number <a href="https://find-and-update.company-information.service.gov.uk/company/17555886" target="_blank" rel="noopener">17555886</a>. Registered office: 71–75 Shelton Street, Covent Garden, London WC2H 9JQ, United Kingdom. Director: Donovan Dimau. Contact: <a href="mailto:hello@dimauventures.com">hello@dimauventures.com</a>.</p>
 </div></footer>
 <script>document.getElementById('y').textContent=new Date().getFullYear();var h=document.getElementById('hd');addEventListener('scroll',function(){h.classList.toggle('s',scrollY>10)},{passive:true})</script>
+<script src="https://fijian-assistant-api.vercel.app/dimau-pay.js" defer></script>
 <script src="/dimau-pwa.js" data-sw="/sw.js"></script>
 </body>
 </html>
