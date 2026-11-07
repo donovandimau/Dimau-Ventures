@@ -28,6 +28,7 @@
 - Testing: not tested
 
 ## Done — newest first
+- 2026-11-07 — claude — Premium redesign: coded phone mockup in hero (FHTB example, floating notes, hidden on phones), stats band, illustrated product card headers, new "The UK home of Dimau Group" section (UK–Fiji map + three roles: UK sales and support, app publisher, UK partnerships), closing call to action. Stripe-reviewed wording unchanged. Shared .dimau-group-foot strip hidden here because the page footer carries the Dimau logo + Dimau Group. sw.js 2026-11-07-2.
 - 2026-11-07 — claude — Rebuilt the homepage: sticky glass nav, hero with featured FHTB pack, icon product cards, numbered buying steps, split refunds/support, company facts grid with Companies House link, Dimau Group footer, Organization schema. All Stripe-reviewed wording (products, prices, refunds, company details) kept. sw.js bumped to 2026-11-07-1.
 - 2026-11-06 — Codex — Added safe response headers (nosniff and strict-origin-when-cross-origin), preserving existing stronger policies, routing, caching and embedding. JSON and baseline JavaScript/CSS MIME checks pass; hosted checks and live readback belong to the scoped security PR.
 - 2026-11-06 — Codex — Added valid UTF-8 XML sitemap and robots discovery for the verified public canonical pages; excludes account/API paths and keeps private data out of the URL list. XML parsing and source diff checks pass; hosted gates and production verification are recorded in the scoped PR.
