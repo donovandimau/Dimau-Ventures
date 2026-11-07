@@ -28,6 +28,7 @@
 - Testing: not tested
 
 ## Done — newest first
+- 2026-11-07 — claude — Every node on the hero sphere now carries a small glass label naming a real-life item (≈150: council tax, passwords, visa rules, cyclone alerts…); 14 category words stay large; labels fade on the far side. sw.js 2026-11-07-24.
 - 2026-11-07 — claude — Full-width wordless video band between hero sphere and tiles: chaos of equations condensing into one stream of light into a person's mind (Kling, from Donovan's reference). sw.js 2026-11-07-23.
 - 2026-11-07 — claude — Hero is now a live, draggable 3D knowledge sphere (Donovan's reference image): clustered coloured data dust, white ring nodes with neighbour links, hub threads with travelling light, life-topic labels that fade on the back side; three.js 0.170 + OrbitControls + bloom from jsDelivr. Portal video kept in /media. sw.js 2026-11-07-19.
 - 2026-11-07 — claude — Visuals switched to futuristic conceptual metaphors (Donovan: conceptual, futuristic, fits anyone's problem): hero = person facing a portal of light in a storm of screens; tiles Find your way (maze→FHTB), See clearly (AR glasses→FijiLearn), Cross over (light bridge→Nadi kit), Untangle (one thread from a knot→Galala). sw.js 2026-11-07-18.
