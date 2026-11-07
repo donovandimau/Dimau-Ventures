@@ -248,24 +248,33 @@ for(let i=0;i<AR;i++){const a=rp(),b=rp();if(a.distanceTo(b)<1.6){i--;continue}c
  const cu=new THREE.QuadraticBezierCurve3(a,m,b),pts=cu.getPoints(90),g=new THREE.BufferGeometry().setFromPoints(pts),k=new Float32Array(91),o=new Float32Array(91).fill(Math.random());
  for(let j=0;j<91;j++)k[j]=j/90;g.setAttribute('k',new THREE.BufferAttribute(k,1));g.setAttribute('off',new THREE.BufferAttribute(o,1));G.add(new THREE.Line(g,lineMat))}
 // orbit rings
-const rings=[];[[3.35,.42,.2],[3.9,-.32,1.1],[4.6,.12,2.2]].forEach(([r,tx,tz],i)=>{const pts=[];for(let j=0;j<=360;j++){const a=j/360*Math.PI*2;pts.push(new THREE.Vector3(Math.cos(a)*r,0,Math.sin(a)*r))}
+const rings=[];[[4.6,.12,2.2]].forEach(([r,tx,tz],i)=>{const pts=[];for(let j=0;j<=360;j++){const a=j/360*Math.PI*2;pts.push(new THREE.Vector3(Math.cos(a)*r,0,Math.sin(a)*r))}
  const g=new THREE.BufferGeometry().setFromPoints(pts),k=new Float32Array(361),o=new Float32Array(361).fill(i*.33);for(let j=0;j<=360;j++)k[j]=j/360;g.setAttribute('k',new THREE.BufferAttribute(k,1));g.setAttribute('off',new THREE.BufferAttribute(o,1));
  const l=new THREE.Line(g,lineMat);l.rotation.set(tx,0,tz);S.add(l);rings.push(l);
  const dot=new THREE.Mesh(new THREE.SphereGeometry(.045,12,12),new THREE.MeshBasicMaterial({color:0xdff6ff}));l.add(dot);l.userData={r,dot,sp:.25+i*.08}});
+// data-text vortex bands
+const bands=[];function band(r,h,tx,tz,sp,op,txt){const c=document.createElement('canvas');c.width=4096;c.height=128;const x=c.getContext('2d');x.font='600 60px ui-monospace,SFMono-Regular,Menlo,Consolas,monospace';x.textBaseline='middle';
+ let str='';while(x.measureText(str).width<4200)str+=txt;const g=x.createLinearGradient(0,0,4096,0);g.addColorStop(0,'#dff6ff');g.addColorStop(.5,'#87CEEB');g.addColorStop(1,'#dff6ff');x.fillStyle=g;x.fillText(str,0,66);
+ const tex=new THREE.CanvasTexture(c);tex.wrapS=THREE.RepeatWrapping;tex.repeat.x=2;tex.colorSpace=THREE.SRGBColorSpace;tex.anisotropy=4;
+ const m=new THREE.Mesh(new THREE.CylinderGeometry(r,r,h,180,1,true),new THREE.MeshBasicMaterial({map:tex,transparent:true,opacity:0,side:THREE.DoubleSide,blending:THREE.AdditiveBlending,depthWrite:false}));
+ m.rotation.set(tx,0,tz);m.userData={sp,op};S.add(m);bands.push(m)}
+band(3.1,.26,.38,.16,.10,.85,'BALANCE 12,480.00  ·  RATE 4.25%  ·  GBP/FJD 2.84  ·  PAYMENT RECEIVED  ·  PENSION FORECAST  ·  SAVINGS GOAL 72%  ·  MORTGAGE 25Y  ·  INVOICE 20418  ·  ');
+band(3.6,.2,-.28,-.34,-.07,.55,'0110 1001 0011 1110  ·  LEARN  ·  PLAN  ·  SAVE  ·  MOVE  ·  BUILD  ·  CONNECT  ·  1010 0111 1100  ·  ');
+band(2.9,.17,1.15,.42,.14,.45,'DATA SYNC  ·  FORMS  ·  ACCOUNTS  ·  RATES  ·  DEADLINES  ·  RENEWALS  ·  APPS  ·  LOGINS  ·  ');
 // deep-space dust
 const D=small?900:1800,dp=new Float32Array(D*3);for(let i=0;i<D;i++){const v=new THREE.Vector3().randomDirection().multiplyScalar(14+Math.random()*40);dp.set([v.x,v.y,v.z],i*3)}
 const dg=new THREE.BufferGeometry();dg.setAttribute('position',new THREE.BufferAttribute(dp,3));
 const dust=new THREE.Points(dg,new THREE.PointsMaterial({color:0x87CEEB,size:.06,transparent:true,opacity:.45,depthWrite:false,blending:THREE.AdditiveBlending}));S.add(dust);
 // bloom
 const FX=new EffectComposer(R);FX.addPass(new RenderPass(S,C));const bloom=new UnrealBloomPass(new THREE.Vector2(1,1),.85,.55,.12);FX.addPass(bloom);FX.addPass(new OutputPass());
-function size(){const w=box.clientWidth,h=box.clientHeight;R.setSize(w,h,false);FX.setSize(w,h);C.aspect=w/h;C.position.z=w/h<.8?12.5:9.2;C.updateProjectionMatrix();G.position.x=w>900?1.6:0;G.position.y=w>900?0:.7;core.position.copy(G.position);rings.forEach(l=>l.position.copy(G.position))}
+function size(){const w=box.clientWidth,h=box.clientHeight;R.setSize(w,h,false);FX.setSize(w,h);C.aspect=w/h;C.position.z=w/h<.8?12.5:9.2;C.updateProjectionMatrix();G.position.x=w>900?1.6:0;G.position.y=w>900?0:.7;core.position.copy(G.position);rings.forEach(l=>l.position.copy(G.position));bands.forEach(m=>m.position.copy(G.position))}
 size();addEventListener('resize',size);
 let mx=0,my=0;addEventListener('pointermove',e=>{mx=e.clientX/innerWidth-.5;my=e.clientY/innerHeight-.5},{passive:true});
 let vis=true;new IntersectionObserver(e=>{vis=e[0].isIntersecting;if(vis&&!still)loop()}).observe(box);
 const t0=performance.now();let raf=0;
 function draw(){const t=(performance.now()-t0)/1000;U.t.value=t;U.intro.value=still?1:Math.min(1,t/2.2)**.6;
  G.rotation.y=t*.07;G.rotation.x=.25+my*.15;G.rotation.z=-.08;C.position.x+=(mx*.8-C.position.x)*.04;C.position.y+=(-my*.5-C.position.y)*.04;C.lookAt(G.position.x*.5,G.position.y*.5,0);
- rings.forEach(l=>{const a=t*l.userData.sp;l.userData.dot.position.set(Math.cos(a)*l.userData.r,0,Math.sin(a)*l.userData.r)});dust.rotation.y=t*.01;
+ rings.forEach(l=>{const a=t*l.userData.sp;l.userData.dot.position.set(Math.cos(a)*l.userData.r,0,Math.sin(a)*l.userData.r)});dust.rotation.y=t*.01;bands.forEach(m=>{m.rotation.y=t*m.userData.sp;m.material.opacity=m.userData.op*U.intro.value});
  core.material.opacity=.2+.06*Math.sin(t*1.4);FX.render()}
 function loop(){cancelAnimationFrame(raf);if(!vis)return;draw();raf=requestAnimationFrame(loop)}
 if(still)draw();else loop();
