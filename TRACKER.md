@@ -28,6 +28,7 @@
 - Testing: not tested
 
 ## Done — newest first
+- 2026-11-07 — claude — Home tiles: no Fiji apps on the UK site. Six tiles (3 across): Find your way→FHTB, Break through→mydebtcalculator.app, Make it visible→Dimau Visuals, Start fresh→transition packs, plus demo products Life Admin and Bill Checker marked Coming soon. New Kling/Google visuals (debt, visuals, transition, lifeadmin, bills) via dimau-content site-visuals. Payments page products matched (Nadi, FijiLearn, Galala removed). Hero globe: bigger, larger labels, overlapping item labels hidden. sw.js 2026-11-07-28.
 - 2026-11-07 — claude — Sphere labels rewritten to what UK adults actually deal with (ONS OPN 2026 top issues: cost of living, NHS, economy, crime; life-admin surveys: bills, insurance renewals, utility calls, tax returns, returns, GP/dentist, quotes, subscriptions, scams). Removed visa rules, homework, rugby and other non-adult/non-UK items. sw.js 2026-11-07-27.
 - 2026-11-07 — claude — /payments rebuilt in the home page style (same header, fonts, footer): full-bleed vortex film hero with four trust points, products as photo/video cards with category filters (built to take more platforms), 4-step timeline, refunds promise beside photo. Fiji-dollar pricing and Marketplace listings removed — UK page is pounds only. sw.js 2026-11-07-27.
 - 2026-11-07 — claude — Every node on the hero sphere now carries a small glass label naming a real-life item (≈150: council tax, passwords, visa rules, cyclone alerts…); 14 category words stay large; labels fade on the far side. sw.js 2026-11-07-24.

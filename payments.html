@@ -87,7 +87,7 @@ a.pc:hover img,a.pc:hover video{transform:scale(1.05)}
 .pc .ft2 span{color:rgba(255,255,255,.7)}
 .pc .ft2 b{font-weight:500;color:var(--sky);white-space:nowrap}
 a.pc:hover .ft2 b{color:#fff}
-.fl{display:flex;gap:8px;flex-wrap:wrap;margin:-14px 0 28px}.fl button{font:500 .88rem Lexend,sans-serif;color:var(--ink2);background:#fff;border:1px solid var(--rule);padding:9px 18px;border-radius:999px;cursor:pointer;transition:all .2s}.fl button:hover{border-color:var(--ink);color:var(--ink)}.fl button[aria-pressed=true]{background:var(--ink);border-color:var(--ink);color:#fff}.pc[hidden]{display:none}
+.fl{display:flex;gap:8px;flex-wrap:wrap;margin:-14px 0 28px}.fl button{font:500 .88rem Lexend,sans-serif;color:var(--ink2);background:#fff;border:1px solid var(--rule);padding:9px 18px;border-radius:999px;cursor:pointer;transition:all .2s}.fl button:hover{border-color:var(--ink);color:var(--ink)}.fl button[aria-pressed=true]{background:var(--ink);border-color:var(--ink);color:#fff}.pc[hidden]{display:none}.pc.sn .pr{background:rgba(255,255,255,.16);color:#fff;border:1px solid rgba(255,255,255,.35);backdrop-filter:blur(10px)}
 /* steps */
 .sp{display:grid;grid-template-columns:repeat(4,1fr);gap:0;position:relative;list-style:none;margin:0;padding:0}
 .sp::before{content:"";position:absolute;top:27px;left:28px;right:12%;height:2px;background:linear-gradient(90deg,var(--blue),var(--sky))}
@@ -160,20 +160,20 @@ a.pc:hover .ft2 b{color:#fff}
 
 <section class="sec" id="products"><div class="w">
  <div class="sh"><div><div class="ey">Products</div><h2>What you can buy</h2></div><p>All prices in pounds sterling. Each product is bought on its own site.</p></div>
- <div class="fl" role="group" aria-label="Filter products"><button aria-pressed="true" data-f="all">All</button><button data-f="money">Money</button><button data-f="home">Home</button><button data-f="forces">Forces life</button><button data-f="learning">Learning</button><button data-f="travel">Travel</button></div>
+ <div class="fl" role="group" aria-label="Filter products"><button aria-pressed="true" data-f="all">All</button><button data-f="money">Money</button><button data-f="home">Home</button><button data-f="forces">Forces life</button><button data-f="tools">Tools</button></div>
  <div class="pg">
   <a class="pc" data-c="home" href="https://fhtbcalculator.co.uk/" target="_blank" rel="noopener"><video class="tv" muted loop playsinline preload="none" poster="/media/maze.jpg" data-s="/media/maze.mp4" aria-hidden="true"></video><span class="pr">£29</span>
    <div class="in"><h3>Home-Buying Pack</h3><p>The Forces Help to Buy scheme, step by step: calculator, checklists and worked examples.</p><div class="ft2"><span>One-off payment</span><b>Buy on its site →</b></div></div></a>
-  <div class="pc" data-c="forces"><img src="/media/bridge.jpg" alt="" loading="lazy"><span class="pr">From £29</span>
+  <div class="pc" data-c="forces"><video class="tv" muted loop playsinline preload="none" poster="/media/transition.jpg" data-s="/media/transition.mp4" aria-hidden="true"></video><span class="pr">From £29</span>
    <div class="in"><h3>Transition packs</h3><p>Leaving the Forces in the right order: money, housing, pensions and paperwork, in plain English.</p><div class="ft2"><span>Per pack</span><b>One-off payment</b></div></div></div>
-  <div class="pc" data-c="money"><video class="tv" muted loop playsinline preload="none" poster="/media/untangle.jpg" data-s="/media/untangle.mp4" aria-hidden="true"></video><span class="pr">Free</span>
-   <div class="in"><h3>Debt calculator</h3><p>Every debt on one screen, what each one really costs, and the fastest order to clear them.</p><div class="ft2"><span>Free to use</span><b>Premium plan coming</b></div></div></div>
-  <a class="pc" data-c="travel" href="https://dimau.gumroad.com/" target="_blank" rel="noopener"><img src="/media/earth.jpg" alt="" loading="lazy"><span class="pr">Download</span>
-   <div class="in"><h3>Nadi Landing Kit</h3><p>Everything a first-time visitor or returning Fijian needs for arrival in Nadi, in one kit.</p><div class="ft2"><span>Digital download</span><b>Buy on its site →</b></div></div></a>
-  <a class="pc" data-c="learning" href="https://fijilearn.com/" target="_blank" rel="noopener"><video class="tv" muted loop playsinline preload="none" poster="/media/clear.jpg" data-s="/media/clear.mp4" aria-hidden="true"></video><span class="pr">Monthly</span>
-   <div class="in"><h3>App subscriptions</h3><p>Monthly or yearly access to our apps, including FijiLearn and Dimau 3D Studio.</p><div class="ft2"><span>Priced per app · cancel any time</span><b>See FijiLearn →</b></div></div></a>
-  <a class="pc" data-c="money" href="https://galala.dimau-fintech.com/" target="_blank" rel="noopener"><img src="/media/signal.jpg" alt="" loading="lazy"><span class="pr">Free</span>
-   <div class="in"><h3>Galala money app</h3><p>Your spending, your plan and your payments in one calm place. No account needed.</p><div class="ft2"><span>Free to use</span><b>Open the app →</b></div></div></a>
+  <a class="pc" data-c="money" href="https://mydebtcalculator.app/" target="_blank" rel="noopener"><video class="tv" muted loop playsinline preload="none" poster="/media/debt.jpg" data-s="/media/debt.mp4" aria-hidden="true"></video><span class="pr">Free</span>
+   <div class="in"><h3>Debt calculator</h3><p>Every debt on one screen, what each one really costs, and your debt-free date.</p><div class="ft2"><span>Free to use</span><b>Open it →</b></div></div></a>
+  <a class="pc" data-c="tools" href="https://visuals.dimau-fintech.com/" target="_blank" rel="noopener"><video class="tv" muted loop playsinline preload="none" poster="/media/visuals.jpg" data-s="/media/visuals.mp4" aria-hidden="true"></video><span class="pr">Free to try</span>
+   <div class="in"><h3>Dimau Visuals</h3><p>Turn raw numbers into clear charts, dashboards and reports in minutes.</p><div class="ft2"><span>Charts and reports</span><b>Open it →</b></div></div></a>
+  <div class="pc sn" data-c="money" id="soon"><video class="tv" muted loop playsinline preload="none" poster="/media/lifeadmin.jpg" data-s="/media/lifeadmin.mp4" aria-hidden="true"></video><span class="pr">Coming soon</span>
+   <div class="in"><h3>Life Admin</h3><p>Every bill, renewal and deadline on one timeline, with a reminder before each one is due.</p><div class="ft2"><span>In development</span><b>Coming soon</b></div></div></div>
+  <div class="pc sn" data-c="money"><video class="tv" muted loop playsinline preload="none" poster="/media/bills.jpg" data-s="/media/bills.mp4" aria-hidden="true"></video><span class="pr">Coming soon</span>
+   <div class="in"><h3>Bill Checker</h3><p>Spots price rises on your household bills and shows where you could pay less.</p><div class="ft2"><span>In development</span><b>Coming soon</b></div></div></div>
  </div>
 </div></section>
 
