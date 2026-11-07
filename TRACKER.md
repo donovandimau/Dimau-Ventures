@@ -24,6 +24,7 @@
 - nothing recorded yet
 
 ## Last handover
+- 2026-11-07 — claude — Hero sphere looked washed out: canvas colour filter (more saturation, a little more contrast, lower brightness) and the background nebula glow thinned from 0.16 to 0.07. index.html only.
 - 2026-11-07 — claude — Subscription & Bills Detox moved into My Debt Calculator as a free "Bills check" (mydebtcalculator.app/bills). /detox now redirects there permanently; detox.html removed; sitemap entry removed.
 - 2026-11-01 — Deployment: Count visits on the Ops Room (Fiji Analytics tag, no cookies)
 - Testing: not tested
