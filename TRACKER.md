@@ -28,6 +28,7 @@
 - Testing: not tested
 
 ## Done — newest first
+- 2026-11-07 — claude — Sphere labels rewritten to what UK adults actually deal with (ONS OPN 2026 top issues: cost of living, NHS, economy, crime; life-admin surveys: bills, insurance renewals, utility calls, tax returns, returns, GP/dentist, quotes, subscriptions, scams). Removed visa rules, homework, rugby and other non-adult/non-UK items. sw.js 2026-11-07-27.
 - 2026-11-07 — claude — /payments rebuilt in the home page style (same header, fonts, footer): full-bleed vortex film hero with four trust points, products as photo/video cards with category filters (built to take more platforms), 4-step timeline, refunds promise beside photo. Fiji-dollar pricing and Marketplace listings removed — UK page is pounds only. sw.js 2026-11-07-27.
 - 2026-11-07 — claude — Every node on the hero sphere now carries a small glass label naming a real-life item (≈150: council tax, passwords, visa rules, cyclone alerts…); 14 category words stay large; labels fade on the far side. sw.js 2026-11-07-24.
 - 2026-11-07 — claude — Full-width wordless video band between hero sphere and tiles: chaos of equations condensing into one stream of light into a person's mind (Kling, from Donovan's reference). sw.js 2026-11-07-23.
