@@ -28,6 +28,7 @@
 - Testing: not tested
 
 ## Done — newest first
+- 2026-11-07 — claude — Rebuilt the homepage: sticky glass nav, hero with featured FHTB pack, icon product cards, numbered buying steps, split refunds/support, company facts grid with Companies House link, Dimau Group footer, Organization schema. All Stripe-reviewed wording (products, prices, refunds, company details) kept. sw.js bumped to 2026-11-07-1.
 - 2026-11-06 — Codex — Added safe response headers (nosniff and strict-origin-when-cross-origin), preserving existing stronger policies, routing, caching and embedding. JSON and baseline JavaScript/CSS MIME checks pass; hosted checks and live readback belong to the scoped security PR.
 - 2026-11-06 — Codex — Added valid UTF-8 XML sitemap and robots discovery for the verified public canonical pages; excludes account/API paths and keeps private data out of the URL list. XML parsing and source diff checks pass; hosted gates and production verification are recorded in the scoped PR.
 - 2026-11-05 — Codex — Verified the [Companies House record](https://find-and-update.company-information.service.gov.uk/company/17555886) and added company number 17555886 to the website footer and company section. Updated the service worker revision so returning visitors receive the revised page. Publication is verified separately through the deployment.
