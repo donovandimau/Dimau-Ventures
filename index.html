@@ -28,10 +28,10 @@
 <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@600;700;800&family=Lexend:wght@300;400;500&display=swap" rel="stylesheet">
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"Organization","name":"Dimau Ventures Ltd","url":"https://dimauventures.com/","logo":"https://dimauventures.com/dimau-logo.png","email":"hello@dimauventures.com","identifier":"17555886","address":{"@type":"PostalAddress","streetAddress":"71–75 Shelton Street, Covent Garden","addressLocality":"London","postalCode":"WC2H 9JQ","addressCountry":"GB"},"parentOrganization":{"@type":"Organization","name":"Dimau Group","url":"https://dimau-fintech.com/"}}</script>
 <style>
-:root{--sky:#87CEEB;--sky2:#BFE6F7;--mist:#EAF7FD;--ink:#0B2A45;--ink2:#2F5D7C;--ink3:#5B7F99;--btn:#2F86C8;--btn2:#1F6FAE;--glass:rgba(255,255,255,.6);--edge:rgba(255,255,255,.8);--sh:0 14px 40px rgba(11,42,69,.12);--line:rgba(11,42,69,.08)}
+:root{--sky:#87CEEB;--sky2:#BFE6F7;--mist:#EAF7FD;--ink:#0B2A45;--ink2:#24506F;--ink3:#486B85;--btn:#2F86C8;--btn2:#1F6FAE;--glass:rgba(255,255,255,.6);--edge:rgba(255,255,255,.8);--sh:0 14px 40px rgba(11,42,69,.12);--line:rgba(11,42,69,.08)}
 *{box-sizing:border-box}
 html{scroll-behavior:smooth;scroll-padding-top:90px}
-body{margin:0;color:var(--ink);font:300 1rem/1.65 Lexend,system-ui,sans-serif;background:linear-gradient(180deg,var(--sky) 0,var(--sky2) 32%,var(--mist) 75%,#F6FBFE 100%);min-height:100vh;overflow-x:hidden}
+body{margin:0;color:var(--ink);font:400 1rem/1.65 Lexend,system-ui,sans-serif;background:linear-gradient(180deg,var(--sky) 0,var(--sky2) 32%,var(--mist) 75%,#F6FBFE 100%);min-height:100vh;overflow-x:hidden}
 .bub{position:fixed;z-index:-1;border-radius:50%;filter:blur(50px);pointer-events:none}
 .bub.a{width:560px;height:560px;background:rgba(255,255,255,.7);top:-200px;right:-160px}
 .bub.b{width:440px;height:440px;background:rgba(214,240,251,.9);top:45%;left:-180px}
@@ -68,44 +68,18 @@ a{color:var(--btn2)}
 .trust{display:flex;flex-wrap:wrap;gap:10px 20px;margin:28px 0 0;padding:0;list-style:none;font-size:.88rem;color:var(--ink2)}
 .trust li{display:flex;align-items:center;gap:7px}
 .trust svg{width:16px;height:16px;color:var(--btn)}
-.stage{position:relative;height:560px;display:grid;place-items:center}
-.halo{position:absolute;width:420px;height:420px;border-radius:50%;background:radial-gradient(circle,#fff 0,rgba(255,255,255,.4) 45%,transparent 70%)}
-.ring{position:absolute;width:470px;height:470px;border-radius:50%;border:1.5px dashed rgba(47,134,200,.28)}
-.phone{position:relative;width:272px;height:548px;border-radius:44px;background:#0B2A45;padding:11px;box-shadow:0 40px 80px rgba(11,42,69,.28),inset 0 0 0 2px #24496A;animation:float 6s ease-in-out infinite}
-.screen{width:100%;height:100%;border-radius:34px;background:linear-gradient(180deg,#EAF7FD,#fff);overflow:hidden;position:relative;padding:40px 16px 16px;font-size:.78rem}
-.notch{position:absolute;top:10px;left:50%;transform:translateX(-50%);width:86px;height:24px;border-radius:14px;background:#0B2A45}
-.s-top{display:flex;justify-content:space-between;align-items:center;margin-bottom:12px}
-.s-top b{font:800 1rem Manrope,sans-serif}
-.s-top span{font-size:.66rem;background:#DDF1FB;color:var(--btn2);padding:3px 8px;border-radius:999px;font-weight:500}
-.s-card{background:#fff;border-radius:16px;padding:12px;box-shadow:0 4px 14px rgba(11,42,69,.07);margin-bottom:10px}
-.s-lab{font-size:.66rem;color:var(--ink3);text-transform:uppercase;letter-spacing:.05em}
-.s-big{font:800 1.5rem/1.1 Manrope,sans-serif;margin-top:2px}
-.s-row{display:flex;justify-content:space-between;padding:6px 0;border-top:1px solid var(--line)}
-.s-row:first-of-type{border-top:0}
-.s-row b{font-weight:500}
-.bars{display:flex;align-items:flex-end;gap:6px;height:66px;margin-top:8px}
-.bars i{flex:1;border-radius:6px 6px 3px 3px;background:linear-gradient(180deg,#87CEEB,#BFE6F7)}
-.bars i.on{background:linear-gradient(180deg,#2F86C8,#6BB6E3)}
-.prog{height:8px;border-radius:9px;background:#E3F2FA;margin-top:8px;overflow:hidden}
-.prog i{display:block;height:100%;width:72%;border-radius:9px;background:linear-gradient(90deg,#2F86C8,#87CEEB)}
-.s-btn{background:var(--btn);color:#fff;text-align:center;border-radius:12px;padding:10px;font-weight:500;margin-top:6px}
-.chip{position:absolute;display:flex;align-items:center;gap:10px;padding:11px 14px;border-radius:16px;font-size:.82rem;white-space:nowrap;animation:float 6s ease-in-out infinite}
-.chip b{display:block;font:700 .9rem Manrope,sans-serif}
-.chip small{color:var(--ink3)}
-.chip .dot{width:34px;height:34px;border-radius:11px;display:grid;place-items:center;background:#DDF1FB;color:var(--btn2)}
-.chip .dot svg{width:18px;height:18px}
-.chip.c1{top:96px;left:-48px;animation-delay:-2s}
-.chip.c2{top:300px;right:-60px;animation-delay:-4s}
-.chip.c3{bottom:34px;left:-40px;animation-delay:-1s}
-@media(max-width:1180px){.chip.c1{left:-10px}.chip.c2{right:-20px}.chip.c3{left:-6px}}
-@media(max-width:560px){.chip{display:none}}
-@keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-10px)}}
-/* stats */
-.stats{display:grid;grid-template-columns:repeat(4,1fr);margin:30px 0 10px;padding:8px}
-.stats div{padding:20px 22px;border-right:1px solid var(--line)}
-.stats div:last-child{border-right:0}
-.stats b{display:block;font:800 2rem/1 Manrope,sans-serif;color:var(--ink)}
-.stats span{font-size:.9rem;color:var(--ink2)}
+.mosaic{display:grid;grid-template-columns:1fr 1fr;gap:16px;padding:10px 0}
+.mosaic .col{display:grid;gap:16px;align-content:start}
+.mosaic .col:last-child{margin-top:44px}
+.tilep{display:flex;align-items:center;gap:14px;padding:16px;text-decoration:none;color:var(--ink);border-radius:20px;transition:transform .2s,box-shadow .2s}
+.tilep:hover{transform:translateY(-3px);box-shadow:0 20px 44px rgba(11,42,69,.16)}
+.tilep .ico{flex:none;width:48px;height:48px;border-radius:15px;display:grid;place-items:center;color:var(--btn2);background:linear-gradient(135deg,#fff,#D6EEFA);box-shadow:inset 0 0 0 1px #fff}
+.tilep .ico svg{width:24px;height:24px}
+.tilep b{display:block;font:700 .98rem/1.25 Manrope,sans-serif}
+.tilep small{display:block;color:var(--ink3);font-size:.82rem;margin-top:2px}
+.tilep.feat{flex-direction:column;align-items:flex-start;padding:22px}
+.tilep.feat .ico{width:56px;height:56px;background:linear-gradient(180deg,#3A93D4,var(--btn));color:#fff;box-shadow:0 10px 22px rgba(47,134,200,.3)}
+.mtag{font:700 .72rem Manrope,sans-serif;letter-spacing:.06em;text-transform:uppercase;color:var(--btn2)}
 /* sections */
 section{padding:56px 0}
 .head{display:flex;justify-content:space-between;align-items:end;gap:20px;flex-wrap:wrap;margin-bottom:30px}
@@ -171,9 +145,9 @@ footer .glass{padding:24px 26px;display:flex;align-items:center;gap:18px;flex-wr
 .flinks a{text-decoration:none;color:var(--ink2)}
 .legal{font-size:.82rem;color:var(--ink3);flex-basis:100%;border-top:1px solid var(--line);padding-top:14px}
 .dimau-group-foot{display:none!important}
-@media(max-width:980px){.grid{grid-template-columns:1fr 1fr}.steps{grid-template-columns:1fr 1fr}.stats{grid-template-columns:1fr 1fr}.stats div:nth-child(2){border-right:0}.stats div:nth-child(-n+2){border-bottom:1px solid var(--line)}}
+@media(max-width:980px){.grid{grid-template-columns:1fr 1fr}.steps{grid-template-columns:1fr 1fr}}
 @media(max-width:860px){.hero{grid-template-columns:1fr;padding-top:30px}.links{display:none}.two,.home{grid-template-columns:1fr}.facts{grid-template-columns:1fr 1fr}.facts div{border-right:1px solid var(--line)!important;border-bottom:1px solid var(--line)!important}.facts div:nth-child(2n){border-right:0!important}}
-@media(max-width:560px){.grid,.steps,.facts{grid-template-columns:1fr}.facts div{border-right:0!important}.brand small{display:none}.nav .btn{padding:10px 14px;min-height:44px}section{padding:38px 0}.stage{height:500px;transform:scale(.88)}.chip.c1{left:-14px}.chip.c2{right:-14px}.home{padding:22px}.stats b{font-size:1.6rem}}
+@media(max-width:560px){.grid,.steps,.facts{grid-template-columns:1fr}.facts div{border-right:0!important}.brand small{display:none}.nav .btn{padding:10px 14px;min-height:44px}section{padding:38px 0}.mosaic{gap:10px}.mosaic .col{gap:10px}.mosaic .col:last-child{margin-top:0}.tilep{padding:12px;gap:10px}.tilep .ico{width:40px;height:40px}.tilep.feat{padding:14px}.home{padding:22px}}
 @media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important;scroll-behavior:auto!important}}
 </style>
 <script async src="https://dimau-ops.vercel.app/api/visit?s=dimau-ventures"></script>
@@ -196,44 +170,34 @@ footer .glass{padding:24px 26px;display:flex;align-items:center;gap:18px;flex-wr
 <main class="wrap">
 <section class="hero">
  <div>
-  <span class="kicker"><i></i>Built by a serving soldier</span>
   <h1>Money and planning tools, <em>made simple.</em></h1>
-  <p class="lead">Packs, calculators and apps for UK service personnel leaving the forces, and for the Pacific community at home and abroad.</p>
-  <div class="ctas"><a class="btn" href="#products">See what we sell <svg><use href="#i-arrow"/></svg></a><a class="btn ghost" href="https://fhtbcalculator.co.uk/">Try the FHTB calculator</a></div>
+  <p class="lead">Six digital products under one UK company: resettlement and home-buying packs, a free debt calculator, travel kits, app subscriptions and marketplace listings, for UK service personnel and the Pacific community at home and abroad.</p>
+  <div class="ctas"><a class="btn" href="#products">Browse all products <svg><use href="#i-arrow"/></svg></a><a class="btn ghost" href="mailto:hello@dimauventures.com">Ask which one fits</a></div>
   <ul class="trust">
    <li><svg><use href="#i-tick"/></svg>UK company no. 17555886</li>
    <li><svg><use href="#i-lock"/></svg>Payments by Stripe</li>
    <li><svg><use href="#i-mail"/></svg>Reply within two working days</li>
   </ul>
  </div>
- <div class="stage" aria-hidden="true">
-  <div class="halo"></div><div class="ring"></div>
-  <div class="phone"><div class="screen"><div class="notch"></div>
-   <div class="s-top"><b>Home-buying plan</b><span>Example</span></div>
-   <div class="s-card"><div class="s-lab">Forces Help to Buy loan</div><div class="s-big">£25,000</div><div style="color:var(--ink3);font-size:.68rem">Interest-free, up to half your salary</div></div>
-   <div class="s-card"><div class="s-lab">Deposit progress</div><div class="prog"><i></i></div>
-    <div class="bars"><i style="height:30%"></i><i style="height:42%"></i><i style="height:50%"></i><i style="height:61%"></i><i class="on" style="height:72%"></i><i class="on" style="height:86%"></i></div></div>
-   <div class="s-card"><div class="s-row"><span>Property price</span><b>£250,000</b></div><div class="s-row"><span>Mortgage</span><b>£212,500</b></div><div class="s-row"><span>Your savings</span><b>£12,500</b></div></div>
-   <div class="s-btn">Next step: your checklist</div>
-  </div></div>
-  <div class="chip glass c1"><span class="dot"><svg><use href="#i-lock"/></svg></span><span><b>Paid £29</b><small>Secured by Stripe</small></span></div>
-  <div class="chip glass c2"><span class="dot"><svg><use href="#i-mail"/></svg></span><span><b>Pack delivered</b><small>Link sent to your email</small></span></div>
-  <div class="chip glass c3"><span class="dot"><svg><use href="#i-tick"/></svg></span><span><b>Checklist ready</b><small>12 steps, in order</small></span></div>
+ <div class="mosaic" aria-label="Our products">
+  <div class="col">
+   <a class="tilep feat glass" href="#products"><span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M6 3h9l5 5v13H6z"/><path d="M14 3v6h6"/><path d="M9 13h7M9 17h5"/></svg></span><span class="mtag">From £29</span><span><b>Transition &amp; resettlement packs</b><small>Leaving the forces, in order</small></span></a>
+   <a class="tilep glass" href="#products"><span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 11l9-7 9 7"/><path d="M5 10v10h14V10"/><path d="M10 20v-6h4v6"/></svg></span><span><b>FHTB Home-Buying Pack</b><small>£29 one-off</small></span></a>
+   <a class="tilep glass" href="#products"><span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M2.5 16.5l19-6.5-2.6-2.6-5.6 1.9-6.7-3-2 .9 4.9 3.9-4 1.3-1.9-1-1 1z"/><path d="M3 21h18"/></svg></span><span><b>Nadi Landing Kit</b><small>Digital download</small></span></a>
+  </div>
+  <div class="col">
+   <a class="tilep glass" href="#products"><span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 20h16"/><path d="M7 16v-5M12 16V6M17 16v-8"/></svg></span><span><b>Debt calculator</b><small>Free to use</small></span></a>
+   <a class="tilep feat glass" href="#products"><span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="6.5" y="2.5" width="11" height="19" rx="3"/><path d="M11 18h2"/></svg></span><span class="mtag">Cancel any time</span><span><b>App subscriptions</b><small>Monthly or yearly</small></span></a>
+   <a class="tilep glass" href="#products"><span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l2-5h14l2 5"/><path d="M3 9h18v1.5a3 3 0 0 1-6 0 3 3 0 0 1-6 0 3 3 0 0 1-6 0z"/><path d="M5 13v7h14v-7"/></svg></span><span><b>Marketplace listings</b><small>From FJ$180 per year</small></span></a>
+  </div>
  </div>
 </section>
-
-<div class="stats glass">
- <div><b>6</b><span>Digital products</span></div>
- <div><b>£29</b><span>Packs from</span></div>
- <div><b>2</b><span>Countries served: UK &amp; Fiji</span></div>
- <div><b>48h</b><span>Support reply, working days</span></div>
-</div>
 
 <section id="products">
  <div class="head"><h2>What we sell</h2><p>Every product is digital. Prices are in pounds unless shown in Fiji dollars.</p></div>
  <div class="grid">
   <article class="card glass"><div class="art g1"><div class="big"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 11l9-7 9 7"/><path d="M5 10v10h14V10"/><path d="M10 20v-6h4v6"/></svg></div><span class="pill">£29</span></div>
-   <div class="body"><h3>FHTB Home-Buying Pack</h3><p>A step-by-step pack for using the Forces Help to Buy scheme, with the calculator, checklists and worked examples.</p><div class="price"><span>£29 one-off</span><a href="https://fhtbcalculator.co.uk/">Open →</a></div></div></article>
+   <div class="body"><h3>FHTB Home-Buying Pack</h3><p>A step-by-step pack for using the Forces Help to Buy scheme, with the calculator, checklists and worked examples.</p><div class="price"><span>£29 one-off</span><a href="https://fhtbcalculator.co.uk/">Visit its site →</a></div></div></article>
   <article class="card glass"><div class="art g2"><div class="big"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M6 3h9l5 5v13H6z"/><path d="M14 3v6h6"/><path d="M9 13h7M9 17h5"/></svg></div><span class="pill">From £29</span></div>
    <div class="body"><h3>Transition &amp; resettlement packs</h3><p>Plain-English guides for the move from the Army to civilian life: money, housing, pensions and the paperwork in the right order.</p><div class="price"><span>From £29 per pack</span></div></div></article>
   <article class="card glass"><div class="art g3"><div class="big"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 20h16"/><path d="M7 16v-5M12 16V6M17 16v-8"/></svg></div><span class="pill">Free</span></div>
@@ -319,8 +283,8 @@ footer .glass{padding:24px 26px;display:flex;align-items:center;gap:18px;flex-wr
 <section>
  <div class="cta glass">
   <h2>Plan your next move with confidence.</h2>
-  <p>Start with the free FHTB calculator, or email us and we will point you to the right pack.</p>
-  <div class="ctas" style="justify-content:center"><a class="btn" href="https://fhtbcalculator.co.uk/">Open the calculator <svg><use href="#i-arrow"/></svg></a><a class="btn ghost" href="mailto:hello@dimauventures.com">Email us</a></div>
+  <p>Not sure where to start? Email us and we will point you to the right pack, calculator or app.</p>
+  <div class="ctas" style="justify-content:center"><a class="btn" href="#products">Browse all products <svg><use href="#i-arrow"/></svg></a><a class="btn ghost" href="mailto:hello@dimauventures.com">Email us</a></div>
  </div>
 </section>
 </main>
