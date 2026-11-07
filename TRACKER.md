@@ -28,6 +28,7 @@
 - Testing: not tested
 
 ## Done — newest first
+- 2026-11-07 — claude — /payments rebuilt in the home page style (same header, fonts, footer): full-bleed vortex film hero with four trust points, products as photo/video cards with category filters (built to take more platforms), 4-step timeline, refunds promise beside photo. Fiji-dollar pricing and Marketplace listings removed — UK page is pounds only. sw.js 2026-11-07-27.
 - 2026-11-07 — claude — Every node on the hero sphere now carries a small glass label naming a real-life item (≈150: council tax, passwords, visa rules, cyclone alerts…); 14 category words stay large; labels fade on the far side. sw.js 2026-11-07-24.
 - 2026-11-07 — claude — Full-width wordless video band between hero sphere and tiles: chaos of equations condensing into one stream of light into a person's mind (Kling, from Donovan's reference). sw.js 2026-11-07-23.
 - 2026-11-07 — claude — Hero is now a live, draggable 3D knowledge sphere (Donovan's reference image): clustered coloured data dust, white ring nodes with neighbour links, hub threads with travelling light, life-topic labels that fade on the back side; three.js 0.170 + OrbitControls + bloom from jsDelivr. Portal video kept in /media. sw.js 2026-11-07-19.
