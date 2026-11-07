@@ -260,7 +260,7 @@ const SN=small?2200:4200,sp=new Float32Array(SN*3),sc=new Float32Array(SN*3);for
 const sg=new THREE.BufferGeometry();sg.setAttribute('position',new THREE.BufferAttribute(sp,3));sg.setAttribute('color',new THREE.BufferAttribute(sc,3));
 const stars=new THREE.Points(sg,new THREE.PointsMaterial({size:.06,vertexColors:true,transparent:true,opacity:.75,depthWrite:false,sizeAttenuation:true}));S.add(stars);
 const nc=document.createElement('canvas');nc.width=nc.height=256;const nx=nc.getContext('2d');['rgba(47,123,255,.35)','rgba(168,85,247,.22)','rgba(34,211,238,.25)'].forEach((c,i)=>{const g=nx.createRadialGradient(128,128,0,128,128,128);g.addColorStop(0,c);g.addColorStop(1,'rgba(0,0,0,0)');nx.fillStyle=g;nx.fillRect(0,0,256,256)});
-const ntex=new THREE.CanvasTexture(nc);[[-14,6,-22,26],[16,-7,-26,30],[4,12,-34,34],[-18,-10,-30,24]].forEach(([x,y,z,k])=>{const n=new THREE.Sprite(new THREE.SpriteMaterial({map:ntex,transparent:true,opacity:.5,depthWrite:false,blending:THREE.AdditiveBlending}));n.position.set(x,y,z);n.scale.set(k,k*.55,1);S.add(n)});
+const ntex=new THREE.CanvasTexture(nc);[[-14,6,-22,26],[16,-7,-26,30],[4,12,-34,34],[-18,-10,-30,24]].forEach(([x,y,z,k])=>{const n=new THREE.Sprite(new THREE.SpriteMaterial({map:ntex,transparent:true,opacity:.16,depthWrite:false,blending:THREE.AdditiveBlending}));n.position.set(x,y,z);n.scale.set(k,k*.55,1);S.add(n)});
 // labels
 const WORDS=['MONEY','HOME','HEALTH','LEARNING','TRAVEL','WORK','FAMILY','TECHNOLOGY','CULTURE','COMMUNITY','ECONOMICS','SCIENCE','FUTURE','PLANNING'];
 const L=WORDS.map((w,i)=>{const el=document.createElement('span');el.textContent=w;lab.appendChild(el);return {el,v:nodes[(i*11)%NN]}});
