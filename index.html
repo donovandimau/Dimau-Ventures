@@ -164,37 +164,20 @@ a{color:inherit}
 .pg h1{font-size:clamp(2.2rem,5vw,3.6rem);letter-spacing:-.04em;font-weight:800;margin-top:16px}
 @media(max-width:820px){.bg{grid-template-columns:1fr 1fr}}
 @media(max-width:560px){.bg{grid-template-columns:1fr}.bg a,.bg div{padding:22px 20px}.vis .ov{padding-bottom:36px}.bs{padding:64px 0 70px}.pg{padding:120px 0 20px}}
-.ans{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
-.an{margin:0;background:radial-gradient(120% 100% at 50% 0%,#0E3156,#071B31 60%,#04101F);border-radius:24px;padding:22px 18px 20px;box-shadow:0 0 0 1px rgba(135,206,235,.18),0 20px 50px rgba(4,16,31,.25)}
-.an svg{width:100%;height:auto;display:block;overflow:visible}
-.an figcaption{text-align:center;color:#fff;font:700 1.15rem Manrope,sans-serif;letter-spacing:-.01em;margin-top:10px}
-.an figcaption b{color:#87CEEB;font-weight:700}
-.an .dim{opacity:.55}.an .dim *{fill:none;stroke:#5f89a8;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
-.an .dim .nz{fill:#5f89a8;stroke:none;animation:nz 1.2s ease-in-out infinite;transform-box:fill-box;transform-origin:center}
-.an .dim .pt{fill:#5f89a8;stroke:none}
-.an .sc{stroke-dasharray:14 6;animation:sc 3s linear infinite}
-.an .ar{fill:none;stroke:#87CEEB;stroke-width:2.4;stroke-linecap:round;stroke-linejoin:round}
-.an .lit *{fill:none;stroke:#87CEEB;stroke-width:3.2;stroke-linecap:round;filter:drop-shadow(0 0 6px rgba(135,206,235,.9))}
-.an .lit .dot,.an .lit .pt{fill:#fff;stroke:none}
-.an .wave{stroke-dasharray:240;animation:wv 2.6s ease-in-out infinite}
-@keyframes nz{0%,100%{transform:scaleY(.3)}50%{transform:scaleY(1)}}
-@keyframes sc{to{stroke-dashoffset:-80}}
-@keyframes wv{0%{stroke-dashoffset:240}60%,100%{stroke-dashoffset:0}}
-.ct p:empty{display:none}.ct .ml{display:inline-block;margin-top:26px}
-@media(max-width:820px){.ans{grid-template-columns:1fr;gap:16px}.an{padding:16px 14px 16px}}
-.sv{display:block;text-decoration:none;transition:transform .25s,box-shadow .25s}
-.sv:hover{transform:translateY(-4px);box-shadow:0 0 0 1px rgba(135,206,235,.5),0 26px 60px rgba(4,16,31,.35)}
-.sv .cp{display:block;text-align:center;color:#fff;font:700 1.2rem Manrope,sans-serif;margin-top:8px}.sv .cp b{color:#87CEEB}
-.sv .lit *{fill:none;stroke:#87CEEB;stroke-width:3.2;stroke-linecap:round;stroke-linejoin:round;filter:drop-shadow(0 0 6px rgba(135,206,235,.9))}
-.sv .draw{stroke-dasharray:520;animation:dr 4s ease-in-out infinite}
-.sv .win{fill:#87CEEB!important;stroke:none!important;opacity:0;animation:wn 4s ease-in-out infinite}.sv .w2{animation-delay:.3s}
-.sv .sp{fill:#fff!important;stroke:none!important;animation:spk 2.4s ease-out infinite}.sv .s2{animation-delay:.6s}.sv .s3{animation-delay:1.2s}
-.sv .isl{fill:rgba(135,206,235,.25)!important}.sv .arcd{stroke-dasharray:6 8;opacity:.6}.sv .pl path{stroke:#fff;stroke-width:3}
-@keyframes dr{0%{stroke-dashoffset:520}45%,100%{stroke-dashoffset:0}}
-@keyframes wn{0%,45%{opacity:0}60%,100%{opacity:1}}
-@keyframes spk{0%{transform:translateY(20px);opacity:0}30%{opacity:1}100%{transform:translateY(-26px);opacity:0}}
-.bs{padding:70px 0 80px}
-@media(prefers-reduced-motion:reduce){.sv *{animation:none!important}}
+
+
+
+.bgv{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:0}
+.hv .ov{z-index:2}.hv h1{font-size:clamp(2.2rem,4.6vw,3.6rem)!important}
+.sol{display:grid;grid-template-columns:repeat(2,1fr);gap:18px}
+.st{position:relative;display:block;aspect-ratio:4/5;border-radius:26px;overflow:hidden;background:#071B31;text-decoration:none;isolation:isolate}
+.st video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transition:transform 1.2s ease}
+.st:hover video{transform:scale(1.04)}
+.st::after{content:"";position:absolute;inset:auto 0 0 0;height:45%;background:linear-gradient(180deg,rgba(3,10,21,0),rgba(3,10,21,.85));z-index:1}
+.st span{position:absolute;left:28px;right:28px;bottom:26px;z-index:2;color:#fff;font:800 clamp(1.4rem,2.4vw,2rem)/1.1 Manrope,sans-serif;letter-spacing:-.02em;display:flex;justify-content:space-between;align-items:center}
+.st span b{color:#87CEEB;font-weight:700}
+.bs{padding:22px 0 70px}
+@media(max-width:700px){.sol{grid-template-columns:1fr;gap:14px}.st{aspect-ratio:4/5}.st span{left:22px;right:22px;bottom:20px}}
 </style>
 <script async src="https://dimau-ops.vercel.app/api/visit?s=dimau-ventures"></script>
 </head>
@@ -205,15 +188,12 @@ a{color:inherit}
  <a class="bt" href="/#brands">Explore</a>
 </div></header>
 <main>
-<section class="vis" aria-label="Dimau Ventures">
- <canvas id="fx" aria-hidden="true"></canvas>
- <div class="ov"><div class="w">
-  <div><div class="ey">Dimau Ventures Ltd</div><h1>Keeping the future simple.</h1></div>
-  <a class="bt" href="#brands">Our brands <span class="ar">→</span></a>
- </div></div>
+<section class="vis hv" aria-label="Dimau Ventures">
+ <video class="bgv" muted loop playsinline autoplay preload="auto" poster="/media/hero.jpg" data-d="/media/hero.mp4" data-m="/media/hero-m.mp4" data-mp="/media/hero-m.jpg"></video>
+ <div class="ov"><div class="w"><div><div class="ey">Dimau Ventures Ltd</div><h1>Keeping the future simple.</h1></div><a class="bt" href="#brands">Explore <span class="ar">→</span></a></div></div>
 </section>
 
-<section class="bs" id="brands"><div class="w"><div class="ans"><a class="an sv" href="https://fhtbcalculator.co.uk/" target="_blank" rel="noopener"><svg viewBox="0 0 300 200" aria-hidden="true"><g class="lit"><path class="draw" d="M70 150V92l80-52 80 52v58H70z"/><path class="draw" d="M130 150v-36h40v36"/><rect class="win" x="94" y="100" width="22" height="20" rx="3"/><rect class="win w2" x="184" y="100" width="22" height="20" rx="3"/></g></svg><span class="cp">Your first home <b>→</b></span></a><a class="an sv" href="https://fijilearn.com/" target="_blank" rel="noopener"><svg viewBox="0 0 300 200" aria-hidden="true"><g class="lit"><path class="draw" d="M150 150c-26-14-56-14-82-6V82c26-8 56-8 82 6 26-14 56-14 82-6v62c-26-8-56-8-82 6zM150 88v62"/><circle class="sp" cx="128" cy="62" r="4"/><circle class="sp s2" cx="152" cy="48" r="5"/><circle class="sp s3" cx="176" cy="60" r="4"/></g></svg><span class="cp">Learn anything <b>→</b></span></a><a class="an sv" href="https://dimau.gumroad.com/" target="_blank" rel="noopener"><svg viewBox="0 0 300 200" aria-hidden="true"><g class="lit"><path class="isl" d="M196 160c14-18 54-18 72 0z"/><path class="arcd" id="tp" d="M40 120C90 30 200 30 232 146"/><g class="pl"><path d="M-12 0 12 0M0 0l-8-8M0 0l-8 8" /><animateMotion dur="3.2s" repeatCount="indefinite" rotate="auto"><mpath href="#tp"/></animateMotion></g></g></svg><span class="cp">Land with ease <b>→</b></span></a></div></div></section>
+<section class="bs" id="brands"><div class="w"><div class="sol"><a class="st" href="https://fhtbcalculator.co.uk/" target="_blank" rel="noopener"><video class="tv" muted loop playsinline preload="none" poster="/media/home.jpg" data-s="/media/home.mp4"></video><span>Your first home <b>→</b></span></a><a class="st" href="https://fijilearn.com/" target="_blank" rel="noopener"><video class="tv" muted loop playsinline preload="none" poster="/media/learn.jpg" data-s="/media/learn.mp4"></video><span>Learn anything <b>→</b></span></a><a class="st" href="https://dimau.gumroad.com/" target="_blank" rel="noopener"><video class="tv" muted loop playsinline preload="none" poster="/media/travel.jpg" data-s="/media/travel.mp4"></video><span>Arrive ready <b>→</b></span></a><a class="st" href="https://galala.dimau-fintech.com/" target="_blank" rel="noopener"><video class="tv" muted loop playsinline preload="none" poster="/media/money.jpg" data-s="/media/money.mp4"></video><span>Money, sorted <b>→</b></span></a></div></div></section>
 </main>
 
 <footer class="ft"><div class="w">
@@ -226,80 +206,8 @@ a{color:inherit}
 <script>document.getElementById('y').textContent=new Date().getFullYear();var h=document.getElementById('hd');addEventListener('scroll',function(){h.classList.toggle('s',scrollY>10)},{passive:true})</script>
 <script src="/dimau-pwa.js" data-sw="/sw.js"></script>
 <script src="https://fijian-assistant-api.vercel.app/dimau-consistency.js" defer></script>
-<script type="importmap">{"imports":{"three":"https://cdn.jsdelivr.net/npm/three@0.170.0/build/three.module.js","three/addons/":"https://cdn.jsdelivr.net/npm/three@0.170.0/examples/jsm/"}}</script>
-<script type="module">
-import * as THREE from 'three';
-import {EffectComposer} from 'three/addons/postprocessing/EffectComposer.js';
-import {RenderPass} from 'three/addons/postprocessing/RenderPass.js';
-import {UnrealBloomPass} from 'three/addons/postprocessing/UnrealBloomPass.js';
-import {OutputPass} from 'three/addons/postprocessing/OutputPass.js';
-const cv=document.getElementById('fx'),box=cv.parentElement,still=matchMedia('(prefers-reduced-motion: reduce)').matches,small=innerWidth<700;
-const R=new THREE.WebGLRenderer({canvas:cv,antialias:true,powerPreference:'high-performance'});
-R.setPixelRatio(Math.min(devicePixelRatio,small?1.5:1.75));R.setClearColor(0x030a15,1);
-const S=new THREE.Scene(),C=new THREE.PerspectiveCamera(42,1,.1,200);C.position.set(0,0,small?11.5:9.2);
-const G=new THREE.Group();S.add(G);
-const U={t:{value:0},intro:{value:0}};
-const sky=new THREE.Color(0x87CEEB);
-// globe of data points
-const N=small?5200:9000,gp=new Float32Array(N*3),gs=new Float32Array(N),RAD=2.45,ga=Math.PI*(3-Math.sqrt(5));
-for(let i=0;i<N;i++){const y=1-(i/(N-1))*2,r=Math.sqrt(1-y*y),th=ga*i;gp.set([Math.cos(th)*r*RAD,y*RAD,Math.sin(th)*r*RAD],i*3);gs[i]=Math.random()}
-const gg=new THREE.BufferGeometry();gg.setAttribute('position',new THREE.BufferAttribute(gp,3));gg.setAttribute('seed',new THREE.BufferAttribute(gs,1));
-const gm=new THREE.ShaderMaterial({uniforms:U,transparent:true,depthWrite:false,blending:THREE.AdditiveBlending,
-vertexShader:`uniform float t;uniform float intro;attribute float seed;varying float vA;varying float vF;
-void main(){vec3 p=position;float w=sin(p.y*3.1+t*1.3)*sin(p.x*2.7-t*.9)*.06;p*=1.+w+(1.-intro)*.35*seed;
-vec4 mv=modelViewMatrix*vec4(p,1.);vec3 n=normalize(normalMatrix*position);vF=pow(1.-abs(n.z),1.6);
-float tw=.55+.45*sin(t*2.2+seed*40.);vA=(.16+.5*vF)*tw*intro*(n.z>-.2?1.:.25);
-gl_PointSize=(1.1+seed*1.3+vF*1.5)*(24./-mv.z)*${small?'1.15':'1.'};gl_Position=projectionMatrix*mv;}`,
-fragmentShader:`varying float vA;varying float vF;void main(){float d=length(gl_PointCoord-.5);if(d>.5)discard;float a=smoothstep(.5,.0,d);
-vec3 c=mix(vec3(.53,.81,.92),vec3(.85,.97,1.),vF);gl_FragColor=vec4(c,a*vA);}`});
-G.add(new THREE.Points(gg,gm));
-// core glow
-const cvs=document.createElement('canvas');cvs.width=cvs.height=256;const cx=cvs.getContext('2d'),rg=cx.createRadialGradient(128,128,0,128,128,128);
-rg.addColorStop(0,'rgba(200,240,255,.9)');rg.addColorStop(.25,'rgba(135,206,235,.35)');rg.addColorStop(1,'rgba(0,0,0,0)');cx.fillStyle=rg;cx.fillRect(0,0,256,256);
-const core=new THREE.Sprite(new THREE.SpriteMaterial({map:new THREE.CanvasTexture(cvs),blending:THREE.AdditiveBlending,depthWrite:false,transparent:true,opacity:.22}));core.scale.set(5.2,5.2,1);S.add(core);
-// arcs with travelling light
-const lineMat=new THREE.ShaderMaterial({uniforms:U,transparent:true,depthWrite:false,blending:THREE.AdditiveBlending,
-vertexShader:`attribute float k;attribute float off;varying float vk;varying float vo;void main(){vk=k;vo=off;gl_Position=projectionMatrix*modelViewMatrix*vec4(position,1.);}`,
-fragmentShader:`uniform float t;uniform float intro;varying float vk;varying float vo;void main(){float h=fract(t*.32+vo);float d=vk-h;
-float pulse=smoothstep(.0,.03,d+.03)*smoothstep(.18,.0,-d)*step(d,.0)+smoothstep(.02,.0,abs(d))*1.2;
-gl_FragColor=vec4(mix(vec3(.53,.81,.92),vec3(1.),pulse),(.06+pulse*.8)*intro);}`});
-function rp(){const u=Math.random()*2-1,a=Math.random()*Math.PI*2,r=Math.sqrt(1-u*u);return new THREE.Vector3(r*Math.cos(a),u,r*Math.sin(a)).multiplyScalar(RAD)}
-const AR=small?26:44;
-for(let i=0;i<AR;i++){const a=rp(),b=rp();if(a.distanceTo(b)<1.6){i--;continue}const m=a.clone().add(b).normalize().multiplyScalar(RAD*(1.25+a.distanceTo(b)*.18));
- const cu=new THREE.QuadraticBezierCurve3(a,m,b),pts=cu.getPoints(90),g=new THREE.BufferGeometry().setFromPoints(pts),k=new Float32Array(91),o=new Float32Array(91).fill(Math.random());
- for(let j=0;j<91;j++)k[j]=j/90;g.setAttribute('k',new THREE.BufferAttribute(k,1));g.setAttribute('off',new THREE.BufferAttribute(o,1));G.add(new THREE.Line(g,lineMat))}
-// orbit rings
-const rings=[];[[4.6,.12,2.2]].forEach(([r,tx,tz],i)=>{const pts=[];for(let j=0;j<=360;j++){const a=j/360*Math.PI*2;pts.push(new THREE.Vector3(Math.cos(a)*r,0,Math.sin(a)*r))}
- const g=new THREE.BufferGeometry().setFromPoints(pts),k=new Float32Array(361),o=new Float32Array(361).fill(i*.33);for(let j=0;j<=360;j++)k[j]=j/360;g.setAttribute('k',new THREE.BufferAttribute(k,1));g.setAttribute('off',new THREE.BufferAttribute(o,1));
- const l=new THREE.Line(g,lineMat);l.rotation.set(tx,0,tz);S.add(l);rings.push(l);
- const dot=new THREE.Mesh(new THREE.SphereGeometry(.045,12,12),new THREE.MeshBasicMaterial({color:0xdff6ff}));l.add(dot);l.userData={r,dot,sp:.25+i*.08}});
-// data-text vortex bands
-const bands=[];function band(r,h,tx,tz,sp,op,txt){const c=document.createElement('canvas');c.width=4096;c.height=128;const x=c.getContext('2d');x.font='600 60px ui-monospace,SFMono-Regular,Menlo,Consolas,monospace';x.textBaseline='middle';
- let str='';while(x.measureText(str).width<4200)str+=txt;const g=x.createLinearGradient(0,0,4096,0);g.addColorStop(0,'#dff6ff');g.addColorStop(.5,'#87CEEB');g.addColorStop(1,'#dff6ff');x.fillStyle=g;x.fillText(str,0,66);
- const tex=new THREE.CanvasTexture(c);tex.wrapS=THREE.RepeatWrapping;tex.repeat.x=2;tex.colorSpace=THREE.SRGBColorSpace;tex.anisotropy=4;
- const m=new THREE.Mesh(new THREE.CylinderGeometry(r,r,h,180,1,true),new THREE.MeshBasicMaterial({map:tex,transparent:true,opacity:0,side:THREE.DoubleSide,blending:THREE.AdditiveBlending,depthWrite:false}));
- m.rotation.set(tx,0,tz);m.userData={sp,op};S.add(m);bands.push(m)}
-band(3.1,.26,.38,.16,.10,.85,'BALANCE 12,480.00  ·  RATE 4.25%  ·  GBP/FJD 2.84  ·  PAYMENT RECEIVED  ·  PENSION FORECAST  ·  SAVINGS GOAL 72%  ·  MORTGAGE 25Y  ·  INVOICE 20418  ·  ');
-band(3.6,.2,-.28,-.34,-.07,.55,'0110 1001 0011 1110  ·  LEARN  ·  PLAN  ·  SAVE  ·  MOVE  ·  BUILD  ·  CONNECT  ·  1010 0111 1100  ·  ');
-band(2.9,.17,1.15,.42,.14,.45,'DATA SYNC  ·  FORMS  ·  ACCOUNTS  ·  RATES  ·  DEADLINES  ·  RENEWALS  ·  APPS  ·  LOGINS  ·  ');
-// deep-space dust
-const D=small?900:1800,dp=new Float32Array(D*3);for(let i=0;i<D;i++){const v=new THREE.Vector3().randomDirection().multiplyScalar(14+Math.random()*40);dp.set([v.x,v.y,v.z],i*3)}
-const dg=new THREE.BufferGeometry();dg.setAttribute('position',new THREE.BufferAttribute(dp,3));
-const dust=new THREE.Points(dg,new THREE.PointsMaterial({color:0x87CEEB,size:.06,transparent:true,opacity:.45,depthWrite:false,blending:THREE.AdditiveBlending}));S.add(dust);
-// bloom
-const FX=new EffectComposer(R);FX.addPass(new RenderPass(S,C));const bloom=new UnrealBloomPass(new THREE.Vector2(1,1),.85,.55,.12);FX.addPass(bloom);FX.addPass(new OutputPass());
-function size(){const w=box.clientWidth,h=box.clientHeight;R.setSize(w,h,false);FX.setSize(w,h);C.aspect=w/h;C.position.z=w/h<.8?12.5:9.2;C.updateProjectionMatrix();G.position.x=w>900?1.6:0;G.position.y=w>900?0:.7;core.position.copy(G.position);rings.forEach(l=>l.position.copy(G.position));bands.forEach(m=>m.position.copy(G.position))}
-size();addEventListener('resize',size);
-let mx=0,my=0;addEventListener('pointermove',e=>{mx=e.clientX/innerWidth-.5;my=e.clientY/innerHeight-.5},{passive:true});
-let vis=true;new IntersectionObserver(e=>{vis=e[0].isIntersecting;if(vis&&!still)loop()}).observe(box);
-const t0=performance.now();let raf=0;
-function draw(){const t=(performance.now()-t0)/1000;U.t.value=t;U.intro.value=still?1:Math.min(1,t/2.2)**.6;
- G.rotation.y=t*.07;G.rotation.x=.25+my*.15;G.rotation.z=-.08;C.position.x+=(mx*.8-C.position.x)*.04;C.position.y+=(-my*.5-C.position.y)*.04;C.lookAt(G.position.x*.5,G.position.y*.5,0);
- rings.forEach(l=>{const a=t*l.userData.sp;l.userData.dot.position.set(Math.cos(a)*l.userData.r,0,Math.sin(a)*l.userData.r)});dust.rotation.y=t*.01;bands.forEach(m=>{m.rotation.y=t*m.userData.sp;m.material.opacity=m.userData.op*U.intro.value});
- core.material.opacity=.2+.06*Math.sin(t*1.4);FX.render()}
-function loop(){cancelAnimationFrame(raf);if(!vis)return;draw();raf=requestAnimationFrame(loop)}
-if(still)draw();else loop();
-box.classList.add('on');
-</script>
+<script>(function(){var m=innerWidth<700;document.querySelectorAll('video[data-d]').forEach(function(v){v.src=m&&v.dataset.m?v.dataset.m:v.dataset.d;if(m&&v.dataset.mp)v.poster=v.dataset.mp});
+var io=new IntersectionObserver(function(es){es.forEach(function(e){var v=e.target;if(e.isIntersecting){if(!v.src)v.src=v.dataset.s;v.play().catch(function(){})}else v.pause()})},{rootMargin:'200px'});
+document.querySelectorAll('video.tv,video.bgv').forEach(function(v){io.observe(v)})})()</script>
 </body>
 </html>
