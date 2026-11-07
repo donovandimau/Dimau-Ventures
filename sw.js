@@ -5,7 +5,7 @@
 importScripts('https://cdn.jsdelivr.net/npm/workbox-sw@7/build/workbox-sw.js');
 
 const APP = 'dimau-ventures';
-const VERSION = '2026-11-07-6';            // bump on every release — this is what tells returning phones a new version exists
+const VERSION = '2026-11-07-7';            // bump on every release — this is what tells returning phones a new version exists
 const PRECACHE = ['/', '/dimau-pwa.js'];
 
 workbox.setConfig({ debug: false });
