@@ -28,6 +28,7 @@
 - Testing: not tested
 
 ## Done — newest first
+- 2026-11-07 — claude — About page refocused on people (Donovan: people want solutions, not company facts): company information and group structure sections removed (details stay in footer small print); intro and What we do rewritten as Simple tools / Plain English / Straightforward. sw.js 2026-11-07-14.
 - 2026-11-07 — claude — About page: dark 3D globe header (same scene as home), tighter spacing, glowing icons on What we do, section numbers removed, company info in a 2-column grid on phones. sw.js 2026-11-07-12.
 - 2026-11-07 — claude — Hero globe: three rotating rings of flowing data text (vortex look from Donovan's references) replace two of the orbit rings; glow toned down. sw.js 2026-11-07-11.
 - 2026-11-07 — claude — Hero visual upgraded to a full-screen live 3D scene (three.js 0.170 from jsDelivr, bloom): data-point globe, arcs with travelling light, orbit rings, space dust, pointer parallax; pauses off-screen; static frame for reduced motion. sw.js 2026-11-07-9.
