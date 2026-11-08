@@ -5,8 +5,8 @@
 importScripts('https://cdn.jsdelivr.net/npm/workbox-sw@7/build/workbox-sw.js');
 
 const APP = 'dimau-ventures';
-const VERSION = '2026-11-07-30';            // bump on every release — this is what tells returning phones a new version exists
-const PRECACHE = ['/', '/dimau-pwa.js'];
+const VERSION = '2026-11-08-1';            // bump on every release — this is what tells returning phones a new version exists
+const PRECACHE = ['/dimau-pwa.js'];   // the page itself is NOT precached: precache would serve a stale copy before the network-first route ever runs
 
 workbox.setConfig({ debug: false });
 workbox.core.setCacheNameDetails({ prefix: APP, suffix: VERSION });
