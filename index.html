@@ -284,5 +284,7 @@ function draw(){U.t.value=(performance.now()-t0)/1000;stars.rotation.y=U.t.value
 function loop(){cancelAnimationFrame(raf);if(!vis)return;draw();if(!still)raf=requestAnimationFrame(loop)}
 loop();box.classList.add('on');
 </script>
+<script>/* Very wide screens (or a zoomed-out browser): scale the header, text and cards up with the window so the page keeps its 1440px proportions instead of shrinking to a strip in the middle. The sphere and video already fill the screen. */
+(function(){var T='.hd,.kx .ov>.w,.sb,.bs,.ft,main>section:not(.kx)';function fit(){var z=innerWidth/1440;z=z>1.1?Math.min(z,6):'';document.querySelectorAll(T).forEach(function(e){e.style.zoom=z})}fit();addEventListener('resize',fit)})();</script>
 </body>
 </html>
