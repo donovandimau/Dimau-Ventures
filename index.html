@@ -180,7 +180,7 @@ a{color:inherit}
 @media(max-width:700px){.sol{grid-template-columns:1fr;gap:14px}.st{aspect-ratio:4/5}.st span{left:22px;right:22px;bottom:20px}}
 
 .kx{background:#02060d}.kx canvas{position:absolute;inset:0;width:100%;height:100%;display:block;opacity:0;transition:opacity 1.2s;cursor:grab;touch-action:pan-y}
-.kx canvas{filter:saturate(1.6) contrast(1.12) brightness(.8)}.kx.on canvas{opacity:1}.kx canvas:active{cursor:grabbing}
+.kx canvas{filter:saturate(1.35) contrast(1.1)}.kx.on canvas{opacity:1}.kx canvas:active{cursor:grabbing}
 #lb{position:absolute;inset:0;pointer-events:none;z-index:1}
 #lb span{position:absolute;left:0;top:0;white-space:nowrap;will-change:transform,opacity}
 #lb .c{color:#fff;font:700 clamp(.72rem,1.2vw,.98rem)/1 Lexend,sans-serif;letter-spacing:.16em;text-shadow:0 0 14px rgba(0,0,0,.95);z-index:2}
@@ -236,11 +236,11 @@ const rnd=Math.random,sph=()=>new THREE.Vector3().randomDirection();
 // clustered data dust
 const N=small?7000:12000,dp=new Float32Array(N*3),dc=new Float32Array(N*3),ds=new Float32Array(N);const CL=Array.from({length:46},()=>({c:sph(),col:PAL[Math.floor(rnd()*PAL.length)],s:.08+rnd()*.22}));
 for(let i=0;i<N;i++){const k=CL[Math.floor(rnd()*CL.length)];const v=k.c.clone().add(new THREE.Vector3((rnd()-.5),(rnd()-.5),(rnd()-.5)).multiplyScalar(k.s*2)).normalize().multiplyScalar(RAD*(.86+rnd()*.14));
- dp.set([v.x,v.y,v.z],i*3);const c=k.col.clone().lerp(new THREE.Color(0xffffff),rnd()*.25);dc.set([c.r,c.g,c.b],i*3);ds[i]=rnd()}
+ dp.set([v.x,v.y,v.z],i*3);const c=k.col.clone().lerp(new THREE.Color(0xffffff),rnd()*.05);dc.set([c.r,c.g,c.b],i*3);ds[i]=rnd()}
 const dg=new THREE.BufferGeometry();dg.setAttribute('position',new THREE.BufferAttribute(dp,3));dg.setAttribute('color',new THREE.BufferAttribute(dc,3));dg.setAttribute('seed',new THREE.BufferAttribute(ds,1));
 G.add(new THREE.Points(dg,new THREE.ShaderMaterial({uniforms:U,transparent:true,depthWrite:false,blending:THREE.AdditiveBlending,vertexColors:true,
 vertexShader:`uniform float t;attribute float seed;varying vec3 vc;varying float va;void main(){vc=color;vec4 mv=modelViewMatrix*vec4(position,1.);va=(.35+.65*(.5+.5*sin(t*1.7+seed*50.)))*(mv.z>-7.6?1.:.45);gl_PointSize=(1.+seed*2.2)*(22./-mv.z);gl_Position=projectionMatrix*mv;}`,
-fragmentShader:`varying vec3 vc;varying float va;void main(){float d=length(gl_PointCoord-.5);if(d>.5)discard;gl_FragColor=vec4(vc,smoothstep(.5,0.,d)*va*.9);}`})));
+fragmentShader:`varying vec3 vc;varying float va;void main(){float d=length(gl_PointCoord-.5);if(d>.5)discard;gl_FragColor=vec4(vc,smoothstep(.5,0.,d)*va*.42);}`})));
 // faint wire globe
 const wg=new THREE.LineSegments(new THREE.WireframeGeometry(new THREE.SphereGeometry(RAD*1.01,24,16)),new THREE.LineBasicMaterial({color:0x6b8db3,transparent:true,opacity:.07,depthWrite:false}));G.add(wg);
 // nodes

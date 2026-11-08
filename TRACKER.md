@@ -24,7 +24,7 @@
 - nothing recorded yet
 
 ## Last handover
-- 2026-11-07 — claude — Hero sphere looked washed out: canvas colour filter (more saturation, a little more contrast, lower brightness) and the background nebula glow thinned from 0.16 to 0.07. index.html only.
+- 2026-11-07/08 — claude — Hero sphere washed out: the glowing dust was stacking into a white fog. Dust brightness per particle cut from 0.9 to 0.42, the white tint mixed into the dust removed, the background nebula glow cut to 0.07, and a light colour boost on the canvas (saturate 1.35, contrast 1.1). index.html only.
 - 2026-11-07 — claude — Subscription & Bills Detox moved into My Debt Calculator as a free "Bills check" (mydebtcalculator.app/bills). /detox now redirects there permanently; detox.html removed; sitemap entry removed.
 - 2026-11-01 — Deployment: Count visits on the Ops Room (Fiji Analytics tag, no cookies)
 - Testing: not tested
