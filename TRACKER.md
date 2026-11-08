@@ -25,6 +25,7 @@
 
 ## Last handover
 - 2026-11-07/08 — claude — Hero sphere washed out: the glowing dust was stacking into a white fog. Dust brightness per particle cut from 0.9 to 0.42, the white tint mixed into the dust removed, the background nebula glow cut to 0.07, and a light colour boost on the canvas (saturate 1.35, contrast 1.1). index.html only.
+- 2026-11-08 — claude — Hero labels were unreadably small on large or zoomed-out screens (font size was capped). Labels now scale with screen width up to 1.35rem (items) and 1.7rem (category words); phone unchanged.
 - 2026-11-07 — claude — Subscription & Bills Detox moved into My Debt Calculator as a free "Bills check" (mydebtcalculator.app/bills). /detox now redirects there permanently; detox.html removed; sitemap entry removed.
 - 2026-11-01 — Deployment: Count visits on the Ops Room (Fiji Analytics tag, no cookies)
 - Testing: not tested
