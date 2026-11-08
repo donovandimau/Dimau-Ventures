@@ -223,6 +223,6 @@ a.pc:hover .ft2 b{color:#fff}
 <script src="/dimau-pwa.js" data-sw="/sw.js"></script>
 <script src="https://fijian-assistant-api.vercel.app/dimau-consistency.js" defer></script>
 <script>/* Very wide screens (or a zoomed-out browser): scale the header, text and cards up with the window so the page keeps its 1440px proportions instead of shrinking to a strip in the middle. The sphere and video already fill the screen. */
-(function(){var T='.hd,.kx .ov>.w,.sb,.bs,.ft,main>section:not(.kx)';function fit(){var z=innerWidth/1440;z=z>1.1?Math.min(z,6):'';document.querySelectorAll(T).forEach(function(e){e.style.zoom=z})}fit();addEventListener('resize',fit)})();</script>
+(function(){var T='.hd,.kx .ov>.w,.sb,.bs,.ft,main>section:not(.kx)';function fit(){var z=innerWidth/1440;z=z>1.1?Math.min(z,6):'';document.querySelectorAll(T).forEach(function(e){e.style.zoom=z});var m=document.querySelector('main'),f=m&&m.firstElementChild,h=document.getElementById('hd');if(f&&h&&!f.style.zoom)f.style.marginTop=z?(-h.getBoundingClientRect().height)+'px':''}fit();addEventListener('resize',fit)})();</script>
 </body>
 </html>

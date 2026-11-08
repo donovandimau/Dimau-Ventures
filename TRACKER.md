@@ -28,6 +28,7 @@
 - 2026-11-08 — claude — Hero labels were unreadably small on large or zoomed-out screens (font size was capped). Labels now scale with screen width up to 1.35rem (items) and 1.7rem (category words); phone unchanged.
 - 2026-11-08 — claude — Labels now sized to the sphere (vmin: items max(.7rem,1.35vmin), categories max(.8rem,1.9vmin)), so they stay readable at any screen size or browser zoom. sw.js: the front page is no longer precached (precache served a stale copy before the network-first page route ran, so returning visitors never saw releases); VERSION bumped to 2026-11-08-1.
 - 2026-11-08 — claude — Very wide screens / zoomed-out browsers: header, hero title, video band, cards and footer now scale with the window (CSS zoom = width/1440, only above 1.1×) so the page keeps its normal proportions instead of a thin strip in the middle. Same script on index, about and payments. Normal screens and phones unchanged.
+- 2026-11-08 — claude — Fix: on scaled (very wide) screens the header grew but the hero still only tucked 77px under it, leaving a white bar with invisible white header text. The hero now tucks under the real header height when scaled.
 - 2026-11-07 — claude — Subscription & Bills Detox moved into My Debt Calculator as a free "Bills check" (mydebtcalculator.app/bills). /detox now redirects there permanently; detox.html removed; sitemap entry removed.
 - 2026-11-01 — Deployment: Count visits on the Ops Room (Fiji Analytics tag, no cookies)
 - Testing: not tested
