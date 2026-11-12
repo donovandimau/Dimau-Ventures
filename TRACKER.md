@@ -34,6 +34,7 @@
 - Testing: not tested
 
 ## Done — newest first
+- 2026-11-12 — claude — /payments: Home-Buying Pack now shown as Free ("Free download", "Get it on its site") instead of £29, because Donovan made the pack free (price 0 in the money engine, free download live on fhtbcalculator.co.uk). sw.js 2026-11-12-4.
 - 2026-11-12 — claude — Home hero: one plain sentence under the headline at Donovan's request: "Simple online tools to help you buy a home, clear debt and make sense of your numbers." index.html only; sw.js 2026-11-12-3.
 - 2026-11-12 — claude — Coming soon products removed at Donovan's request: the five demo tiles on the home page (Life Admin, Bill Checker, Rainy Day Fund, Savings Finder, Trial Guard) and the same five cards on /payments. Home tiles are now the four real ones, laid out two by two. Their pictures and clips stay in /media for when the products ship. sw.js 2026-11-12-2.
 - 2026-11-12 — claude — Google Search Console ownership file added (google5320e0908d75f29d.html, the same file used on the other Dimau sites). Sitemap and robots.txt were already in place. Still to do in Search Console itself (Donovan): add the property, verify, submit the sitemap, add the reporting service account as a user.
