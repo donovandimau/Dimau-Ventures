@@ -285,6 +285,18 @@ function draw(){U.t.value=(performance.now()-t0)/1000;stars.rotation.y=U.t.value
 function loop(){cancelAnimationFrame(raf);if(!vis)return;draw();if(!still)raf=requestAnimationFrame(loop)}
 loop();box.classList.add('on');
 </script>
+<script>/* Still fallback: if the live sphere cannot start (no WebGL, or the 3D library does not load), draw a still picture of it instead. It is drawn on its own canvas behind the live one, so a late-starting live sphere simply covers it. */
+(function(){var k=document.getElementById('kx'),f=document.getElementById('fx'),c,P=['#2f7bff','#22d3ee','#87ceeb','#34d399','#a855f7','#f472b6','#fb923c','#60a5fa','#14b8a6','#3b82f6'];
+function draw(){var w=k.clientWidth,h=k.clientHeight,d=Math.min(devicePixelRatio||1,2),x=c.getContext('2d');if(!x||!w)return;c.width=w*d;c.height=h*d;x.scale(d,d);
+var s=11,r=function(){s=s*16807%2147483647;return s/2147483647},v=function(){var u=r()*2-1,t=r()*6.2832,q=Math.sqrt(1-u*u);return[q*Math.cos(t),u,q*Math.sin(t)]},
+R=Math.min(h*.36,w*.42),X=w/2,Y=h*.46,g=x.createRadialGradient(X,Y,0,X,Y,R*1.6),C=P.map(v),i,j,a,b,m,n=[];
+g.addColorStop(0,'rgba(47,123,255,.3)');g.addColorStop(.6,'rgba(34,211,238,.08)');g.addColorStop(1,'rgba(2,6,13,0)');x.fillStyle=g;x.fillRect(0,0,w,h);
+for(i=0;i<900;i++){j=Math.floor(r()*10);a=v();a=[C[j][0]+a[0]*.6,C[j][1]+a[1]*.6,C[j][2]+a[2]*.6];m=Math.hypot(a[0],a[1],a[2])/(R*(.9+r()*.2));b=(a[2]/m/R+1)/2;x.globalAlpha=.25+.7*b;x.fillStyle=P[j];x.shadowColor=P[j];x.shadowBlur=6;x.beginPath();x.arc(X+a[0]/m,Y-a[1]/m,.7+1.3*b,0,7);x.fill()}
+x.shadowBlur=0;for(i=0;i<44;i++)n.push(v());x.strokeStyle='#bfe6ff';x.lineWidth=1;
+for(i=0;i<44;i++)for(j=i+1;j<44;j++){a=n[i];b=n[j];if(Math.hypot(a[0]-b[0],a[1]-b[1],a[2]-b[2])<.62){x.globalAlpha=.12+.22*((a[2]+b[2])/4+.5);x.beginPath();x.moveTo(X+a[0]*R,Y-a[1]*R);x.lineTo(X+b[0]*R,Y-b[1]*R);x.stroke()}}
+x.strokeStyle='#fff';x.fillStyle='#02060d';x.lineWidth=1.6;for(i=0;i<44;i++){a=n[i];b=(a[2]+1)/2;x.globalAlpha=.3+.7*b;x.beginPath();x.arc(X+a[0]*R,Y-a[1]*R,3+2.5*b,0,7);x.fill();x.stroke()}}
+window.kxStill=function(){if(c||!k||!f||k.classList.contains('on'))return;c=document.createElement('canvas');c.className='fs';c.setAttribute('aria-hidden','true');k.insertBefore(c,f);draw();addEventListener('resize',draw)};
+setTimeout(window.kxStill,6000)})();</script>
 <script>/* Very wide screens (or a zoomed-out browser): scale the header, text and cards up with the window so the page keeps its 1440px proportions instead of shrinking to a strip in the middle. The sphere and video already fill the screen. */
 (function(){var T='.hd,.kx .ov>.w,.sb,.bs,.ft,main>section:not(.kx)';function fit(){var z=innerWidth/1440;z=z>1.1?Math.min(z,6):'';document.querySelectorAll(T).forEach(function(e){e.style.zoom=z});var m=document.querySelector('main'),f=m&&m.firstElementChild,h=document.getElementById('hd');if(f&&h&&!f.style.zoom)f.style.marginTop=z?(-h.getBoundingClientRect().height)+'px':''}fit();addEventListener('resize',fit)})();</script>
 </body>
