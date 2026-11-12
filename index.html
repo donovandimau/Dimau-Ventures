@@ -221,7 +221,7 @@ a{color:inherit}
 var io=new IntersectionObserver(function(es){es.forEach(function(e){var v=e.target;if(e.isIntersecting){if(!v.src)v.src=v.dataset.s;v.play().catch(function(){})}else v.pause()})},{rootMargin:'200px'});
 document.querySelectorAll('video.tv,video.bgv').forEach(function(v){io.observe(v)})})()</script>
 <script type="importmap">{"imports":{"three":"https://cdn.jsdelivr.net/npm/three@0.170.0/build/three.module.js","three/addons/":"https://cdn.jsdelivr.net/npm/three@0.170.0/examples/jsm/"}}</script>
-<script type="module">
+<script type="module" onerror="window.kxStill&&kxStill()">
 import * as THREE from 'three';
 import {OrbitControls} from 'three/addons/controls/OrbitControls.js';
 import {EffectComposer} from 'three/addons/postprocessing/EffectComposer.js';
