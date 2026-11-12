@@ -34,6 +34,7 @@
 - Testing: not tested
 
 ## Done — newest first
+- 2026-11-12 — claude — Coming soon products removed at Donovan's request: the five demo tiles on the home page (Life Admin, Bill Checker, Rainy Day Fund, Savings Finder, Trial Guard) and the same five cards on /payments. Home tiles are now the four real ones, laid out two by two. Their pictures and clips stay in /media for when the products ship. sw.js 2026-11-12-2.
 - 2026-11-12 — claude — Google Search Console ownership file added (google5320e0908d75f29d.html, the same file used on the other Dimau sites). Sitemap and robots.txt were already in place. Still to do in Search Console itself (Donovan): add the property, verify, submit the sitemap, add the reporting service account as a user.
 - 2026-11-12 — claude — Hero sphere: still-image fallback. If WebGL cannot start or the three.js library does not load, the page now draws a still of the sphere (2D canvas, same colours, no extra file) behind the live canvas instead of leaving the hero blank, and no longer throws "Error creating WebGL context". A 6-second safety timer draws it too; a late-starting live sphere covers it. index.html only; sw.js 2026-11-12-1.
 - 2026-11-12 — claude — Privacy policy corrected to match what the visit counter really stores: one record per page view (page, time, device type, approximate country and town) with a daily-changing scrambled visitor code, no IP address, no cookies. It previously said visits were "kept only as totals". privacy.html only; on branch claude/privacy-visit-wording for Donovan's approval.
