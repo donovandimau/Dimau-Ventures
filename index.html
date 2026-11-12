@@ -180,7 +180,7 @@ a{color:inherit}
 @media(max-width:700px){.sol{grid-template-columns:1fr;gap:14px}.st{aspect-ratio:4/5}.st span{left:22px;right:22px;bottom:20px}}
 
 .kx{background:#02060d}.kx canvas{position:absolute;inset:0;width:100%;height:100%;display:block;opacity:0;transition:opacity 1.2s;cursor:grab;touch-action:pan-y}
-.kx canvas{filter:saturate(1.35) contrast(1.1)}.kx.on canvas{opacity:1}.kx canvas:active{cursor:grabbing}
+.kx canvas{filter:saturate(1.35) contrast(1.1)}.kx.on canvas{opacity:1}.kx canvas.fs{opacity:1;filter:none;cursor:default}.kx canvas:active{cursor:grabbing}
 #lb{position:absolute;inset:0;pointer-events:none;z-index:1}
 #lb span{position:absolute;left:0;top:0;white-space:nowrap;will-change:transform,opacity}
 #lb .c{color:#fff;font:700 max(.8rem,1.9vmin)/1 Lexend,sans-serif;letter-spacing:.16em;text-shadow:0 0 14px rgba(0,0,0,.95);z-index:2}
@@ -221,7 +221,7 @@ a{color:inherit}
 var io=new IntersectionObserver(function(es){es.forEach(function(e){var v=e.target;if(e.isIntersecting){if(!v.src)v.src=v.dataset.s;v.play().catch(function(){})}else v.pause()})},{rootMargin:'200px'});
 document.querySelectorAll('video.tv,video.bgv').forEach(function(v){io.observe(v)})})()</script>
 <script type="importmap">{"imports":{"three":"https://cdn.jsdelivr.net/npm/three@0.170.0/build/three.module.js","three/addons/":"https://cdn.jsdelivr.net/npm/three@0.170.0/examples/jsm/"}}</script>
-<script type="module">
+<script type="module" onerror="window.kxStill&&kxStill()">
 import * as THREE from 'three';
 import {OrbitControls} from 'three/addons/controls/OrbitControls.js';
 import {EffectComposer} from 'three/addons/postprocessing/EffectComposer.js';
@@ -229,7 +229,7 @@ import {RenderPass} from 'three/addons/postprocessing/RenderPass.js';
 import {UnrealBloomPass} from 'three/addons/postprocessing/UnrealBloomPass.js';
 import {OutputPass} from 'three/addons/postprocessing/OutputPass.js';
 const cv=document.getElementById('fx'),box=document.getElementById('kx'),lab=document.getElementById('lb'),small=innerWidth<700,still=matchMedia('(prefers-reduced-motion: reduce)').matches;
-const R=new THREE.WebGLRenderer({canvas:cv,antialias:true});R.setPixelRatio(Math.min(devicePixelRatio,small?1.5:1.75));R.setClearColor(0x02060d,1);
+let R;try{R=new THREE.WebGLRenderer({canvas:cv,antialias:true})}catch(e){window.kxStill&&window.kxStill();await new Promise(()=>{})}R.setPixelRatio(Math.min(devicePixelRatio,small?1.5:1.75));R.setClearColor(0x02060d,1);
 const S=new THREE.Scene(),C=new THREE.PerspectiveCamera(40,1,.1,100);C.position.set(0,0,7.6);
 const G=new THREE.Group();S.add(G);const RAD=2.4,U={t:{value:0}};
 const PAL=[0x2f7bff,0x22d3ee,0x87ceeb,0x34d399,0xa855f7,0xf472b6,0xfb923c,0x60a5fa,0x14b8a6,0x3b82f6].map(c=>new THREE.Color(c));
@@ -285,6 +285,18 @@ function draw(){U.t.value=(performance.now()-t0)/1000;stars.rotation.y=U.t.value
 function loop(){cancelAnimationFrame(raf);if(!vis)return;draw();if(!still)raf=requestAnimationFrame(loop)}
 loop();box.classList.add('on');
 </script>
+<script>/* Still fallback: if the live sphere cannot start (no WebGL, or the 3D library does not load), draw a still picture of it instead. It is drawn on its own canvas behind the live one, so a late-starting live sphere simply covers it. */
+(function(){var k=document.getElementById('kx'),f=document.getElementById('fx'),c,P=['#2f7bff','#22d3ee','#87ceeb','#34d399','#a855f7','#f472b6','#fb923c','#60a5fa','#14b8a6','#3b82f6'];
+function draw(){var w=k.clientWidth,h=k.clientHeight,d=Math.min(devicePixelRatio||1,2),x=c.getContext('2d');if(!x||!w)return;c.width=w*d;c.height=h*d;x.scale(d,d);
+var s=11,r=function(){s=s*16807%2147483647;return s/2147483647},v=function(){var u=r()*2-1,t=r()*6.2832,q=Math.sqrt(1-u*u);return[q*Math.cos(t),u,q*Math.sin(t)]},
+R=Math.min(h*.36,w*.42),X=w/2,Y=h*.46,g=x.createRadialGradient(X,Y,0,X,Y,R*1.6),C=P.map(v),i,j,a,b,m,n=[];
+g.addColorStop(0,'rgba(47,123,255,.3)');g.addColorStop(.6,'rgba(34,211,238,.08)');g.addColorStop(1,'rgba(2,6,13,0)');x.fillStyle=g;x.fillRect(0,0,w,h);
+for(i=0;i<900;i++){j=Math.floor(r()*10);a=v();a=[C[j][0]+a[0]*.6,C[j][1]+a[1]*.6,C[j][2]+a[2]*.6];m=Math.hypot(a[0],a[1],a[2])/(R*(.9+r()*.2));b=(a[2]/m/R+1)/2;x.globalAlpha=.25+.7*b;x.fillStyle=P[j];x.shadowColor=P[j];x.shadowBlur=6;x.beginPath();x.arc(X+a[0]/m,Y-a[1]/m,.7+1.3*b,0,7);x.fill()}
+x.shadowBlur=0;for(i=0;i<44;i++)n.push(v());x.strokeStyle='#bfe6ff';x.lineWidth=1;
+for(i=0;i<44;i++)for(j=i+1;j<44;j++){a=n[i];b=n[j];if(Math.hypot(a[0]-b[0],a[1]-b[1],a[2]-b[2])<.62){x.globalAlpha=.12+.22*((a[2]+b[2])/4+.5);x.beginPath();x.moveTo(X+a[0]*R,Y-a[1]*R);x.lineTo(X+b[0]*R,Y-b[1]*R);x.stroke()}}
+x.strokeStyle='#fff';x.fillStyle='#02060d';x.lineWidth=1.6;for(i=0;i<44;i++){a=n[i];b=(a[2]+1)/2;x.globalAlpha=.3+.7*b;x.beginPath();x.arc(X+a[0]*R,Y-a[1]*R,3+2.5*b,0,7);x.fill();x.stroke()}}
+window.kxStill=function(){if(c||!k||!f||k.classList.contains('on'))return;c=document.createElement('canvas');c.className='fs';c.setAttribute('aria-hidden','true');k.insertBefore(c,f);draw();addEventListener('resize',draw)};
+setTimeout(window.kxStill,6000)})();</script>
 <script>/* Very wide screens (or a zoomed-out browser): scale the header, text and cards up with the window so the page keeps its 1440px proportions instead of shrinking to a strip in the middle. The sphere and video already fill the screen. */
 (function(){var T='.hd,.kx .ov>.w,.sb,.bs,.ft,main>section:not(.kx)';function fit(){var z=innerWidth/1440;z=z>1.1?Math.min(z,6):'';document.querySelectorAll(T).forEach(function(e){e.style.zoom=z});var m=document.querySelector('main'),f=m&&m.firstElementChild,h=document.getElementById('hd');if(f&&h&&!f.style.zoom)f.style.marginTop=z?(-h.getBoundingClientRect().height)+'px':''}fit();addEventListener('resize',fit)})();</script>
 </body>
