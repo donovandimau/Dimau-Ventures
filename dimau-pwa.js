@@ -50,6 +50,8 @@
 
   /* ---------- 1. install prompt ---------- */
   function installPrompt() {
+    // One install offer per page: when the Dimau Install kit (dimau-install.js) is also loaded, it owns the offer.
+    const hasKit = () => !!(window.DimauInstall || document.querySelector('script[src*=dimau-install]'));
     if (window.matchMedia('(display-mode: standalone)').matches || navigator.standalone) return; // already installed
     if (!document.querySelector('link[rel="manifest"]')) return; // no manifest = not installable; skip quietly
     // Capture Chrome's native event before the component loads, so it is never lost.
@@ -60,8 +62,8 @@
       if (window._dimauPromptEvent) el.externalPromptEvent = window._dimauPromptEvent;
       // Show once per visitor, after they have used the app for a little while — not on first paint.
       const seen = (() => { try { return localStorage.getItem('dimau-install-seen'); } catch (e) { return '1'; } })();
-      if (!seen) setTimeout(() => { try { el.showDialog(true); localStorage.setItem('dimau-install-seen', '1'); } catch (e) {} }, 25000);
-      window.DimauPwa.install = () => { try { el.showDialog(true); } catch (e) {} };
+      if (!seen) setTimeout(() => { if (hasKit()) return; /* dimau-install step-aside */ try { el.showDialog(true); localStorage.setItem('dimau-install-seen', '1'); } catch (e) {} }, 25000);
+      window.DimauPwa.install = () => { if (hasKit() && window.DimauInstall) return window.DimauInstall.install(); try { el.showDialog(true); } catch (e) {} };
     }).catch(() => {});
   }
 
@@ -74,7 +76,7 @@
           if (document.querySelector('.dp-update')) return;
           const d = document.createElement('div'); d.className = 'dp-update';
           d.innerHTML = '<span style="flex:1">A new version is ready.</span><button class="dp-btn">Reload</button>';
-          d.querySelector('button').onclick = () => { reg.waiting && reg.waiting.postMessage({ type: 'SKIP_WAITING' }); };
+          d.querySelector('button').onclick = () => { window.__dimauWantReload = true; reg.waiting && reg.waiting.postMessage({ type: 'SKIP_WAITING' }); };
           document.body.appendChild(d);
         };
         if (reg.waiting) bar();
@@ -84,7 +86,7 @@
         });
       }).catch(() => {});
       let refreshed = false;
-      navigator.serviceWorker.addEventListener('controllerchange', () => { if (!refreshed) { refreshed = true; location.reload(); } });
+      navigator.serviceWorker.addEventListener('controllerchange', () => { if (window.__dimauWantReload && !refreshed) { refreshed = true; location.reload(); } });
     });
   }
 
