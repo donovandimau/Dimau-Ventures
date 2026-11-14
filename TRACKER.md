@@ -19,6 +19,7 @@
 ## In progress — claim a task here BEFORE you start it
 | Started | AI | Task | Branch / PR |
 |---|---|---|---|
+| 2026-11-14 | Codex | TRACKER merge conflict prevention | agent/codex/tracker-merge-prevention-dimau-ventures/1 |
 
 ## Do not change
 - nothing recorded yet
