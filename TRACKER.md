@@ -38,6 +38,7 @@ Added TRACKER.md merge=union while preserving other Git attributes. Git attribut
 - Testing: not tested
 
 ## Done — newest first
+- 2026-11-14 — Claude: touched index.html so browsers holding the old no-framing copy fetch a fresh one (Ops Room previews).
 - 2026-11-14 — Claude: Ops Room can now show this site's desktop/phone previews (vercel.json: removed X-Frame-Options DENY; frame-ancestors 'self' https://dimau-ops.vercel.app). Branch claude/allow-ops-preview, awaiting Donovan's merge.
 - 2026-11-13 — Claude — **One install offer per page.** `dimau-pwa.js` no longer opens its own 25-second install dialog when the Dimau Install kit (`dimau-install.js`) is on the page — `DimauPwa.install()` hands over to `DimauInstall.install()` — so visitors no longer get two different install prompts. It also only reloads the page after the person presses Reload on the update bar; before, a new service worker taking over reloaded the page by itself mid-use. Same change in every app that carries this kit (see dimau-3d-studio TRACKER).
 - 2026-11-12 — claude — /payments: Home-Buying Pack now shown as Free ("Free download", "Get it on its site") instead of £29, because Donovan made the pack free (price 0 in the money engine, free download live on fhtbcalculator.co.uk). sw.js 2026-11-12-4.
