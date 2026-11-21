@@ -1,0 +1,212 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Training estate dashboard (demo) — Dimau Ventures Ltd</title>
+<meta name="description" content="A demo readiness dashboard for a fictional training estate, built by Dimau Ventures Ltd on invented data. Not connected to any MOD system.">
+<link rel="icon" href="/dimau-logo.png">
+<link rel="canonical" href="https://dimauventures.com/defence-demo">
+<meta property="og:title" content="Training estate dashboard (demo) — Dimau Ventures Ltd">
+<meta property="og:description" content="A demo readiness dashboard on invented data. Not connected to any MOD system.">
+<meta property="og:image" content="https://dimauventures.com/og-dimau-ventures-premium-20261103.jpg">
+<meta name="theme-color" content="#071B31">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@600;700;800&family=Lexend:wght@300;400;500&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+<style>
+/* Layout: demo banner, header with KPI strip, then map + sector table side by side, then trend + faults */
+:root{--bg:#06131F;--panel:#0C1F31;--panel2:#11293F;--ink:#E8F1F8;--ink2:#A9C0D3;--ink3:#6F8BA3;--rule:rgba(135,206,235,.14);
+--sky:#87CEEB;--ok:#6CCB8E;--warn:#E8B04B;--bad:#EF7B6C;--mono:"JetBrains Mono",ui-monospace,Consolas,monospace}
+*{box-sizing:border-box}
+html,body{margin:0;background:var(--bg);color:var(--ink);font:400 15px/1.5 Lexend,system-ui,sans-serif;-webkit-font-smoothing:antialiased}
+h1,h2,h3{font-family:Manrope,system-ui,sans-serif;margin:0}
+a{color:var(--sky)}
+.w{max-width:1280px;margin:0 auto;padding-left:max(18px,env(safe-area-inset-left,0px));padding-right:max(18px,env(safe-area-inset-right,0px))}
+.demo{background:var(--warn);color:#1b1404;font:600 13px/1.4 Lexend,sans-serif;text-align:center;padding:8px 16px}
+.demo a{color:#1b1404}
+header{padding-block:22px 6px}
+.top{display:flex;flex-wrap:wrap;gap:12px 24px;align-items:flex-end;justify-content:space-between}
+.ref{font:600 11px/1 var(--mono);letter-spacing:.12em;text-transform:uppercase;color:var(--ink3)}
+h1{font-size:clamp(22px,3.4vw,32px);font-weight:800;letter-spacing:-.02em;margin-top:8px}
+.sub{color:var(--ink2);font-size:14px;margin-top:4px}
+.wk{display:flex;gap:6px;flex-wrap:wrap}
+.wk button,.chip{font:600 12px/1 var(--mono);color:var(--ink2);background:var(--panel);border:1px solid var(--rule);border-radius:6px;padding:8px 10px;cursor:pointer}
+.wk button[aria-pressed="true"]{background:var(--sky);color:#04101F;border-color:var(--sky)}
+button:focus-visible,tr:focus-visible{outline:2px solid var(--sky);outline-offset:2px}
+.kpis{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px;margin-top:18px}
+.kpi{background:var(--panel);border:1px solid var(--rule);border-radius:10px;padding:14px 16px;min-width:0}
+.kpi dt{font:600 11px/1 var(--mono);letter-spacing:.08em;text-transform:uppercase;color:var(--ink3)}
+.kpi dd{margin:8px 0 0;font:800 28px/1 Manrope,sans-serif;font-variant-numeric:tabular-nums}
+.kpi small{display:block;color:var(--ink2);font-size:12px;margin-top:6px}
+.up{color:var(--ok)}.dn{color:var(--bad)}
+.grid{display:grid;grid-template-columns:minmax(0,1.05fr) minmax(0,1fr);gap:14px;margin-top:14px}
+.card{background:var(--panel);border:1px solid var(--rule);border-radius:10px;padding:14px 16px;min-width:0}
+.card h2{font:700 13px/1 Manrope,sans-serif;letter-spacing:.1em;text-transform:uppercase;color:var(--sky);margin-bottom:12px;display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap}
+.card h2 span{font:400 12px/1 var(--mono);letter-spacing:0;text-transform:none;color:var(--ink3)}
+.map{position:relative;width:100%;aspect-ratio:4/3;border-radius:8px;overflow:hidden;background:#0a1a29}
+.map canvas{position:absolute;inset:0;width:100%;height:100%}
+.map svg{position:absolute;inset:0;width:100%;height:100%}
+.legend{display:flex;gap:14px;flex-wrap:wrap;font-size:12px;color:var(--ink2);margin-top:10px}
+.legend i{display:inline-block;width:10px;height:10px;border-radius:50%;margin-right:6px;vertical-align:-1px}
+.tw{overflow-x:auto}
+table{width:100%;border-collapse:collapse;font-size:13.5px}
+th{font:600 11px/1 var(--mono);letter-spacing:.06em;text-transform:uppercase;color:var(--ink3);text-align:left;padding:8px 8px 8px 0;border-bottom:1px solid var(--rule);white-space:nowrap}
+td{padding:9px 8px 9px 0;border-bottom:1px solid var(--rule);font-variant-numeric:tabular-nums;vertical-align:middle}
+tbody tr{cursor:pointer}
+tbody tr:hover,tbody tr.sel{background:var(--panel2)}
+.bar{height:7px;border-radius:4px;background:rgba(135,206,235,.15);min-width:70px;position:relative}
+.bar b{position:absolute;inset:0 auto 0 0;border-radius:4px;background:var(--sky)}
+.st{display:inline-block;font:600 11px/1 var(--mono);padding:4px 7px;border-radius:4px;white-space:nowrap}
+.st.o{background:rgba(108,203,142,.15);color:var(--ok)}.st.r{background:rgba(232,176,75,.15);color:var(--warn)}.st.c{background:rgba(239,123,108,.15);color:var(--bad)}
+.sev{display:inline-block;width:8px;height:8px;border-radius:50%;margin-right:6px}
+.chart svg{width:100%;height:auto;display:block}
+.faults{display:grid;gap:0}
+.f{display:grid;grid-template-columns:auto minmax(0,1fr) auto;gap:4px 12px;padding:10px 0;border-bottom:1px solid var(--rule);align-items:baseline}
+.f:last-child{border-bottom:0}
+.f .id{font:600 12px var(--mono);color:var(--ink3)}
+.f .d{font-size:12px;color:var(--ink2);grid-column:2}
+.f .age{font:600 12px var(--mono);white-space:nowrap}
+.empty{color:var(--ink3);padding:12px 0}
+.clear{font:600 12px var(--mono);background:none;border:0;color:var(--sky);cursor:pointer;padding:0}
+footer{padding-block:26px 40px;color:var(--ink3);font-size:13px}
+footer .w{display:flex;justify-content:space-between;gap:14px;flex-wrap:wrap}
+@media(max-width:900px){.grid{grid-template-columns:minmax(0,1fr)}.kpis{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(prefers-reduced-motion:reduce){*{transition:none!important}}
+</style>
+<script async src="https://ops.dimau-fintech.com/api/visit?s=dimau-ventures"></script>
+</head>
+<body>
+<div class="demo">Demo built by Dimau Ventures Ltd on invented data. Westmoor is a fictional estate; nothing here comes from or connects to any MOD system. <a href="/defence">Back to our defence page</a></div>
+<header><div class="w">
+ <div class="top">
+  <div><div class="ref">Estate readiness · fictional · week view</div><h1>Westmoor Training Area</h1><p class="sub" id="sub">8 sectors · 46 km² · access, bookings and faults on one screen</p></div>
+  <div class="wk" role="group" aria-label="Choose week" id="weeks"></div>
+ </div>
+ <dl class="kpis" id="kpis"></dl>
+</div></header>
+
+<main class="w">
+ <div class="grid">
+  <section class="card"><h2>Estate map <span>click a sector</span></h2>
+   <div class="map" id="map"><canvas id="relief" aria-hidden="true"></canvas><svg id="overlay" viewBox="0 0 400 300" role="img" aria-label="Map of Westmoor sectors and access routes"></svg></div>
+   <div class="legend"><span><i style="background:var(--ok)"></i>Open</span><span><i style="background:var(--warn)"></i>Restricted</span><span><i style="background:var(--bad)"></i>Closed</span><span><i style="background:none;border:1px dashed var(--sky);border-radius:2px"></i>Access route</span></div>
+  </section>
+  <section class="card"><h2>Sectors <span id="selnote">all sectors</span></h2>
+   <div class="tw"><table><thead><tr><th>Sector</th><th>Use</th><th>Booked</th><th>Utilisation</th><th>Faults</th><th>Access</th></tr></thead><tbody id="rows"></tbody></table></div>
+  </section>
+  <section class="card chart"><h2>Bookings, last 12 weeks <span>days booked across the estate</span></h2><div id="trend"></div></section>
+  <section class="card"><h2>Open maintenance faults <span id="fnote"></span></h2><div class="faults" id="faults"></div></section>
+ </div>
+</main>
+<footer><div class="w"><span>Dimau Ventures Ltd · company 17555886 · <a href="/defence">dimauventures.com/defence</a></span><span>Built in a day as a capability demo. All names and figures are invented.</span></div></footer>
+
+<script>
+(function(){
+// ---- invented data ----
+var SECT=[
+ {id:"N1",name:"North Ridge",use:"Live-firing range",x:110,y:70,cap:7,acc:"o"},
+ {id:"N2",name:"Hollow Copse",use:"Dry training",x:205,y:58,cap:7,acc:"o"},
+ {id:"E1",name:"Tor Plateau",use:"Observation post",x:305,y:85,cap:5,acc:"r"},
+ {id:"C1",name:"Millbrook Village",use:"Urban training",x:190,y:150,cap:7,acc:"o"},
+ {id:"W1",name:"Westfield Flats",use:"Drop zone",x:70,y:170,cap:4,acc:"o"},
+ {id:"S1",name:"Quarry Bowl",use:"Demolitions",x:150,y:240,cap:3,acc:"c"},
+ {id:"S2",name:"Long Track",use:"Driver training",x:270,y:215,cap:7,acc:"o"},
+ {id:"E2",name:"Fen Edge",use:"Bivouac area",x:345,y:180,cap:7,acc:"r"}];
+var WEEKS=["W44","W45","W46","W47"];
+var BOOK={ // days booked per sector per week
+ W44:[6,5,3,7,2,2,5,4],W45:[7,6,4,6,3,1,6,5],W46:[5,7,4,7,4,0,7,3],W47:[7,6,2,7,3,0,6,4]};
+var ACC={W44:"oooooooo",W45:"oorooroo",W46:"ooroocor",W47:"ooroocor"};
+var TREND=[31,29,34,36,33,38,35,37,34,38,39,35];
+var FAULTS=[
+ {id:"F-212",s:"S1",t:"Perimeter fence breach, east gate",sev:3,age:9},
+ {id:"F-219",s:"E1",t:"Access road washout after heavy rain",sev:3,age:6},
+ {id:"F-224",s:"N1",t:"Target mechanism 4 not raising",sev:2,age:4},
+ {id:"F-226",s:"C1",t:"Two building doors jammed",sev:1,age:3},
+ {id:"F-228",s:"E2",t:"Water point pressure low",sev:2,age:2},
+ {id:"F-231",s:"S2",t:"Pothole cluster on loop 2",sev:1,age:1},
+ {id:"F-233",s:"N1",t:"Range flag pole damaged",sev:1,age:1}];
+var ROUTES=[[[20,120],[110,70],[205,58],[305,85]],[[20,120],[70,170],[190,150],[270,215],[345,180]],[[190,150],[150,240]],[[305,85],[345,180]]];
+var SEVC=["","var(--ink3)","var(--warn)","var(--bad)"],SEVN=["","Low","Medium","High"];
+var ACCN={o:"Open",r:"Restricted",c:"Closed"},ACCC={o:"var(--ok)",r:"var(--warn)",c:"var(--bad)"};
+var week="W47",sel=null;
+var $=function(id){return document.getElementById(id)};
+function el(t,a,txt){var n=document.createElement(t);for(var k in a||{})n.setAttribute(k,a[k]);if(txt!=null)n.textContent=txt;return n}
+var NS="http://www.w3.org/2000/svg";function sv(t,a){var n=document.createElementNS(NS,t);for(var k in a)n.setAttribute(k,a[k]);return n}
+
+// ---- shaded relief from seeded value noise ----
+function relief(){
+ var c=$("relief"),r=c.getBoundingClientRect(),W=Math.max(200,Math.round(r.width)),H=Math.round(W*.75);
+ c.width=W;c.height=H;var g=c.getContext("2d"),img=g.createImageData(W,H),d=img.data;
+ var seed=7;function rnd(){seed=(seed*16807)%2147483647;return seed/2147483647}
+ var G=17,grid=[];for(var i=0;i<G*G;i++)grid.push(rnd());
+ function v(x,y){var xi=Math.floor(x)%(G-1),yi=Math.floor(y)%(G-1),xf=x-Math.floor(x),yf=y-Math.floor(y);
+  var s=function(t){return t*t*(3-2*t)};var a=grid[yi*G+xi],b=grid[yi*G+xi+1],cc=grid[(yi+1)*G+xi],dd=grid[(yi+1)*G+xi+1];
+  return a+(b-a)*s(xf)+(cc-a)*s(yf)+(a-b-cc+dd)*s(xf)*s(yf)}
+ function h(x,y){return v(x*4,y*4)*.6+v(x*8+3,y*8+3)*.28+v(x*15+7,y*15+1)*.12}
+ for(var y=0;y<H;y++)for(var x=0;x<W;x++){
+  var nx=x/W,ny=y/H,e=h(nx,ny),ex=h(nx+1/W,ny),ey=h(nx,ny+1/H);
+  var shade=Math.max(0,Math.min(1,.55+(ex-e)*-70+(ey-e)*-50));
+  var band=Math.abs((e*14)%1-.5)<.04?1:0; // contour lines
+  var base=[14+e*40,38+e*60,52+e*55];
+  var k=(y*W+x)*4;d[k]=base[0]*shade+band*30;d[k+1]=base[1]*shade+band*45;d[k+2]=base[2]*shade+band*55;d[k+3]=255}
+ g.putImageData(img,0,0)}
+
+// ---- render ----
+function acc(i){return ACC[week][i]}
+function render(){
+ // weeks
+ var wk=$("weeks");wk.textContent="";WEEKS.forEach(function(w){var b=el("button",{"aria-pressed":String(w===week)},"Week "+w.slice(1));b.onclick=function(){week=w;render()};wk.appendChild(b)});
+ // kpis
+ var bk=BOOK[week],cap=SECT.reduce(function(a,s){return a+s.cap},0),tot=bk.reduce(function(a,b){return a+b},0);
+ var prev=BOOK[WEEKS[Math.max(0,WEEKS.indexOf(week)-1)]].reduce(function(a,b){return a+b},0);
+ var closed=SECT.filter(function(s,i){return acc(i)!=="o"}).length,high=FAULTS.filter(function(f){return f.sev===3}).length;
+ var K=[["Days booked",tot,(tot>=prev?"▲ ":"▼ ")+Math.abs(tot-prev)+" on last week",tot>=prev?"up":"dn"],
+  ["Utilisation",Math.round(tot/cap*100)+"%","of "+cap+" bookable sector-days",""],
+  ["Open faults",FAULTS.length,high+" high severity",high?"dn":""],
+  ["Sectors not fully open",closed,"of "+SECT.length+" sectors",closed?"dn":"up"]];
+ var kp=$("kpis");kp.textContent="";K.forEach(function(k){var d=el("div",{class:"kpi"});d.appendChild(el("dt",{},k[0]));d.appendChild(el("dd",{},String(k[1])));d.appendChild(el("small",{class:k[3]},k[2]));kp.appendChild(d)});
+ // table
+ var tb=$("rows");tb.textContent="";
+ SECT.forEach(function(s,i){var tr=el("tr",{tabindex:"0"});if(sel===s.id)tr.className="sel";
+  var u=Math.round(bk[i]/s.cap*100),fc=FAULTS.filter(function(f){return f.s===s.id}).length;
+  tr.appendChild(el("td",{},s.id+" "+s.name));tr.appendChild(el("td",{},s.use));tr.appendChild(el("td",{},bk[i]+"/"+s.cap+" d"));
+  var tdb=el("td");var bar=el("div",{class:"bar",title:u+"%"});var fill=el("b");fill.style.width=u+"%";bar.appendChild(fill);tdb.appendChild(bar);tr.appendChild(tdb);
+  tr.appendChild(el("td",{},String(fc)));var ta=el("td");ta.appendChild(el("span",{class:"st "+acc(i)},ACCN[acc(i)]));tr.appendChild(ta);
+  tr.onclick=function(){pick(s.id)};tr.onkeydown=function(e){if(e.key==="Enter"||e.key===" "){e.preventDefault();pick(s.id)}};tb.appendChild(tr)});
+ $("selnote").textContent=sel?("showing "+sel):"all sectors";
+ // map overlay
+ var o=$("overlay");o.textContent="";
+ ROUTES.forEach(function(r){o.appendChild(sv("polyline",{points:r.map(function(p){return p.join(",")}).join(" "),fill:"none",stroke:"#87CEEB","stroke-width":"1.6","stroke-dasharray":"5 4",opacity:".8"}))});
+ SECT.forEach(function(s,i){var g=sv("g",{tabindex:"0",role:"button","aria-label":s.name+", "+ACCN[acc(i)],style:"cursor:pointer"});
+  var on=sel===s.id;g.appendChild(sv("circle",{cx:s.x,cy:s.y,r:on?13:9,fill:ACCC[acc(i)],stroke:on?"#fff":"#04101F","stroke-width":on?"2.5":"1.5"}));
+  var t=sv("text",{x:s.x,y:s.y-15,"text-anchor":"middle","font-size":"10","font-family":"JetBrains Mono,monospace",fill:"#E8F1F8","paint-order":"stroke",stroke:"#04101F","stroke-width":"3"});t.textContent=s.id+" "+s.name;g.appendChild(t);
+  g.addEventListener("click",function(){pick(s.id)});g.addEventListener("keydown",function(e){if(e.key==="Enter"||e.key===" "){e.preventDefault();pick(s.id)}});o.appendChild(g)});
+ // trend
+ var tw=$("trend");tw.textContent="";var W=520,H=170,P=30,mx=45,mn=20;var s=sv("svg",{viewBox:"0 0 "+W+" "+H,role:"img","aria-label":"Weekly days booked, last 12 weeks, from "+TREND[0]+" to "+TREND[TREND.length-1]});
+ function X(i){return P+i*(W-P-12)/(TREND.length-1)}function Y(v){return H-22-(v-mn)/(mx-mn)*(H-40)}
+ [20,30,40].forEach(function(v){s.appendChild(sv("line",{x1:P,x2:W-12,y1:Y(v),y2:Y(v),stroke:"rgba(135,206,235,.12)"}));var t=sv("text",{x:P-6,y:Y(v)+4,"text-anchor":"end","font-size":"10",fill:"#6F8BA3","font-family":"JetBrains Mono,monospace"});t.textContent=v;s.appendChild(t)});
+ var pts=TREND.map(function(v,i){return X(i)+","+Y(v)}).join(" ");
+ s.appendChild(sv("polygon",{points:X(0)+","+Y(mn)+" "+pts+" "+X(TREND.length-1)+","+Y(mn),fill:"rgba(135,206,235,.12)"}));
+ s.appendChild(sv("polyline",{points:pts,fill:"none",stroke:"#87CEEB","stroke-width":"2"}));
+ var li=TREND.length-1;s.appendChild(sv("circle",{cx:X(li),cy:Y(TREND[li]),r:4,fill:"#fff"}));
+ var lt=sv("text",{x:X(li)-8,y:Y(TREND[li])-10,"text-anchor":"end","font-size":"11",fill:"#E8F1F8","font-family":"JetBrains Mono,monospace"});lt.textContent=TREND[li]+" days";s.appendChild(lt);
+ [0,5,11].forEach(function(i){var t=sv("text",{x:X(i),y:H-6,"text-anchor":i===0?"start":i===11?"end":"middle","font-size":"10",fill:"#6F8BA3","font-family":"JetBrains Mono,monospace"});t.textContent="W"+(36+i);s.appendChild(t)});
+ tw.appendChild(s);
+ // faults
+ var fl=$("faults");fl.textContent="";var list=FAULTS.filter(function(f){return !sel||f.s===sel}).sort(function(a,b){return b.sev-a.sev||b.age-a.age});
+ $("fnote").textContent=sel?"":"worst first";
+ if(sel){var cb=el("button",{class:"clear"},"Show all sectors");cb.onclick=function(){pick(null)};$("fnote").appendChild(cb)}
+ if(!list.length)fl.appendChild(el("p",{class:"empty"},"No open faults in this sector."));
+ list.forEach(function(f){var r=el("div",{class:"f"});r.appendChild(el("span",{class:"id"},f.id));
+  var t=el("span");var dot=el("i",{class:"sev"});dot.style.background=SEVC[f.sev];t.appendChild(dot);t.appendChild(document.createTextNode(f.t));r.appendChild(t);
+  var a=el("span",{class:"age"},f.age+(f.age===1?" day":" days"));a.style.color=f.age>5?"var(--bad)":"var(--ink2)";r.appendChild(a);
+  r.appendChild(el("span",{class:"d"},f.s+" "+SECT.filter(function(s){return s.id===f.s})[0].name+" · "+SEVN[f.sev]+" severity"));fl.appendChild(r)});
+}
+function pick(id){sel=(sel===id?null:id);render()}
+relief();render();
+var rt;addEventListener("resize",function(){clearTimeout(rt);rt=setTimeout(relief,150)});
+})();
+</script>
+</body>
+</html>
