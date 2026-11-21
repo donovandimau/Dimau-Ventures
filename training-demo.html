@@ -1,0 +1,171 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Equipment familiarisation (demo) — Dimau Ventures Ltd</title>
+<meta name="description" content="A demo equipment-familiarisation lesson for an invented portable generator, built by Dimau Ventures Ltd. Learn the parts, identify them, then order the start-up steps.">
+<link rel="icon" href="/dimau-logo.png">
+<link rel="canonical" href="https://dimauventures.com/training-demo">
+<meta property="og:title" content="Equipment familiarisation (demo) — Dimau Ventures Ltd">
+<meta property="og:description" content="A demo familiarisation lesson for an invented generator. Not real equipment or MOD training material.">
+<meta property="og:image" content="https://dimauventures.com/og-dimau-ventures-premium-20261103.jpg">
+<meta name="theme-color" content="#0A2440">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@600;700;800&family=Lexend:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+/* Layout: demo banner, lesson header with step progress, one stage at a time (learn / identify / order / done) */
+:root{--ink:#0A2440;--ink2:#3B5872;--ink3:#6A8399;--sky:#87CEEB;--sky2:#CDEBF8;--mist:#F2F9FD;--blue:#1F6FAE;--rule:rgba(10,36,64,.12);
+--ok:#1E7A4A;--ok-soft:#E2F3E9;--bad:#B23A2E;--bad-soft:#FBE6E3;--warn:#8A5A14;--warn-soft:#F6ECD8;--bg:#FBFDFF;--card:#fff}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:400 16px/1.6 Lexend,system-ui,sans-serif;-webkit-font-smoothing:antialiased}
+h1,h2,h3{font-family:Manrope,system-ui,sans-serif;margin:0}
+.demo{background:var(--warn-soft);color:var(--warn);font-size:13.5px;text-align:center;padding:8px 16px}
+.demo a{color:var(--warn)}
+.w{max-width:960px;margin:0 auto;padding-left:max(18px,env(safe-area-inset-left,0px));padding-right:max(18px,env(safe-area-inset-right,0px))}
+header{padding-block:26px 8px}
+.ey{font:600 12px/1 Manrope,sans-serif;letter-spacing:.16em;text-transform:uppercase;color:var(--blue)}
+h1{font-size:clamp(24px,3.6vw,34px);font-weight:800;letter-spacing:-.03em;margin-top:8px;text-wrap:balance}
+.sub{color:var(--ink2);margin:4px 0 0}
+.steps{display:flex;gap:8px;margin-top:18px;flex-wrap:wrap;list-style:none;padding:0}
+.steps li{font:600 13px/1 Manrope,sans-serif;padding:8px 12px;border-radius:999px;background:var(--mist);color:var(--ink3);border:1px solid var(--rule)}
+.steps li.on{background:var(--ink);color:#fff;border-color:var(--ink)}
+.steps li.done{background:var(--ok-soft);color:var(--ok);border-color:transparent}
+.stage{display:grid;grid-template-columns:minmax(0,1.2fr) minmax(0,1fr);gap:22px;margin-block:18px 40px;align-items:start}
+.fig{background:var(--card);border:1px solid var(--rule);border-radius:18px;padding:12px}
+.fig svg{width:100%;height:auto;display:block}
+.hot{cursor:pointer}
+.hot circle.ring{fill:var(--sky);stroke:var(--ink);stroke-width:2;transition:r .15s}
+.hot:hover circle.ring,.hot:focus circle.ring{r:17}
+.ey{line-height:1.5}
+.hot.seen circle.ring{fill:var(--ok-soft);stroke:var(--ok)}
+.hot.right circle.ring{fill:var(--ok);stroke:var(--ok)}
+.hot.wrong circle.ring{fill:var(--bad);stroke:var(--bad)}
+.hot text{font:700 12px Manrope,sans-serif;fill:var(--ink);pointer-events:none}
+.hot:focus{outline:none}
+.panel{background:var(--card);border:1px solid var(--rule);border-radius:18px;padding:20px;display:grid;gap:12px;min-width:0}
+.panel h2{font-size:20px;letter-spacing:-.02em}
+.panel p{margin:0;color:var(--ink2)}
+.info{background:var(--mist);border-radius:12px;padding:14px;min-height:96px}
+.info b{display:block;font-family:Manrope,sans-serif;font-size:17px;color:var(--ink)}
+.count{font:600 13px Manrope,sans-serif;color:var(--ink3)}
+button{font:600 15px Lexend,sans-serif;border-radius:999px;border:0;background:var(--ink);color:#fff;padding:12px 20px;cursor:pointer;justify-self:start}
+button:hover{background:var(--blue)}
+button:disabled{background:var(--ink3);cursor:default}
+button.ghost{background:transparent;color:var(--ink);box-shadow:inset 0 0 0 1px rgba(10,36,64,.25)}
+button:focus-visible,.hot:focus-visible circle.ring,.ord button:focus-visible{outline:3px solid var(--sky);outline-offset:2px}
+.fb{border-radius:12px;padding:12px 14px;font-size:15px}
+.fb.ok{background:var(--ok-soft);color:var(--ok)}.fb.no{background:var(--bad-soft);color:var(--bad)}
+.ord{display:grid;gap:8px;margin:0;padding:0;list-style:none}
+.ord button{width:100%;text-align:left;border-radius:12px;background:var(--mist);color:var(--ink);box-shadow:inset 0 0 0 1px var(--rule);font-weight:400;padding:12px 14px;display:flex;gap:10px;align-items:center}
+.ord button:hover{background:var(--sky2)}
+.ord button[disabled]{background:var(--ok-soft);color:var(--ok);box-shadow:none}
+.ord .n{font:700 13px Manrope,sans-serif;min-width:22px;height:22px;border-radius:50%;display:grid;place-items:center;background:#fff;color:var(--ink3)}
+.picked{display:grid;gap:6px;margin:0;padding-left:22px;color:var(--ink)}
+.score{font:800 46px/1 Manrope,sans-serif;letter-spacing:-.03em}
+footer{border-top:1px solid var(--rule);padding-block:22px 34px;color:var(--ink3);font-size:13.5px}
+footer .w{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
+footer a{color:var(--ink2)}
+@media(max-width:760px){.stage{grid-template-columns:minmax(0,1fr)}}
+@media(prefers-reduced-motion:reduce){*{transition:none!important}}
+</style>
+<script async src="https://ops.dimau-fintech.com/api/visit?s=dimau-ventures"></script>
+</head>
+<body>
+<div class="demo">Demo built by Dimau Ventures Ltd. The PG-5 generator is invented: this is not real equipment or MOD training material. <a href="/defence">Back to our defence page</a></div>
+<header><div class="w">
+ <div class="ey">Equipment familiarisation · demo lesson · about 4 minutes</div>
+ <h1>PG-5 portable generator: know your kit</h1>
+ <p class="sub">Learn the six parts, find them without labels, then put the safe start-up steps in order.</p>
+ <ol class="steps" id="steps"><li>1 Learn</li><li>2 Identify</li><li>3 Start-up order</li><li>4 Result</li></ol>
+</div></header>
+<main class="w" id="main"></main>
+<footer><div class="w"><span>Dimau Ventures Ltd · company 17555886 · <a href="/defence">dimauventures.com/defence</a></span><span>One self-contained page: works on slow connections and keeps no data.</span></div></footer>
+
+<script>
+(function(){
+var PARTS=[
+ {id:"fuel",x:118,y:72,name:"Fuel tank and cap",info:"Holds about 12 litres of diesel. Only refuel with the engine stopped and cool."},
+ {id:"valve",x:72,y:150,name:"Fuel shut-off valve",info:"Opens and closes the fuel line. Turn it on before starting; off for transport."},
+ {id:"choke",x:178,y:165,name:"Choke lever",info:"Richens the mixture for a cold start. Push it back once the engine runs smoothly."},
+ {id:"panel",x:300,y:118,name:"Control panel",info:"Engine switch, hour meter and circuit breaker. The breaker trips if the load is too high."},
+ {id:"earth",x:352,y:226,name:"Earth stud",info:"Connect the earth spike lead here before you plug in any equipment."},
+ {id:"exhaust",x:262,y:52,name:"Exhaust outlet",info:"Hot. Point it away from people, tents and air intakes, and never run the set indoors."}];
+var ORDER=["Site the set on level ground, outdoors, exhaust pointing away from people","Connect the earth lead to the earth stud and spike","Check the fuel level and open the fuel shut-off valve","Set the choke for a cold start","Switch the engine on and start it","Push the choke back, then switch on the circuit breaker and connect loads"];
+var stage=0,seen={},quiz=[],qi=0,qScore=0,picked=[],shuffled=[],oScore=0;
+var main=document.getElementById("main");
+function el(t,a,txt){var n=document.createElement(t);for(var k in a||{})n.setAttribute(k,a[k]);if(txt!=null)n.textContent=txt;return n}
+var NS="http://www.w3.org/2000/svg";function sv(t,a){var n=document.createElementNS(NS,t);for(var k in a)n.setAttribute(k,a[k]);return n}
+function shuffle(a){a=a.slice();for(var i=a.length-1;i>0;i--){var j=Math.floor(Math.random()*(i+1)),t=a[i];a[i]=a[j];a[j]=t}return a}
+
+function figure(onPick,labels,cls){
+ var f=el("div",{class:"fig"}),s=sv("svg",{viewBox:"0 0 420 280",role:"img","aria-label":"Drawing of the PG-5 generator with numbered points"});
+ // frame and body of the invented generator
+ s.appendChild(sv("rect",{x:40,y:200,width:340,height:16,rx:4,fill:"#3B5872"}));
+ s.appendChild(sv("rect",{x:60,y:80,width:300,height:125,rx:14,fill:"#D8EAF4",stroke:"#0A2440","stroke-width":"2"}));
+ s.appendChild(sv("rect",{x:76,y:52,width:150,height:40,rx:10,fill:"#A9CBE0",stroke:"#0A2440","stroke-width":"2"}));
+ s.appendChild(sv("rect",{x:108,y:44,width:22,height:12,rx:3,fill:"#0A2440"}));
+ s.appendChild(sv("rect",{x:250,y:40,width:26,height:20,rx:4,fill:"#6A8399",stroke:"#0A2440","stroke-width":"2"}));
+ s.appendChild(sv("rect",{x:262,y:92,width:82,height:58,rx:8,fill:"#fff",stroke:"#0A2440","stroke-width":"2"}));
+ s.appendChild(sv("circle",{cx:284,cy:112,r:7,fill:"#B23A2E"}));s.appendChild(sv("rect",{x:300,y:105,width:34,height:12,rx:3,fill:"#CDEBF8"}));
+ s.appendChild(sv("rect",{x:276,y:128,width:56,height:10,rx:3,fill:"#87CEEB"}));
+ s.appendChild(sv("line",{x1:72,y1:150,x2:96,y2:150,stroke:"#0A2440","stroke-width":"3"}));
+ s.appendChild(sv("rect",{x:160,y:150,width:36,height:10,rx:3,fill:"#0A2440"}));
+ s.appendChild(sv("circle",{cx:352,cy:226,r:6,fill:"#1E7A4A"}));
+ [70,350].forEach(function(x){s.appendChild(sv("rect",{x:x-10,y:214,width:20,height:16,rx:3,fill:"#0A2440"}))});
+ PARTS.forEach(function(p,i){
+  var g=sv("g",{class:"hot"+(cls?(" "+(cls(p)||"")):""),tabindex:"0",role:"button","aria-label":labels?p.name:"Point "+(i+1)});
+  g.appendChild(sv("circle",{cx:p.x,cy:p.y,r:26,fill:"transparent"})); // bigger tap area on phones
+  g.appendChild(sv("circle",{class:"ring",cx:p.x,cy:p.y,r:14}));
+  var t=sv("text",{x:p.x,y:p.y+4,"text-anchor":"middle"});t.textContent=String(i+1);g.appendChild(t);
+  g.addEventListener("click",function(){onPick(p)});g.addEventListener("keydown",function(e){if(e.key==="Enter"||e.key===" "){e.preventDefault();onPick(p)}});
+  s.appendChild(g)});
+ f.appendChild(s);return f}
+
+function steps(){document.querySelectorAll("#steps li").forEach(function(li,i){li.className=i<stage?"done":i===stage?"on":""})}
+
+function render(){
+ steps();main.textContent="";var st=el("div",{class:"stage"});main.appendChild(st);
+ if(stage===0){
+  var info=el("div",{class:"info"});info.appendChild(el("b",{},"Tap a numbered point"));info.appendChild(document.createTextNode("Each one shows what the part is and what to watch for."));
+  var n=Object.keys(seen).length,cnt=el("span",{class:"count"},n+" of 6 parts seen");
+  var go=el("button",{},"Start the check");go.disabled=n<6;go.onclick=function(){quiz=shuffle(PARTS);qi=0;qScore=0;stage=1;render()};
+  st.appendChild(figure(function(p){seen[p.id]=1;render();var i2=document.querySelector(".info");i2.textContent="";i2.appendChild(el("b",{},p.name));i2.appendChild(document.createTextNode(p.info))},true,function(p){return seen[p.id]?"seen":""}));
+  var pn=el("div",{class:"panel"});pn.appendChild(el("h2",{},"1. Learn the parts"));pn.appendChild(info);pn.appendChild(cnt);pn.appendChild(go);st.appendChild(pn);
+ } else if(stage===1){
+  var target=quiz[qi],fb=el("div",{class:"fb",hidden:""}),locked=false;
+  var pn=el("div",{class:"panel"});pn.appendChild(el("h2",{},"2. Find it without labels"));
+  pn.appendChild(el("p",{},"Question "+(qi+1)+" of 6. Tap the:"));pn.appendChild(el("div",{class:"info"})).appendChild(el("b",{},target.name));
+  var next=el("button",{},qi<5?"Next question":"Go to start-up order");next.hidden=true;
+  next.onclick=function(){if(qi<5){qi++;render()}else{shuffled=shuffle(ORDER);picked=[];stage=2;render()}};
+  st.appendChild(figure(function(p){if(locked)return;locked=true;var ok=p.id===target.id;if(ok)qScore++;
+   fb.hidden=false;fb.className="fb "+(ok?"ok":"no");fb.textContent=ok?"Correct.":"Not quite: that's the "+p.name.toLowerCase()+". The "+target.name.toLowerCase()+" is point "+(PARTS.indexOf(target)+1)+".";
+   document.querySelectorAll(".hot").forEach(function(g,i){if(PARTS[i].id===target.id)g.classList.add("right");else if(PARTS[i].id===p.id)g.classList.add("wrong")});
+   next.hidden=false;next.focus()},false));
+  pn.appendChild(fb);pn.appendChild(next);st.appendChild(pn);
+ } else if(stage===2){
+  var pn=el("div",{class:"panel"});pn.appendChild(el("h2",{},"3. Safe start-up order"));pn.appendChild(el("p",{},"Tap the steps in the order you'd do them."));
+  var ul=el("ul",{class:"ord"});shuffled.forEach(function(s){var li=el("li"),b=el("button");var used=picked.indexOf(s)>-1;
+   b.appendChild(el("span",{class:"n"},used?String(picked.indexOf(s)+1):""));b.appendChild(document.createTextNode(s));b.disabled=used;
+   b.onclick=function(){picked.push(s);if(picked.length===ORDER.length){oScore=picked.filter(function(x,i){return x===ORDER[i]}).length;stage=3}render()};li.appendChild(b);ul.appendChild(li)});
+  pn.appendChild(ul);var undo=el("button",{class:"ghost"},"Undo last");undo.disabled=!picked.length;undo.onclick=function(){picked.pop();render()};pn.appendChild(undo);
+  var side=el("div",{class:"panel"});side.appendChild(el("h2",{},"Your order so far"));var ol=el("ol",{class:"picked"});picked.forEach(function(s){ol.appendChild(el("li",{},s))});
+  if(!picked.length)side.appendChild(el("p",{},"Nothing picked yet."));else side.appendChild(ol);
+  st.appendChild(pn);st.appendChild(side);
+ } else {
+  var tot=qScore+oScore,pass=tot>=10;
+  var pn=el("div",{class:"panel"});pn.appendChild(el("h2",{},"4. Result"));pn.appendChild(el("div",{class:"score"},tot+" / 12"));
+  pn.appendChild(el("p",{},"Parts identified: "+qScore+" of 6. Start-up steps in the right place: "+oScore+" of 6."));
+  var fb=el("div",{class:"fb "+(pass?"ok":"no")},pass?"Pass. In a real course this would issue a completion record to the learner's training log.":"Not yet. Go through the parts again; the pass mark is 10.");pn.appendChild(fb);
+  var again=el("button",{},"Start again");again.onclick=function(){stage=0;seen={};render()};pn.appendChild(again);
+  var side=el("div",{class:"panel"});side.appendChild(el("h2",{},"Correct start-up order"));var ol=el("ol",{class:"picked"});ORDER.forEach(function(s,i){var li=el("li",{},s);if(picked[i]!==s)li.style.color="var(--bad)";ol.appendChild(li)});side.appendChild(ol);
+  side.appendChild(el("p",{},"Steps in red were out of place in your answer."));
+  st.appendChild(pn);st.appendChild(side);
+ }
+}
+render();
+})();
+</script>
+</body>
+</html>

@@ -216,6 +216,14 @@ a{color:inherit}
 .pf p{color:var(--ink2);font-size:.95rem}
 .pf .dm{background:var(--ink)}.pf .dm b,.pf .dm p{color:#fff}.pf .dm small{color:var(--sky)}.pf .dm:hover{background:#0E3156}.pf .dm:hover b{color:var(--sky)}
 .nb{margin-top:26px;font-size:.9rem;color:var(--ink3);max-width:720px}
+.cs{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:22px}
+.cs article{border-top:2px solid var(--ink);padding-top:20px;display:flex;flex-direction:column;gap:12px}
+.cs h3{font-size:1.3rem;letter-spacing:-.02em}
+.cs dl{margin:0;display:grid;gap:10px}
+.cs dt{font:600 .7rem/1 Manrope,sans-serif;letter-spacing:.16em;text-transform:uppercase;color:var(--blue);margin-bottom:4px}
+.cs dd{margin:0;color:var(--ink2);font-size:.95rem}
+.cs a{font-size:.9rem;text-decoration:none;border-bottom:1px solid rgba(10,36,64,.25);align-self:flex-start;margin-top:auto}
+@media(max-width:900px){.cs{grid-template-columns:1fr}}
 @media(max-width:1000px){.dl li{grid-template-columns:50px 1fr;gap:8px 20px}.dl .fit{grid-column:2}}
 @media(max-width:700px){.pf{grid-template-columns:1fr}}
 </style>
@@ -249,9 +257,32 @@ a{color:inherit}
  <div class="sh"><div class="ey">Proof</div><div><h2>Live work you can open today</h2><p>Every link below is a working product, not a mock-up.</p></div></div>
  <div class="pf">
   <a class="dm" href="/defence-demo"><b>Training estate dashboard (demo)</b><small>dimauventures.com/defence-demo · invented data</small><p>The kind of readiness dashboard we build for estate and support contracts: bookings, utilisation, faults and access routes on one screen.</p></a>
+  <a class="dm" href="/training-demo"><b>Equipment familiarisation lesson (demo)</b><small>dimauventures.com/training-demo · invented equipment</small><p>Learn the parts, find them without labels, put the start-up steps in order, get a score. The format we build for induction and equipment training.</p></a>
+  <a href="https://fijihistory.com/" target="_blank" rel="noopener"><b>360° virtual museum</b><small>fijihistory.com</small><p>Walk-through scene views and interactive chapters, the format we use for site inductions and walkthroughs.</p></a>
   <a href="https://fhtbcalculator.co.uk/" target="_blank" rel="noopener"><b>Forces Help to Buy calculator</b><small>fhtbcalculator.co.uk</small><p>Mobile-first homebuying calculator built for UK Armed Forces personnel.</p></a>
   <a href="https://3d.fijimap.com/" target="_blank" rel="noopener"><b>3D terrain and route planner</b><small>3d.fijimap.com · nav.fijimap.com</small><p>Browser-based 3D terrain and multimodal route planning.</p></a>
   <a href="https://fijilearn.com/" target="_blank" rel="noopener"><b>Low-bandwidth e-learning</b><small>fijilearn.com</small><p>Interactive lessons built for slow and patchy connections.</p></a>
+ </div>
+</div></section>
+
+<section class="sec" id="cases"><div class="w">
+ <div class="sh"><div class="ey">Case studies</div><div><h2>What we built, and why it matters to you</h2><p>Three of our own products, described plainly. Each shows a skill a prime can hand to us.</p></div></div>
+ <div class="cs">
+  <article><h3>Forces Help to Buy calculator</h3><dl>
+   <div><dt>Problem</dt><dd>Service personnel weighing a Forces Help to Buy advance had to work out the advance, mortgage, stamp duty and overpayments across several sites and spreadsheets.</dd></div>
+   <div><dt>What we built</dt><dd>A free, mobile-first calculator that compares up to 10 homes side by side and explains the result in plain English.</dd></div>
+   <div><dt>For a prime</dt><dd>The same pattern suits allowance, housing and welfare tools for service personnel and families on base-support contracts.</dd></div>
+  </dl><a href="https://fhtbcalculator.co.uk/" target="_blank" rel="noopener">fhtbcalculator.co.uk</a></article>
+  <article><h3>FijiLearn</h3><dl>
+   <div><dt>Problem</dt><dd>Children in Fiji learn on shared phones and patchy connections, so lessons that need fast broadband don't reach them.</dd></div>
+   <div><dt>What we built</dt><dd>Free interactive lessons across six subjects that adapt to each learner, work offline, use spaced repetition and issue shareable certificates.</dd></div>
+   <div><dt>For a prime</dt><dd>The same engine suits equipment familiarisation and induction training that has to work in the field or on a slow network.</dd></div>
+  </dl><a href="https://fijilearn.com/" target="_blank" rel="noopener">fijilearn.com</a></article>
+  <article><h3>Fiji 3D Maps and Fiji Navigate</h3><dl>
+   <div><dt>Problem</dt><dd>Planning a route across islands and rough terrain is hard on flat maps that don't show the ground.</dd></div>
+   <div><dt>What we built</dt><dd>A 3D terrain map that runs in an ordinary browser, and turn-by-turn driving and walking directions on real roads over it.</dd></div>
+   <div><dt>For a prime</dt><dd>The same approach suits training-estate viewers, range access planning and logistics routing without installing GIS software.</dd></div>
+  </dl><a href="https://nav.fijimap.com/" target="_blank" rel="noopener">nav.fijimap.com</a></article>
  </div>
 </div></section>
 
