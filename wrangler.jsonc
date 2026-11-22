@@ -7,6 +7,7 @@
   "$schema": "node_modules/wrangler/config-schema.json",
   "name": "dimau-ventures",
   "compatibility_date": "2026-11-01",
+  // Ops Room live check: writes dist/ops-build.json after the site build.\n  "build": { "command": "node scripts/ops-build-marker.mjs dist donovandimau/Dimau-Ventures" },
   "assets": {
     "directory": "./dist",
     "html_handling": "auto-trailing-slash"
