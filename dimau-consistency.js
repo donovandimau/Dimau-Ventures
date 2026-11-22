@@ -210,7 +210,7 @@
    and only asks for a database this app actually signs in with, when nobody is
    signed in there yet. Each code works once and expires quickly. */
 (function () {
-  var OPS = 'https://dimau-ops.vercel.app';
+  var OPS = 'https://ops.dimau-fintech.com';
   var DBS = {
     xnxmumbvgtmlpenutlii: 'sb_publishable_WFJ3jKwImNhGdTdrS9W6mg_3CUSUYIM',
     aqfzpaczyodhugsgqvxi: 'sb_publishable_DvpX2PSuPtxE3IqWUlRZfQ_YP2qLZtF'
