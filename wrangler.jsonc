@@ -1,6 +1,6 @@
 // Cloudflare Workers Builds: every merge to main runs
 //   node scripts/cf-static-assets.mjs --copy --out dist
-// (only the public site files go into dist/, plus _headers/_redirects made from vercel.json)
+// (only the public site files go into dist/, plus _headers/_redirects copied from cloudflare/)
 // and then `npx wrangler deploy`. Static files only: no main and no routes
 // (dimauventures.com and www are attached in Cloudflare).
 {
