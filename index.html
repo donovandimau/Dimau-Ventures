@@ -188,6 +188,7 @@ a{color:inherit}
 .kx::after{z-index:1}
 .sb{position:relative;height:min(82vh,820px);min-height:420px;background:#02060d;overflow:hidden}.sb video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:50% 40%}.sb::before,.sb::after{content:"";position:absolute;left:0;right:0;height:18%;z-index:1;pointer-events:none}.sb::before{top:0;background:linear-gradient(#02060d,rgba(2,6,13,0))}.sb::after{bottom:0;background:linear-gradient(rgba(251,253,255,0),#FBFDFF)}.bs{padding-top:10px}
 </style>
+<link rel="stylesheet" href="/ventures.css">
 <script async src="https://ops.dimau-fintech.com/api/visit?s=dimau-ventures"></script>
 <script src="https://xnxmumbvgtmlpenutlii.supabase.co/functions/v1/track/beacon.js" data-surface="dimau-ventures" defer></script>
 <script defer src="https://static.cloudflareinsights.com/beacon.min.js" data-cf-beacon='{"token": "12b6f3cef82c43f8a47a496393089c54"}'></script>
@@ -200,12 +201,28 @@ a{color:inherit}
 </div></header>
 <main>
 <section class="vis hv kx" id="kx" aria-label="Dimau Ventures">
- <canvas id="fx" aria-label="A live sphere of connected data points you can turn"></canvas><div id="lb" aria-hidden="true"></div>
- <div class="ov"><div class="w"><div><div class="ey">Dimau Ventures Ltd</div><h1>Keeping the future simple.</h1><p class="hs">Simple online tools to help you buy a home, clear debt and make sense of your numbers.</p></div><a class="bt" href="#brands">Explore <span class="ar">→</span></a></div></div>
+ <div class="journey w">
+  <div class="intro"><div class="ey">DIMAU VENTURES LTD</div><h1>Keeping the future simple.</h1>
+  <p class="hs">Free UK tools to clear debt, plan a home deposit and make sense of your numbers.</p>
+  <a class="bt" href="#sandbox">Try the 5-second calculator ↓</a></div>
+  <div class="atlas"><canvas id="network" aria-hidden="true"></canvas>
+  <div class="topics" aria-label="Explore a topic">
+   <a href="https://mydebtcalculator.app/" data-topic="0">Money</a><a href="https://fhtbcalculator.co.uk/" data-topic="1">Home</a>
+   <a href="#sandbox" data-topic="2">Bills</a><a href="https://visuals.dimau-fintech.com/" data-topic="3">Planning</a>
+  </div><div class="tool-card" hidden><button type="button" id="reset-topic">← Show all</button>
+  <h2 id="tool-name"></h2><p id="tool-detail"></p><a id="tool-link"></a></div></div>
+ </div>
 </section>
-
+<section id="sandbox" aria-labelledby="planner-title"><div class="w"><h2 id="planner-title">Put your numbers to work.</h2>
+<div id="planner" hidden><div class="modes" role="group" aria-label="Choose a plan"><button aria-pressed="true" data-mode="debt">Clear debt</button><button aria-pressed="false" data-mode="home">Buy a home</button></div>
+<div class="plan-grid"><div id="sliders"></div><div class="estimate" aria-live="polite" aria-atomic="true">
+<p id="metric"></p><strong id="estimate"></strong><p id="summary"></p>
+<div class="bars" aria-hidden="true"><i></i><i></i></div><p id="compare"></p>
+</div></div><p id="assumptions"></p><a class="bt" id="full-plan"></a></div>
+<noscript><a href="https://mydebtcalculator.app/">Open My Debt Calculator</a> · <a href="https://fhtbcalculator.co.uk/">Open FHTB Calculator</a></noscript>
+</div></section>
 <section class="sb" aria-label="Complexity becoming understanding"><video class="tv" muted loop playsinline preload="none" poster="/media/stream.jpg" data-s="/media/stream.mp4"></video></section>
-<section class="bs" id="brands"><div class="w"><div class="sol"><a class="st" href="https://fhtbcalculator.co.uk/" target="_blank" rel="noopener"><video class="tv" muted loop playsinline preload="none" poster="/media/maze.jpg" data-s="/media/maze.mp4" aria-hidden="true"></video><span>Find your way <b>→</b></span></a><a class="st" href="https://mydebtcalculator.app/" target="_blank" rel="noopener"><video class="tv" muted loop playsinline preload="none" poster="/media/debt.jpg" data-s="/media/debt.mp4" aria-hidden="true"></video><span>Break through <b>→</b></span></a><a class="st" href="https://visuals.dimau-fintech.com/" target="_blank" rel="noopener"><video class="tv" muted loop playsinline preload="none" poster="/media/visuals.jpg" data-s="/media/visuals.mp4" aria-hidden="true"></video><span>Make it visible <b>→</b></span></a><a class="st" href="/payments#products"><video class="tv" muted loop playsinline preload="none" poster="/media/transition.jpg" data-s="/media/transition.mp4" aria-hidden="true"></video><span>Start fresh <b>→</b></span></a></div></div></section>
+<section class="bs" id="brands"><div class="w"><div class="sol"><a class="st" href="https://fhtbcalculator.co.uk/" target="_blank" rel="noopener"><video class="tv" muted loop playsinline preload="none" poster="/media/maze.jpg" data-s="/media/maze.mp4" aria-hidden="true"></video><span>Calculate my FHTB <b>→</b></span></a><a class="st" href="https://mydebtcalculator.app/" target="_blank" rel="noopener"><video class="tv" muted loop playsinline preload="none" poster="/media/debt.jpg" data-s="/media/debt.mp4" aria-hidden="true"></video><span>Clear my debt <b>→</b></span></a><a class="st" href="#sandbox"><video class="tv" muted loop playsinline preload="none" poster="/media/visuals.jpg" data-s="/media/visuals.mp4" aria-hidden="true"></video><span>Map my numbers <b>→</b></span></a><a class="st" href="/payments#products"><video class="tv" muted loop playsinline preload="none" poster="/media/transition.jpg" data-s="/media/transition.mp4" aria-hidden="true"></video><span>See all Dimau tools <b>→</b></span></a></div></div></section>
 </main>
 
 <footer class="ft"><div class="w">
@@ -221,83 +238,7 @@ a{color:inherit}
 <script>(function(){var m=innerWidth<700;document.querySelectorAll('video[data-d]').forEach(function(v){v.src=m&&v.dataset.m?v.dataset.m:v.dataset.d;if(m&&v.dataset.mp)v.poster=v.dataset.mp});
 var io=new IntersectionObserver(function(es){es.forEach(function(e){var v=e.target;if(e.isIntersecting){if(!v.src)v.src=v.dataset.s;v.play().catch(function(){})}else v.pause()})},{rootMargin:'200px'});
 document.querySelectorAll('video.tv,video.bgv').forEach(function(v){io.observe(v)})})()</script>
-<script type="importmap">{"imports":{"three":"https://cdn.jsdelivr.net/npm/three@0.170.0/build/three.module.js","three/addons/":"https://cdn.jsdelivr.net/npm/three@0.170.0/examples/jsm/"}}</script>
-<script type="module" onerror="window.kxStill&&kxStill()">
-import * as THREE from 'three';
-import {OrbitControls} from 'three/addons/controls/OrbitControls.js';
-import {EffectComposer} from 'three/addons/postprocessing/EffectComposer.js';
-import {RenderPass} from 'three/addons/postprocessing/RenderPass.js';
-import {UnrealBloomPass} from 'three/addons/postprocessing/UnrealBloomPass.js';
-import {OutputPass} from 'three/addons/postprocessing/OutputPass.js';
-const cv=document.getElementById('fx'),box=document.getElementById('kx'),lab=document.getElementById('lb'),small=innerWidth<700,still=matchMedia('(prefers-reduced-motion: reduce)').matches;
-let R;try{R=new THREE.WebGLRenderer({canvas:cv,antialias:true})}catch(e){window.kxStill&&window.kxStill();await new Promise(()=>{})}R.setPixelRatio(Math.min(devicePixelRatio,small?1.5:1.75));R.setClearColor(0x02060d,1);
-const S=new THREE.Scene(),C=new THREE.PerspectiveCamera(40,1,.1,100);C.position.set(0,0,7.6);
-const G=new THREE.Group();S.add(G);const RAD=2.4,U={t:{value:0}};
-const PAL=[0x2f7bff,0x22d3ee,0x87ceeb,0x34d399,0xa855f7,0xf472b6,0xfb923c,0x60a5fa,0x14b8a6,0x3b82f6].map(c=>new THREE.Color(c));
-const rnd=Math.random,sph=()=>new THREE.Vector3().randomDirection();
-// clustered data dust
-const N=small?7000:12000,dp=new Float32Array(N*3),dc=new Float32Array(N*3),ds=new Float32Array(N);const CL=Array.from({length:46},()=>({c:sph(),col:PAL[Math.floor(rnd()*PAL.length)],s:.08+rnd()*.22}));
-for(let i=0;i<N;i++){const k=CL[Math.floor(rnd()*CL.length)];const v=k.c.clone().add(new THREE.Vector3((rnd()-.5),(rnd()-.5),(rnd()-.5)).multiplyScalar(k.s*2)).normalize().multiplyScalar(RAD*(.86+rnd()*.14));
- dp.set([v.x,v.y,v.z],i*3);const c=k.col.clone().lerp(new THREE.Color(0xffffff),rnd()*.05);dc.set([c.r,c.g,c.b],i*3);ds[i]=rnd()}
-const dg=new THREE.BufferGeometry();dg.setAttribute('position',new THREE.BufferAttribute(dp,3));dg.setAttribute('color',new THREE.BufferAttribute(dc,3));dg.setAttribute('seed',new THREE.BufferAttribute(ds,1));
-G.add(new THREE.Points(dg,new THREE.ShaderMaterial({uniforms:U,transparent:true,depthWrite:false,blending:THREE.AdditiveBlending,vertexColors:true,
-vertexShader:`uniform float t;attribute float seed;varying vec3 vc;varying float va;void main(){vc=color;vec4 mv=modelViewMatrix*vec4(position,1.);va=(.35+.65*(.5+.5*sin(t*1.7+seed*50.)))*(mv.z>-7.6?1.:.45);gl_PointSize=(1.+seed*2.2)*(22./-mv.z);gl_Position=projectionMatrix*mv;}`,
-fragmentShader:`varying vec3 vc;varying float va;void main(){float d=length(gl_PointCoord-.5);if(d>.5)discard;gl_FragColor=vec4(vc,smoothstep(.5,0.,d)*va*.42);}`})));
-// faint wire globe
-const wg=new THREE.LineSegments(new THREE.WireframeGeometry(new THREE.SphereGeometry(RAD*1.01,24,16)),new THREE.LineBasicMaterial({color:0x6b8db3,transparent:true,opacity:.07,depthWrite:false}));G.add(wg);
-// nodes
-const NN=small?110:150,nodes=[];for(let i=0;i<NN;i++)nodes.push(sph().multiplyScalar(RAD*(.9+rnd()*.08)));
-const rc=document.createElement('canvas');rc.width=rc.height=64;const rx=rc.getContext('2d');rx.strokeStyle='#fff';rx.lineWidth=7;rx.beginPath();rx.arc(32,32,22,0,7);rx.stroke();rx.fillStyle='#fff';rx.beginPath();rx.arc(32,32,7,0,7);rx.fill();
-const np=new Float32Array(NN*3);nodes.forEach((v,i)=>np.set([v.x,v.y,v.z],i*3));const ng=new THREE.BufferGeometry();ng.setAttribute('position',new THREE.BufferAttribute(np,3));
-G.add(new THREE.Points(ng,new THREE.PointsMaterial({map:new THREE.CanvasTexture(rc),size:small?.13:.11,transparent:true,depthWrite:false,alphaTest:.05,color:0xffffff})));
-const ep=[];nodes.forEach((a,i)=>{nodes.map((b,j)=>[a.distanceTo(b),j]).sort((x,y)=>x[0]-y[0]).slice(1,3).forEach(([d,j])=>{if(j>i||d>RAD*.55)ep.push(a.x,a.y,a.z,nodes[j].x,nodes[j].y,nodes[j].z)})});
-const eg=new THREE.BufferGeometry();eg.setAttribute('position',new THREE.Float32BufferAttribute(ep,3));G.add(new THREE.LineSegments(eg,new THREE.LineBasicMaterial({color:0xffffff,transparent:true,opacity:.32,depthWrite:false})));
-// hub threads with travelling light
-const hub=new THREE.Vector3(-.15,.35,.6);const thMat=new THREE.ShaderMaterial({uniforms:U,transparent:true,depthWrite:false,blending:THREE.AdditiveBlending,vertexColors:true,
-vertexShader:`attribute float k;attribute float off;varying float vk;varying float vo;varying vec3 vc;void main(){vk=k;vo=off;vc=color;gl_Position=projectionMatrix*modelViewMatrix*vec4(position,1.);}`,
-fragmentShader:`uniform float t;varying float vk;varying float vo;varying vec3 vc;void main(){float h=fract(t*.35+vo);float p=smoothstep(.07,0.,abs(vk-h));gl_FragColor=vec4(mix(vc,vec3(1.),p),.38+p*.62);}`});
-const TH=small?34:52;for(let i=0;i<TH;i++){const end=nodes[Math.floor(rnd()*NN)];const mid=hub.clone().lerp(end,.5).add(sph().multiplyScalar(.6+rnd()*.7));const pts=new THREE.QuadraticBezierCurve3(hub,mid,end).getPoints(60);
- const g=new THREE.BufferGeometry().setFromPoints(pts),k=new Float32Array(61),o=new Float32Array(61).fill(rnd()),col=new Float32Array(61*3),c=PAL[Math.floor(rnd()*PAL.length)];for(let j=0;j<61;j++){k[j]=j/60;col.set([c.r,c.g,c.b],j*3)}
- g.setAttribute('k',new THREE.BufferAttribute(k,1));g.setAttribute('off',new THREE.BufferAttribute(o,1));g.setAttribute('color',new THREE.BufferAttribute(col,3));G.add(new THREE.Line(g,thMat))}
-const hc=document.createElement('canvas');hc.width=hc.height=128;const hx=hc.getContext('2d'),hg=hx.createRadialGradient(64,64,0,64,64,64);hg.addColorStop(0,'rgba(255,255,255,1)');hg.addColorStop(.2,'rgba(135,206,235,.6)');hg.addColorStop(1,'rgba(0,0,0,0)');hx.fillStyle=hg;hx.fillRect(0,0,128,128);
-const hs=new THREE.Sprite(new THREE.SpriteMaterial({map:new THREE.CanvasTexture(hc),blending:THREE.AdditiveBlending,depthWrite:false,transparent:true}));hs.position.copy(hub);hs.scale.set(.42,.42,1);G.add(hs);
-// deep space: stars + faint galaxy bands
-const SN=small?2200:4200,sp=new Float32Array(SN*3),sc=new Float32Array(SN*3);for(let i=0;i<SN;i++){const v=sph().multiplyScalar(14+rnd()*40);if(i%3==0){v.y*=.18}sp.set([v.x,v.y,v.z],i*3);const c=PAL[Math.floor(rnd()*PAL.length)].clone().lerp(new THREE.Color(0xffffff),.55+rnd()*.45);sc.set([c.r,c.g,c.b],i*3)}
-const sg=new THREE.BufferGeometry();sg.setAttribute('position',new THREE.BufferAttribute(sp,3));sg.setAttribute('color',new THREE.BufferAttribute(sc,3));
-const stars=new THREE.Points(sg,new THREE.PointsMaterial({size:.06,vertexColors:true,transparent:true,opacity:.75,depthWrite:false,sizeAttenuation:true}));S.add(stars);
-const nc=document.createElement('canvas');nc.width=nc.height=256;const nx=nc.getContext('2d');['rgba(47,123,255,.35)','rgba(168,85,247,.22)','rgba(34,211,238,.25)'].forEach((c,i)=>{const g=nx.createRadialGradient(128,128,0,128,128,128);g.addColorStop(0,c);g.addColorStop(1,'rgba(0,0,0,0)');nx.fillStyle=g;nx.fillRect(0,0,256,256)});
-const ntex=new THREE.CanvasTexture(nc);[[-14,6,-22,26],[16,-7,-26,30],[4,12,-34,34],[-18,-10,-30,24]].forEach(([x,y,z,k])=>{const n=new THREE.Sprite(new THREE.SpriteMaterial({map:ntex,transparent:true,opacity:.07,depthWrite:false,blending:THREE.AdditiveBlending}));n.position.set(x,y,z);n.scale.set(k,k*.55,1);S.add(n)});
-// labels
-const CATS=["MONEY", "HOME", "HEALTH", "WORK", "FAMILY", "TECHNOLOGY", "BILLS", "ECONOMY", "SAFETY", "ENERGY", "TRAVEL", "PAPERWORK", "PLANNING", "FUTURE"],ITEMS=["Council tax", "Rent rise", "Mortgage rate", "Energy bills", "Water bill", "Food prices", "Fuel prices", "Broadband deal", "Phone contract", "TV licence", "Forgotten subscriptions", "Credit card bill", "Overdraft", "Unexpected costs", "Emergency fund", "Savings", "Pension pot", "State pension age", "Payslip", "Pay rise", "Tax code", "Self Assessment", "Tax return deadline", "National Insurance", "Universal Credit", "Child Benefit", "Childcare costs", "School places", "Student loan repayments", "Credit score", "Loan repayments", "Debt", "Buy now pay later", "Interest rates", "Inflation", "House prices", "Deposit saving", "Moving home", "Stamp duty", "Solicitor fees", "Home insurance", "Car insurance renewal", "Car MOT", "Car tax", "Car repairs", "Parking fines", "Speeding fines", "Train fares", "Bus times", "Strikes", "Holiday costs", "Passport renewal", "Travel insurance", "Flight delays", "GP appointment", "Dentist", "NHS waiting list", "Prescriptions", "A&E waits", "Mental health", "Stress", "Sleep", "Fitness", "Diet", "Ageing parents", "Care costs", "Wills", "Power of attorney", "Life insurance", "Funeral costs", "Job security", "Job applications", "CV", "Redundancy", "Working from home", "Side income", "Invoices", "Bookkeeping", "VAT", "Small business costs", "Energy switching", "Price comparison", "Insurance renewals", "Utility calls", "Hold music", "Online returns", "Deliveries", "Refunds", "Warranty claims", "Home repairs", "Builder quotes", "Damp & mould", "Boiler service", "Landlord issues", "Tenancy deposit", "Neighbour disputes", "Bin collections", "Council services", "Crime", "Phone scams", "Text scams", "Email phishing", "Fake news", "Online safety", "Passwords", "Two-factor codes", "Data breaches", "Identity theft", "Software updates", "Backups", "Cloud storage", "Photos piling up", "Lost documents", "Paperwork", "Forms", "Deadlines", "Renewal dates", "Reminders", "Emails", "Notifications", "Screen time", "AI changes", "Bank apps", "Contactless limits", "Cash machines closing", "Branch closures", "Customer service bots", "Digital ID checks", "Right to work checks", "Kids online", "School costs", "Uniform costs", "Family budget", "Christmas costs", "Birthdays", "Gift spending", "Weekly shop", "Meal planning", "Energy meter", "Smart meter", "EV charging", "Car finance", "Gym membership", "Loyalty schemes", "Vouchers expiring", "Cashback", "Investments", "ISA allowance", "Crypto risk", "Retirement plans"];
-const CIa=[0];while(CIa.length<CATS.length){let best=-1,bd=-1;nodes.forEach((v,i)=>{if(CIa.includes(i))return;const d=Math.min(...CIa.map(j=>v.distanceTo(nodes[j])));if(d>bd){bd=d;best=i}});CIa.push(best)}const CI=new Set(CIa);let ii=0;
-const L=nodes.map((v,i)=>{const el=document.createElement('span');const cat=CI.has(i);el.className=cat?'c':'i';el.textContent=cat?CATS[CIa.indexOf(i)]:ITEMS[(ii++)%ITEMS.length];lab.appendChild(el);return {el,v,cat}});
-const FX=new EffectComposer(R);FX.addPass(new RenderPass(S,C));FX.addPass(new UnrealBloomPass(new THREE.Vector2(1,1),.6,.45,.22));FX.addPass(new OutputPass());
-const ctl=new OrbitControls(C,cv);ctl.enableZoom=false;ctl.enablePan=false;ctl.enableDamping=true;ctl.autoRotate=!still;ctl.autoRotateSpeed=.55;ctl.rotateSpeed=.6;
-function size(){const w=box.clientWidth,h=box.clientHeight;R.setSize(w,h,false);FX.setSize(w,h);C.aspect=w/h;C.position.setLength(w/h<.8?11:6.9);L.forEach(l=>l.w=0);C.updateProjectionMatrix()}
-size();addEventListener('resize',size);
-let vis=true;new IntersectionObserver(e=>{vis=e[0].isIntersecting;if(vis)loop()}).observe(box);
-const t0=performance.now(),v3=new THREE.Vector3(),cam=new THREE.Vector3();let raf=0;
-function draw(){U.t.value=(performance.now()-t0)/1000;stars.rotation.y=U.t.value*.004;ctl.update();const w=box.clientWidth,h=box.clientHeight;C.getWorldPosition(cam);
- const P=[];L.forEach(l=>{v3.copy(l.v).applyMatrix4(G.matrixWorld);l.f=v3.clone().normalize().dot(cam.clone().normalize());v3.project(C);l.x=(v3.x+1)/2*w;l.y=(1-v3.y)/2*h;
-  if(!l.w){l.w=l.el.offsetWidth+10;l.h=l.el.offsetHeight+6}l.el.style.transform=`translate(${l.x}px,${l.y}px) translate(-50%,${l.cat?'-140%':'-125%'})`});
- L.slice().sort((a,b)=>(b.cat-a.cat)||(b.f-a.f)).forEach(l=>{let o=l.cat?Math.max(0,Math.min(1,(l.f-.05)*3)):Math.max(0,Math.min(.95,(l.f-.3)*2.2));
-  if(o>.05){const bx={x:l.x-l.w/2,y:l.y-l.h*(l.cat?1.4:1.25),w:l.w,h:l.h};if(P.some(q=>bx.x<q.x+q.w&&bx.x+bx.w>q.x&&bx.y<q.y+q.h&&bx.y+bx.h>q.y))o=l.cat?o:0;else P.push(bx)}
-  l.el.style.opacity=o});FX.render()}
-function loop(){cancelAnimationFrame(raf);if(!vis)return;draw();if(!still)raf=requestAnimationFrame(loop)}
-loop();box.classList.add('on');
-</script>
-<script>/* Still fallback: if the live sphere cannot start (no WebGL, or the 3D library does not load), draw a still picture of it instead. It is drawn on its own canvas behind the live one, so a late-starting live sphere simply covers it. */
-(function(){var k=document.getElementById('kx'),f=document.getElementById('fx'),c,P=['#2f7bff','#22d3ee','#87ceeb','#34d399','#a855f7','#f472b6','#fb923c','#60a5fa','#14b8a6','#3b82f6'];
-function draw(){var w=k.clientWidth,h=k.clientHeight,d=Math.min(devicePixelRatio||1,2),x=c.getContext('2d');if(!x||!w)return;c.width=w*d;c.height=h*d;x.scale(d,d);
-var s=11,r=function(){s=s*16807%2147483647;return s/2147483647},v=function(){var u=r()*2-1,t=r()*6.2832,q=Math.sqrt(1-u*u);return[q*Math.cos(t),u,q*Math.sin(t)]},
-R=Math.min(h*.36,w*.42),X=w/2,Y=h*.46,g=x.createRadialGradient(X,Y,0,X,Y,R*1.6),C=P.map(v),i,j,a,b,m,n=[];
-g.addColorStop(0,'rgba(47,123,255,.3)');g.addColorStop(.6,'rgba(34,211,238,.08)');g.addColorStop(1,'rgba(2,6,13,0)');x.fillStyle=g;x.fillRect(0,0,w,h);
-for(i=0;i<900;i++){j=Math.floor(r()*10);a=v();a=[C[j][0]+a[0]*.6,C[j][1]+a[1]*.6,C[j][2]+a[2]*.6];m=Math.hypot(a[0],a[1],a[2])/(R*(.9+r()*.2));b=(a[2]/m/R+1)/2;x.globalAlpha=.25+.7*b;x.fillStyle=P[j];x.shadowColor=P[j];x.shadowBlur=6;x.beginPath();x.arc(X+a[0]/m,Y-a[1]/m,.7+1.3*b,0,7);x.fill()}
-x.shadowBlur=0;for(i=0;i<44;i++)n.push(v());x.strokeStyle='#bfe6ff';x.lineWidth=1;
-for(i=0;i<44;i++)for(j=i+1;j<44;j++){a=n[i];b=n[j];if(Math.hypot(a[0]-b[0],a[1]-b[1],a[2]-b[2])<.62){x.globalAlpha=.12+.22*((a[2]+b[2])/4+.5);x.beginPath();x.moveTo(X+a[0]*R,Y-a[1]*R);x.lineTo(X+b[0]*R,Y-b[1]*R);x.stroke()}}
-x.strokeStyle='#fff';x.fillStyle='#02060d';x.lineWidth=1.6;for(i=0;i<44;i++){a=n[i];b=(a[2]+1)/2;x.globalAlpha=.3+.7*b;x.beginPath();x.arc(X+a[0]*R,Y-a[1]*R,3+2.5*b,0,7);x.fill();x.stroke()}}
-window.kxStill=function(){if(c||!k||!f||k.classList.contains('on'))return;c=document.createElement('canvas');c.className='fs';c.setAttribute('aria-hidden','true');k.insertBefore(c,f);draw();addEventListener('resize',draw)};
-setTimeout(window.kxStill,6000)})();</script>
+<script src="/ventures.js" defer></script>
 <script>/* Very wide screens (or a zoomed-out browser): scale the header, text and cards up with the window so the page keeps its 1440px proportions instead of shrinking to a strip in the middle. The sphere and video already fill the screen. */
 (function(){var T='.hd,.kx .ov>.w,.sb,.bs,.ft,main>section:not(.kx)';function fit(){var z=innerWidth/1440;z=z>1.1?Math.min(z,6):'';document.querySelectorAll(T).forEach(function(e){e.style.zoom=z});var m=document.querySelector('main'),f=m&&m.firstElementChild,h=document.getElementById('hd');if(f&&h&&!f.style.zoom)f.style.marginTop=z?(-h.getBoundingClientRect().height)+'px':''}fit();addEventListener('resize',fit)})();</script>
 </body>

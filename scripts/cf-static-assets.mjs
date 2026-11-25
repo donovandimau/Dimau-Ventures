@@ -13,6 +13,7 @@
 // redirects on Cloudflare: edit them there. (Until 22 Nov 2026 they were made
 // from vercel.json at build time; Vercel is retired and that file is gone.)
 import { cpSync, existsSync, mkdirSync, readdirSync, readFileSync, rmSync, statSync, writeFileSync } from 'node:fs';
+import { fileURLToPath } from 'node:url';
 import { join, resolve } from 'node:path';
 
 const args = process.argv.slice(2);
@@ -105,4 +106,4 @@ console.log(`cf-static-assets: ${out} ready (${headerRules} header rules, ${redi
 
 // Ops Room live check: write dist/ops-build.json (see scripts/ops-build-marker.mjs).
 import { execFileSync as opsMarkerRun } from 'node:child_process';
-opsMarkerRun(process.execPath, [new URL('./ops-build-marker.mjs', import.meta.url).pathname, 'dist', 'donovandimau/Dimau-Ventures'], { stdio: 'inherit' });
+opsMarkerRun(process.execPath, [fileURLToPath(new URL('./ops-build-marker.mjs', import.meta.url)), out, 'donovandimau/Dimau-Ventures'], { stdio: 'inherit' });
