@@ -1,3 +1,11 @@
+## 2026-11-27 — Codex, Ops task 1677
+
+Carry the current debt balance, APR and payment into the full calculator with one click.
+
+## 2026-11-27 — Codex, Ops task 1673
+
+Moved the debt and deposit planners into the hero with presets, a live comparison chart, formula disclosure, local saving, compact tool cards and a printable PDF snapshot. Removed homepage analytics beacons. Chrome checks at 390 and 1440 pixels passed. The live FHTB receiver opened the selected property price and cash deposit. My Debt Calculator uses a downloadable restore file.
+
 ## 2026-11-27 — Ops preview home-page rule fixed (full address)
 
 Fixes the home-page Ops preview rule added earlier today. Cloudflare applies _headers rules sorted by their text, not in file order, so the bare "/" rule ran before "/*": its detach removed nothing and the home page sent two Content-Security-Policy headers, the stricter of which still blocks the Ops frame (seen live). The rule now names the full address (https://<host>/), which sorts after every "/..." rule; checked on a throw-away Worker (bare "/" fails, "/a" and "https://<host>/" work). Original change: allows the Ops Room (https://ops.dimau-fintech.com) to show this app's entry page(s) in its preview frame, in the app's own headers: a rule for each entry page with the same Content-Security-Policy as the site-wide one plus the Ops address in frame-ancestors. Until now the shared dimau-link-rewrite Worker added it on the way out; that Worker ran on every request to most Dimau sites (about 170,000 a day against the account's 100,000 free limit) and took them down with error 1027 on 22 Nov 2026, so it is being retired.

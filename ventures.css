@@ -25,3 +25,47 @@
 #sandbox .bt {background:#d9f9fa;color:#092334;height:auto;min-height:44px;white-space:normal;padding:12px 18px}
 @media(max-width:760px){.journey{grid-template-columns:1fr;padding-block:102px 20px;gap:4px}.atlas{width:min(100%,440px);margin:auto}.plan-grid{grid-template-columns:1fr}.estimate{border-left:0;border-top:1px solid #345363;padding:18px 0 0}.tool-card{padding:16px}.tool-card h2{margin-top:8px}}
 @media(prefers-reduced-motion:no-preference){.tool-card:not([hidden]){animation:reveal .42s cubic-bezier(.22,1,.36,1) both}@keyframes reveal{from{opacity:0;scale:.93}to{opacity:1;scale:1}}}
+
+.kx.vis,.journey {min-height:0}
+.journey {grid-template-columns:minmax(0,.82fr) minmax(0,1.18fr);padding-block:100px 30px;gap:clamp(24px,5vw,76px)}
+#sandbox {background:transparent;padding:0;min-width:0}
+#planner {background:#0d2131;border-color:#355367;padding:clamp(16px,2vw,28px)}
+#sandbox h2,.tool-card h2 {color:#f8fafc}
+#sandbox h2 {font-size:clamp(1.5rem,2.5vw,2rem);margin-bottom:12px}
+#presets,.actions {display:flex;gap:8px;flex-wrap:wrap;align-items:center}
+#presets {margin:12px 0 6px}
+#presets button,#snapshot {font:inherit;color:#cef5f3;background:transparent;border:1px solid #527384;border-radius:20px;padding:6px 13px;cursor:pointer}
+#presets button[aria-pressed=true]{color:#072820;background:#a5f4de}
+#sliders input {display:block;height:24px;margin:0 0 4px}
+.estimate {border:0;border-top:1px solid #345363;padding:10px 0 0;margin-top:8px}
+#estimate {font-size:clamp(1.7rem,3vw,2.4rem);margin:0}
+#compare {color:#81f6ca;font-size:1.13rem;font-weight:700}
+#sandbox p {margin:0}
+#chart {display:block;width:100%;height:50px;margin:8px 0 0}
+#chart path {fill:none;stroke:#81f6ca;stroke-width:3;vector-effect:non-scaling-stroke}
+#chart #base-line {stroke:#bbccdc;stroke-dasharray:5 4}
+#legend,.disclaimer,#sandbox details,.trust {font-size:.85rem;color:#c3d6df}
+#sandbox summary {cursor:pointer;color:#adf4ee}
+#sandbox .trust {margin:10px 0;text-align:center}
+.actions {margin-top:12px}
+.directory {display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px;margin:16px 0}
+.directory a {display:grid;gap:6px;background:#102639;color:white;border-radius:14px;padding:20px;text-decoration:none}
+.directory b {color:#81f6ca}.directory span {color:#cedde5}
+.atlas {width:min(100%,520px);margin:auto;background:#0b1b29;border-radius:20px;overflow:hidden}
+.atlas canvas {position:absolute;inset:0;width:100%;height:100%}
+@media(max-width:760px){.journey,.directory{grid-template-columns:1fr}.journey{padding-block:90px 14px;gap:14px}.intro .ey{display:none}.hv .intro h1{font-size:1.75rem!important;margin:0}.vis .hs{margin:5px 0}.estimate{padding-top:8px}}
+
+
+@media print {
+  @page {size:A4;margin:18mm}
+  body,main,.kx.vis,#sandbox,#planner {position:static!important;height:auto!important;background:white!important;color:#152536!important;margin:0!important;padding:0!important;border:0}
+  .hd,.ft,#brands,.intro,.actions,.modes,#presets,#sliders input,.trust,details,body>div,body>aside {display:none!important}
+  .journey {display:block;padding:0;margin:0}
+  #planner::before {content:"Dimau Ventures Ltd · Plan snapshot";display:block;margin-bottom:16px}
+  #planner *,#sliders label,#sliders output,#sandbox h2 {color:#152536!important}
+  #chart {height:100px}
+  #sandbox details,#sandbox details p {display:block!important}
+  #sliders label {border-bottom:1px solid #ccc;padding:6px 0}
+}
+#debt-transfer,#home-transfer {margin-top:10px;font-size:.85rem}
+@media print {#debt-transfer,#home-transfer {display:none!important}}

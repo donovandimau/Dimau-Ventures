@@ -23,9 +23,7 @@
 <meta name="twitter:image" content="https://dimauventures.com/og-dimau-ventures-premium-20261103.jpg">
 <meta name="twitter:image:alt" content="Dimau Ventures Ltd – Keeping the future simple">
 <meta name="theme-color" content="#030a15">
-<link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@600;700;800&family=Lexend:wght@300;400;500&display=swap" rel="stylesheet">
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"Organization","name":"Dimau Ventures Ltd","url":"https://dimauventures.com/","logo":"https://dimauventures.com/dimau-logo.png","email":"hello@dimauventures.com","identifier":"17555886","address":{"@type":"PostalAddress","streetAddress":"71–75 Shelton Street, Covent Garden","addressLocality":"London","postalCode":"WC2H 9JQ","addressCountry":"GB"},"parentOrganization":{"@type":"Organization","name":"Dimau Group","url":"https://dimau-fintech.com/"}}</script>
 <style>
 :root{--ink:#0A2440;--ink2:#3B5872;--ink3:#6A8399;--sky:#87CEEB;--sky2:#CDEBF8;--mist:#F2F9FD;--blue:#1F6FAE;--rule:rgba(10,36,64,.12)}
@@ -188,10 +186,8 @@ a{color:inherit}
 .kx::after{z-index:1}
 .sb{position:relative;height:min(82vh,820px);min-height:420px;background:#02060d;overflow:hidden}.sb video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:50% 40%}.sb::before,.sb::after{content:"";position:absolute;left:0;right:0;height:18%;z-index:1;pointer-events:none}.sb::before{top:0;background:linear-gradient(#02060d,rgba(2,6,13,0))}.sb::after{bottom:0;background:linear-gradient(rgba(251,253,255,0),#FBFDFF)}.bs{padding-top:10px}
 </style>
-<link rel="stylesheet" href="/ventures.css">
+<link rel="stylesheet" href="/ventures.css?v=1673">
 <script async src="https://ops.dimau-fintech.com/api/visit?s=dimau-ventures"></script>
-<script src="https://xnxmumbvgtmlpenutlii.supabase.co/functions/v1/track/beacon.js" data-surface="dimau-ventures" defer></script>
-<script defer src="https://static.cloudflareinsights.com/beacon.min.js" data-cf-beacon='{"token": "12b6f3cef82c43f8a47a496393089c54"}'></script>
 </head>
 <body>
 <header class="hd dk" id="hd"><div class="w">
@@ -204,25 +200,34 @@ a{color:inherit}
  <div class="journey w">
   <div class="intro"><div class="ey">DIMAU VENTURES LTD</div><h1>Keeping the future simple.</h1>
   <p class="hs">Free UK tools to clear debt, plan a home deposit and make sense of your numbers.</p>
-  <a class="bt" href="#sandbox">Try the 5-second calculator ↓</a></div>
+  </div>
+  <section id="sandbox" aria-labelledby="planner-title">
+    <div id="planner" hidden>
+      <h2 id="planner-title">Put your numbers to work.</h2>
+      <div class="modes" role="group" aria-label="Choose a plan"><button aria-pressed="true" data-mode="debt">Clear debt</button><button aria-pressed="false" data-mode="home">Buy a home</button></div>
+      <div id="presets" role="group"></div><div id="sliders"></div>
+      <div class="estimate" aria-live="polite"><p id="metric"></p><strong id="estimate"></strong><p id="compare"></p><p id="summary"></p></div>
+      <svg id="chart" viewBox="0 0 400 60" preserveAspectRatio="none" aria-hidden="true"><path id="base-line"/><path id="plan-line"/></svg>
+      <p id="legend"></p><p class="disclaimer">Illustrative estimate.</p><details><summary>How this is calculated</summary><p id="assumptions"></p></details>
+      <div class="actions"><a class="bt" id="full-plan"></a><button id="snapshot">Share / Save Snapshot</button></div>
+      <details id="debt-transfer"><summary>Download a backup of these figures</summary><p>Open My Debt Calculator above to continue with these figures. You can also save a backup file.</p><button id="download-plan">Download plan file</button></details>
+      <p id="home-transfer" hidden>Open the comparison to carry over your price and cash deposit. Set mortgage rate, buying costs and advance in FHTB.</p>
+    </div><noscript>Use the links below to open the full calculators.</noscript>
+    <p class="trust">No sign-up. No tracking. Runs 100% in your browser.</p>
+  </section>
+ </div>
+</section>
+<section class="bs" id="brands"><div class="w"><h2>Your financial tools</h2><div class="directory">
+<a href="https://fhtbcalculator.co.uk/" id="home-card"><strong>FHTB Calculator</strong><span>Plan your forces home purchase</span><b id="home-preview"></b></a>
+<a href="https://mydebtcalculator.app/" id="debt-card"><strong>My Debt Calculator</strong><span>Find your debt-free date sooner</span><b id="debt-preview"></b></a>
+<a href="#sandbox"><strong>Monthly planner</strong><span>Explore your next monthly payment</span><b id="monthly-preview"></b></a></div>
+<a href="/payments#products">See all Dimau tools →</a>
   <div class="atlas"><canvas id="network" aria-hidden="true"></canvas>
   <div class="topics" aria-label="Explore a topic">
    <a href="https://mydebtcalculator.app/" data-topic="0">Money</a><a href="https://fhtbcalculator.co.uk/" data-topic="1">Home</a>
    <a href="#sandbox" data-topic="2">Bills</a><a href="https://visuals.dimau-fintech.com/" data-topic="3">Planning</a>
   </div><div class="tool-card" hidden><button type="button" id="reset-topic">← Show all</button>
-  <h2 id="tool-name"></h2><p id="tool-detail"></p><a id="tool-link"></a></div></div>
- </div>
-</section>
-<section id="sandbox" aria-labelledby="planner-title"><div class="w"><h2 id="planner-title">Put your numbers to work.</h2>
-<div id="planner" hidden><div class="modes" role="group" aria-label="Choose a plan"><button aria-pressed="true" data-mode="debt">Clear debt</button><button aria-pressed="false" data-mode="home">Buy a home</button></div>
-<div class="plan-grid"><div id="sliders"></div><div class="estimate" aria-live="polite" aria-atomic="true">
-<p id="metric"></p><strong id="estimate"></strong><p id="summary"></p>
-<div class="bars" aria-hidden="true"><i></i><i></i></div><p id="compare"></p>
-</div></div><p id="assumptions"></p><a class="bt" id="full-plan"></a></div>
-<noscript><a href="https://mydebtcalculator.app/">Open My Debt Calculator</a> · <a href="https://fhtbcalculator.co.uk/">Open FHTB Calculator</a></noscript>
-</div></section>
-<section class="sb" aria-label="Complexity becoming understanding"><video class="tv" muted loop playsinline preload="none" poster="/media/stream.jpg" data-s="/media/stream.mp4"></video></section>
-<section class="bs" id="brands"><div class="w"><div class="sol"><a class="st" href="https://fhtbcalculator.co.uk/" target="_blank" rel="noopener"><video class="tv" muted loop playsinline preload="none" poster="/media/maze.jpg" data-s="/media/maze.mp4" aria-hidden="true"></video><span>Calculate my FHTB <b>→</b></span></a><a class="st" href="https://mydebtcalculator.app/" target="_blank" rel="noopener"><video class="tv" muted loop playsinline preload="none" poster="/media/debt.jpg" data-s="/media/debt.mp4" aria-hidden="true"></video><span>Clear my debt <b>→</b></span></a><a class="st" href="#sandbox"><video class="tv" muted loop playsinline preload="none" poster="/media/visuals.jpg" data-s="/media/visuals.mp4" aria-hidden="true"></video><span>Map my numbers <b>→</b></span></a><a class="st" href="/payments#products"><video class="tv" muted loop playsinline preload="none" poster="/media/transition.jpg" data-s="/media/transition.mp4" aria-hidden="true"></video><span>See all Dimau tools <b>→</b></span></a></div></div></section>
+  <h2 id="tool-name"></h2><p id="tool-detail"></p><a id="tool-link"></a></div></div></div></section>
 </main>
 
 <footer class="ft"><div class="w">
@@ -238,7 +243,7 @@ a{color:inherit}
 <script>(function(){var m=innerWidth<700;document.querySelectorAll('video[data-d]').forEach(function(v){v.src=m&&v.dataset.m?v.dataset.m:v.dataset.d;if(m&&v.dataset.mp)v.poster=v.dataset.mp});
 var io=new IntersectionObserver(function(es){es.forEach(function(e){var v=e.target;if(e.isIntersecting){if(!v.src)v.src=v.dataset.s;v.play().catch(function(){})}else v.pause()})},{rootMargin:'200px'});
 document.querySelectorAll('video.tv,video.bgv').forEach(function(v){io.observe(v)})})()</script>
-<script src="/ventures.js" defer></script>
+<script src="/ventures.js?v=1677" defer></script>
 <script>/* Very wide screens (or a zoomed-out browser): scale the header, text and cards up with the window so the page keeps its 1440px proportions instead of shrinking to a strip in the middle. The sphere and video already fill the screen. */
 (function(){var T='.hd,.kx .ov>.w,.sb,.bs,.ft,main>section:not(.kx)';function fit(){var z=innerWidth/1440;z=z>1.1?Math.min(z,6):'';document.querySelectorAll(T).forEach(function(e){e.style.zoom=z});var m=document.querySelector('main'),f=m&&m.firstElementChild,h=document.getElementById('hd');if(f&&h&&!f.style.zoom)f.style.marginTop=z?(-h.getBoundingClientRect().height)+'px':''}fit();addEventListener('resize',fit)})();</script>
 </body>
