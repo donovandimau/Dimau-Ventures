@@ -3,13 +3,14 @@
 /*
   X-Content-Type-Options: nosniff
   Referrer-Policy: strict-origin-when-cross-origin
-  Content-Security-Policy: frame-ancestors 'self' https://ops.dimau-fintech.com
+  Content-Security-Policy: frame-ancestors 'self'
   Strict-Transport-Security: max-age=63072000; includeSubDomains
   Permissions-Policy: camera=(), microphone=(), geolocation=()
 
 # Ops Room preview framing (27 Nov 2026): the Ops Room shows this page in its preview frame.
 # Same CSP as above plus https://ops.dimau-fintech.com in frame-ancestors, on these exact entry pages only.
 # Replaces the dimau-link-rewrite Worker, which did this until it was retired. Keep in step with the CSP above.
-/
+# The home page rule names the full address: Cloudflare applies rules sorted by their text, and a bare "/" would run before "/*" (two CSPs).
+https://dimauventures.com/
   ! Content-Security-Policy
   Content-Security-Policy: frame-ancestors 'self' https://ops.dimau-fintech.com

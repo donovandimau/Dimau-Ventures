@@ -1,3 +1,7 @@
+## 2026-11-27 — Ops preview home-page rule fixed (full address)
+
+Fixes the home-page Ops preview rule added earlier today. Cloudflare applies _headers rules sorted by their text, not in file order, so the bare "/" rule ran before "/*": its detach removed nothing and the home page sent two Content-Security-Policy headers, the stricter of which still blocks the Ops frame (seen live). The rule now names the full address (https://<host>/), which sorts after every "/..." rule; checked on a throw-away Worker (bare "/" fails, "/a" and "https://<host>/" work). Original change: allows the Ops Room (https://ops.dimau-fintech.com) to show this app's entry page(s) in its preview frame, in the app's own headers: a rule for each entry page with the same Content-Security-Policy as the site-wide one plus the Ops address in frame-ancestors. Until now the shared dimau-link-rewrite Worker added it on the way out; that Worker ran on every request to most Dimau sites (about 170,000 a day against the account's 100,000 free limit) and took them down with error 1027 on 22 Nov 2026, so it is being retired.
+
 ## 2026-11-27 — Ops preview framing moved into this app
 
 Allows the Ops Room (https://ops.dimau-fintech.com) to show this app's entry page(s) in its preview frame, in the app's own headers: a rule for each entry page with the same Content-Security-Policy as the site-wide one plus the Ops address in frame-ancestors. Until now the shared dimau-link-rewrite Worker added it on the way out; that Worker ran on every request to most Dimau sites (about 170,000 a day against the account's 100,000 free limit) and took them down with error 1027 on 22 Nov 2026, so it is being retired. Also: the usage comment in dimau-consistency.js names the current address.
@@ -100,5 +104,3 @@ Added TRACKER.md merge=union while preserving other Git attributes. Git attribut
 - 2026-10-30 — claude — Redirect the vercel.app address to dimauventures.com (vercel.json on claude/redirect-to-domain)
 
 _Seeded 2026-11-02 from the Ops Room. From here on, this file is the record for this project._
-
-- 2026-11-27 — Claude — **Ops Room preview allowed in this site's own framing rule** (Ops task 1574; Donovan: "Yes, 14 PRs then retire"). `frame-ancestors` now includes `https://ops.dimau-fintech.com` in cloudflare/_headers (dead `*.vercel.app` entries replaced). Until now the dimau-link-rewrite Worker added it on the home page; this lets that Worker be retired. Checks: header-related tests (1 files): 0 pass, 1 fail (base: 1 fail).
