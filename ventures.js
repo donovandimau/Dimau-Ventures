@@ -151,7 +151,10 @@ function chartLine(id, points, duration, amount) {
   ).join(' '));
 }
 function toolUrl(type) {
-  if (type === 'debt') return 'https://mydebtcalculator.app/';
+  if (type === 'debt') {
+    const figures = new URLSearchParams({'ventures-debt':inputs.debt, apr:inputs.apr, payment:inputs.payment});
+    return 'https://mydebtcalculator.app/#'+figures;
+  }
   // The FHTB import dialog lets the visitor keep an existing comparison.
   const comparison = {v:1,s:[0,0,0,0,0],p:[
     ['Ventures estimate',inputs.price,inputs.savings,0,25,10,0,0,'']
@@ -197,6 +200,8 @@ function updatePlan() {
   byId('home-transfer').hidden = mode !== 'home';
   byId('home-card').href = toolUrl('home');
   byId('debt-card').href = toolUrl('debt');
+  topicLinks[0].href = toolUrl('debt');
+  if (selected === 0) byId('tool-link').href = topicLinks[0].href;
   byId('home-preview').textContent = money(price*.1)+' deposit target →';
   byId('debt-preview').textContent = money(debt)+' to repay →';
   byId('monthly-preview').textContent = money(mode === 'debt' ? payment : monthly)+' per month →';

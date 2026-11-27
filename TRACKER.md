@@ -1,3 +1,7 @@
+## 2026-11-27 — Codex, Ops task 1677
+
+Carry the current debt balance, APR and payment into the full calculator with one click.
+
 ## 2026-11-27 — Codex, Ops task 1673
 
 Moved the debt and deposit planners into the hero with presets, a live comparison chart, formula disclosure, local saving, compact tool cards and a printable PDF snapshot. Removed homepage analytics beacons. Chrome checks at 390 and 1440 pixels passed. The live FHTB receiver opened the selected property price and cash deposit. My Debt Calculator uses a downloadable restore file.
