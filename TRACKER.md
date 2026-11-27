@@ -100,3 +100,5 @@ Added TRACKER.md merge=union while preserving other Git attributes. Git attribut
 - 2026-10-30 — claude — Redirect the vercel.app address to dimauventures.com (vercel.json on claude/redirect-to-domain)
 
 _Seeded 2026-11-02 from the Ops Room. From here on, this file is the record for this project._
+
+- 2026-11-27 — Claude — **Ops Room preview allowed in this site's own framing rule** (Ops task 1574; Donovan: "Yes, 14 PRs then retire"). `frame-ancestors` now includes `https://ops.dimau-fintech.com` in cloudflare/_headers (dead `*.vercel.app` entries replaced). Until now the dimau-link-rewrite Worker added it on the home page; this lets that Worker be retired. Checks: header-related tests (1 files): 0 pass, 1 fail (base: 1 fail).
