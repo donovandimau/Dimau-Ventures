@@ -1,5 +1,5 @@
 /* Dimau consistency standard — shared by every Dimau site.
-   Loaded with: <script src="https://fijian-assistant-api.vercel.app/dimau-consistency.js" defer></script>
+   Loaded with: <script src="https://ops.dimau-fintech.com/volau-shared/dimau-consistency.js" defer></script>
    What it does on every page:
    1. Legacy header: logo box 44px and music button 44px, both centred on the same line.
       Headers marked data-dimau-header keep their native shared-header geometry.

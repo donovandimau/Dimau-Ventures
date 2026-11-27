@@ -1,3 +1,7 @@
+## 2026-11-27 — Ops preview framing moved into this app
+
+Allows the Ops Room (https://ops.dimau-fintech.com) to show this app's entry page(s) in its preview frame, in the app's own headers: a rule for each entry page with the same Content-Security-Policy as the site-wide one plus the Ops address in frame-ancestors. Until now the shared dimau-link-rewrite Worker added it on the way out; that Worker ran on every request to most Dimau sites (about 170,000 a day against the account's 100,000 free limit) and took them down with error 1027 on 22 Nov 2026, so it is being retired. Also: the usage comment in dimau-consistency.js names the current address.
+
 ## 2026-11-14 — TRACKER merge prevention
 
 Added TRACKER.md merge=union while preserving other Git attributes. Git attribute resolution and a real concurrent-log merge pass. Application behavior is unchanged. Publication is tracked in this PR and Ops.
