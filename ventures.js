@@ -20,7 +20,7 @@ topicLinks.forEach((link, index) => {
     byId('tool-name').textContent = name;
     byId('tool-detail').textContent = detail;
     byId('tool-link').textContent = action;
-    byId('tool-link').href = link.href;
+    byId('tool-link').href = index < 2 ? toolUrl(index === 0 ? 'debt' : 'home') : link.href;
     clearTimeout(revealTimer);
     revealTimer = setTimeout(() => {
       card.hidden = false;
@@ -113,66 +113,111 @@ const fields = {
   home:[['price','Property price',100000,600000,5000,250000],['savings','Current savings',0,100000,1000,10000],['monthly','Monthly savings',100,2500,50,500]]
 };
 const inputs = Object.fromEntries(Object.values(fields).flat().map(([key,,,,,value]) => [key,value]));
+
+const storageKey = 'ventures.plan.v1';
 let mode = 'debt';
-function payoff(debt,apr,payment) {
+try {
+  const saved = JSON.parse(localStorage.getItem(storageKey));
+  for (const [key,,min,max,step] of Object.values(fields).flat()) {
+    const n = saved?.inputs?.[key];
+    if (Number.isInteger(n) && n >= min && n <= max && (n-min)%step === 0) inputs[key] = n;
+  }
+  if (saved?.mode === 'home') mode = 'home';
+} catch { /* Browser storage is optional. */ }
+function savePlan() {
+  try { localStorage.setItem(storageKey, JSON.stringify({mode, inputs})); } catch { /* Session only. */ }
+}
+function payoff(debt, apr, payment) {
   const rate = Math.expm1(Math.log1p(apr/100)/12);
-  let balance = debt, interest = 0, months = 0;
-  while (balance > .00001) {
+  const balances = [debt];
+  let balance = debt, interest = 0;
+  while (balance > 0.00001) {
     const charge = balance*rate;
     const instalment = payment ?? Math.max(100,balance*.03);
     if (instalment <= charge) return null;
-    balance -= instalment-charge;
-    months++;
+    balance = Math.max(0,balance+charge-instalment);
+    balances.push(balance);
     interest += charge;
   }
-  return {months,interest};
+  return {balances, months:balances.length-1, interest};
 }
 function monthAfter(months) {
   const today = new Date();
   return new Date(today.getFullYear(),today.getMonth()+months,1).toLocaleDateString('en-GB',{month:'long',year:'numeric'});
 }
+function chartLine(id, points, duration, amount) {
+  byId(id).setAttribute('d', points.map(([m,b],i) =>
+    (i ? 'L' : 'M')+(1+398*m/Math.max(1,duration)).toFixed(2)+' '+(58-56*b/amount).toFixed(2)
+  ).join(' '));
+}
+function toolUrl(type) {
+  if (type === 'debt') return 'https://mydebtcalculator.app/';
+  // The FHTB import dialog lets the visitor keep an existing comparison.
+  const comparison = {v:1,s:[0,0,0,0,0],p:[
+    ['Ventures estimate',inputs.price,inputs.savings,0,25,10,0,0,'']
+  ]};
+  const fragment = btoa(JSON.stringify(comparison)).replaceAll('+','-').replaceAll('/','_').replace(/=+$/,'');
+  return 'https://fhtbcalculator.co.uk/#plan='+fragment;
+}
+function result(metric,estimate,compare,summary,legend,assumptions) {
+  for (const [id,text] of Object.entries({metric,estimate,compare,summary,legend,assumptions})) byId(id).textContent = text;
+}
 function updatePlan() {
   const {debt,apr,payment,price,savings,monthly} = inputs;
-  let heading,value,summary,comparison,assumption,action,url,first,second;
   if (mode === 'debt') {
-    const plan = payoff(debt,apr,payment), baseline = payoff(debt,apr,null);
-    heading = 'Estimated debt-free date';
-    value = plan ? monthAfter(plan.months) : 'Increase the payment';
-    summary = plan ? money(plan.interest)+' total interest over '+plan.months+' months.' : 'The monthly payment does not cover the interest.';
-    first = baseline.months; second = plan?.months ?? 0;
-    comparison = 'Baseline: '+first+' months.' + (plan ? ' Your plan: '+second+' months.':'');
-    if (plan && plan.interest < baseline.interest && second < first) comparison += ' Save '+money(baseline.interest-plan.interest)+' and '+(first-second)+' months.';
-    assumption = 'Assumes a fixed APR, monthly interest and no new borrowing or fees. The example baseline pays 3% of the opening balance each month, with a £100 minimum.';
-    url = new URL(topicLinks[0].href);
-    action = 'Open My Debt Calculator →';
+    const baseline = payoff(debt,apr,null), plan = payoff(debt,apr,payment);
+    const duration = Math.max(baseline.months,plan?.months ?? 0);
+    for (const [id,series] of [['base-line',baseline],['plan-line',plan]]) {
+      chartLine(id,(series?.balances ?? []).map((b,i)=>[i,b]),duration,debt);
+    }
+    let comparison = 'The payment does not cover the interest.';
+    if (plan) {
+      const difference = baseline.interest-plan.interest;
+      const months = baseline.months-plan.months;
+      comparison = difference > 0 ? 'Save '+money(difference)+' in interest' : money(-difference)+' more interest';
+      if (months > 0) comparison += ' and '+months+' months';
+    }
+    result('Estimated debt-free date',plan ? monthAfter(plan.months) : 'Increase the payment',comparison,
+      plan ? money(plan.interest)+' total interest over '+plan.months+' months.' : '',
+      'Baseline (dashed) · '+baseline.months+' months   /   Your plan · '+(plan ? plan.months+' months' : 'no payoff'),
+      'Monthly rate = (1 + APR ÷ 100)^(1/12) − 1. Each month we add opening balance × monthly rate, then subtract the payment, limited to the amount owed. Baseline pays the greater of £100 or 3% of that month’s opening balance. Your plan pays the chosen amount. Assumes fixed APR, no fees and no new borrowing.');
   } else {
     const target = price*.1, gap = Math.max(0,target-savings), months = Math.ceil(gap/monthly);
-    heading = 'Estimated 10% deposit date';
-    value = months ? monthAfter(months) : 'Deposit ready';
-    summary = money(gap)+' left to reach a '+money(target)+' deposit.';
-    first = target; second = Math.min(savings,target);
-    comparison = money(savings)+' saved towards '+money(target)+'.';
-    assumption = 'Assumes equal monthly contributions, a fixed property price and no interest. Purchase costs and Forces Help to Buy are excluded.';
-    url = new URL(topicLinks[1].href);
-    action = 'Explore Forces Help to Buy →';
+    const points = Array.from({length:months+1},(_,i)=>[i,Math.min(target,savings+i*monthly)]);
+    chartLine('base-line',[[0,target],[Math.max(months,1),target]],months,target);
+    chartLine('plan-line',points,months,target);
+    result('Estimated 10% deposit date',months ? monthAfter(months) : 'Deposit ready',
+      money(gap)+' left to save',money(savings)+' saved towards '+money(target)+'.',
+      'Deposit target (dashed)   /   Your savings · '+months+' months',
+      'Target = property price × 10%. Months = remaining deposit divided by monthly contributions, rounded up. Assumes fixed price, constant contributions and no interest. Purchase costs and Forces Help to Buy are excluded.');
   }
-  for (const [key] of fields[mode]) url.searchParams.set(key,inputs[key]);
-  byId('metric').textContent = heading;
-  if(byId('estimate').textContent !== value && !reducedMotion.matches) byId('estimate').animate?.([{opacity:.68,transform:'translateY(2px)'},{opacity:1,transform:'none'}],{duration:160});
-  byId('estimate').textContent = value;
-  byId('summary').textContent = summary;
-  byId('compare').textContent = comparison;
-  byId('assumptions').textContent = assumption;
-  byId('full-plan').textContent = action;
-  byId('full-plan').href = url.href;
-  const scale = Math.max(first,second,1);
-  document.querySelectorAll('.bars i').forEach((bar,i) => bar.style.width = (100*[first,second][i]/scale)+'%');
-  const progress = mode === 'debt' ? (payment-100)/1400 : (monthly-100)/2400;
-  byId('planner').style.setProperty('--tint','hsl('+Math.round(30+155*progress)+' 35% 18%)');
+  byId('full-plan').textContent = mode === 'debt' ? 'Open My Debt Calculator →' : 'Explore Forces Help to Buy →';
+  byId('full-plan').href = toolUrl(mode);
+  byId('debt-transfer').hidden = mode !== 'debt';
+  byId('home-transfer').hidden = mode !== 'home';
+  byId('home-card').href = toolUrl('home');
+  byId('debt-card').href = toolUrl('debt');
+  byId('home-preview').textContent = money(price*.1)+' deposit target →';
+  byId('debt-preview').textContent = money(debt)+' to repay →';
+  byId('monthly-preview').textContent = money(mode === 'debt' ? payment : monthly)+' per month →';
+  for (const button of byId('presets').children) button.setAttribute('aria-pressed',String(+button.value === inputs[fields[mode][0][0]]));
 }
 function showFields() {
-  const host = byId('sliders');
+  const host = byId('sliders'), presets = byId('presets');
   host.replaceChildren();
+  presets.replaceChildren();
+  presets.setAttribute('aria-label',mode === 'debt' ? 'Debt presets' : 'Property price presets');
+  for (const amount of (mode === 'debt' ? [5000,10000,25000] : [150000,250000,400000])) {
+    const button = document.createElement('button');
+    button.textContent = '£'+amount/1000+'k';
+    button.value = amount;
+    button.onclick = () => {
+      const slider = byId('plan-'+fields[mode][0][0]);
+      slider.value = amount;
+      slider.dispatchEvent(new Event('input'));
+    };
+    presets.append(button);
+  }
   for (const [key,title,min,max,step] of fields[mode]) {
     const input = document.createElement('input'), label = document.createElement('label'), output = document.createElement('output');
     Object.assign(input,{id:'plan-'+key,type:'range',min,max,step,value:inputs[key]});
@@ -182,15 +227,26 @@ function showFields() {
       output.textContent = key==='apr' ? inputs[key]+'%' : money(inputs[key]);
       input.setAttribute('aria-valuetext',output.textContent);
     }
-    input.addEventListener('input',() => {inputs[key] = input.valueAsNumber;display();updatePlan();});
+    input.addEventListener('input',() => {inputs[key]=input.valueAsNumber;display();updatePlan();savePlan();});
     display();label.append(output);host.append(label,input);
   }
   document.querySelectorAll('[data-mode]').forEach(button => button.setAttribute('aria-pressed',String(button.dataset.mode===mode)));
   updatePlan();
 }
-document.querySelectorAll('[data-mode]').forEach(button => button.addEventListener('click',() => {mode=button.dataset.mode;showFields();}));
-byId('tool-link').addEventListener('click', () => {
-  if (selected === 2) { mode = 'debt'; showFields(); }
+document.querySelectorAll('[data-mode]').forEach(button => button.addEventListener('click',() => {mode=button.dataset.mode;showFields();savePlan();}));
+byId('tool-link').addEventListener('click',() => {if(selected === 2){mode='debt';showFields();savePlan();}});
+byId('download-plan').addEventListener('click',() => {
+  const now = new Date();
+  const start = now.getFullYear()+'-'+String(now.getMonth()+1).padStart(2,'0');
+  const plan = {debts:[{name:'Ventures balance',bal:inputs.debt,apr:inputs.apr,min:0}],
+    budget:inputs.payment,method:'avalanche',start,example:false,currency:'GBP'};
+  const blob = new Blob([JSON.stringify({app:'MyDebtCalculator',version:1,plan})],{type:'application/json'});
+  const link = document.createElement('a');
+  link.href = URL.createObjectURL(blob);
+  link.download = 'ventures-debt-plan.json';
+  link.click();
+  setTimeout(()=>URL.revokeObjectURL(link.href),30000);
 });
+byId('snapshot').addEventListener('click',() => window.print());
 showFields();
 byId('planner').hidden = false;
